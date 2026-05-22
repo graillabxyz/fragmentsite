@@ -1,0 +1,31 @@
+{
+  "name": "fragment-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "/usr/local/bin/node node_modules/next/dist/bin/next dev",
+    "build": "/usr/local/bin/node node_modules/next/dist/bin/next build",
+    "start": "/usr/local/bin/node node_modules/next/dist/bin/next start",
+    "lint": "/usr/local/bin/node scripts/lint.mjs",
+    "typecheck": "/usr/local/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "15.5.18",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.5.3",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.7.2"
+  }
+}
