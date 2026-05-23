@@ -514,37 +514,53 @@ function StackDemo() {
           {stackSteps.map((card, index) => (
             <div
               key={card.name}
-              className={`relative grid gap-3 border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 sm:grid-cols-[0.66fr_1fr] ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
+              className={`group/card relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
               style={{ marginLeft: `${index * 22}px` }}
             >
-              <div className={`relative min-h-36 border p-3 ${card.accent}`}>
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
-                    {card.type}
-                  </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                    {card.cost}
-                  </span>
-                </div>
-                <div className="font-title mt-8 text-base text-white">{card.name}</div>
-                <div className="mt-3 border-t border-white/10 pt-3 text-[11px] leading-4 text-slate-300">
-                  {card.effect}
-                </div>
-                {card.flux ? (
-                  <span className="absolute right-3 top-10 text-lg leading-none text-amber-100">
-                    ⚡
-                  </span>
-                ) : null}
-              </div>
-              <div>
-                <div className="flex items-center justify-between">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
                   <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                     Stack {card.step}
                   </span>
-                  {card.flux ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
+                  <div className="font-title mt-3 text-lg text-white">{card.name}</div>
+                  <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
                 </div>
-                <div className="font-title mt-3 text-lg text-white">{card.name}</div>
-                <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
+                <div className="flex shrink-0 items-start gap-2">
+                  {card.flux ? <FluxBadge label="" /> : <Layers3 className="mt-1 size-4 text-slate-400" />}
+                  <button
+                    type="button"
+                    className={`relative border px-2.5 py-2 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-1 focus:ring-cyan-100/50 ${card.accent}`}
+                    aria-label={`${card.name} card preview`}
+                  >
+                    <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                      Card
+                    </span>
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-slate-400">
+                      {card.cost}
+                    </span>
+                    <span className="pointer-events-none absolute right-0 top-full z-30 mt-3 w-64 translate-y-1 border border-cyan-100/25 bg-void/95 p-3 text-left opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.4)] backdrop-blur transition duration-200 group-hover/card:translate-y-0 group-hover/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100">
+                      <span className="flex items-center justify-between gap-3">
+                        <span className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
+                          {card.type}
+                        </span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                          {card.cost}
+                        </span>
+                      </span>
+                      <span className="font-title mt-5 block text-base text-white">
+                        {card.name}
+                      </span>
+                      <span className="mt-3 block border-t border-white/10 pt-3 text-xs leading-5 text-slate-300">
+                        {card.effect}
+                      </span>
+                      {card.flux ? (
+                        <span className="absolute right-3 top-9 text-lg leading-none text-amber-100">
+                          ⚡
+                        </span>
+                      ) : null}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
