@@ -77,10 +77,16 @@ const cardTypes = [
 ];
 
 const identityChips = [
-  { name: "Red", role: "Pressure", className: "from-red-500/35 text-red-100" },
-  { name: "Blue", role: "Control", className: "from-blue-400/35 text-blue-100" },
-  { name: "Purple", role: "Psionics", className: "from-violet-400/35 text-violet-100" },
-  { name: "Gold", role: "Relics", className: "from-amber-300/35 text-amber-100" },
+  { name: "Red", role: "Burst pressure", icon: Flame, className: "border-red-400/35 from-red-500/30 text-red-100" },
+  { name: "Blue", role: "Slow denial", icon: Snowflake, className: "border-blue-300/35 from-blue-400/30 text-blue-100" },
+  { name: "Yellow", role: "Spread pressure", icon: Sparkles, className: "border-yellow-200/35 from-yellow-300/25 text-yellow-50" },
+  { name: "Turquoise", role: "Speed economy", icon: Zap, className: "border-cyan-300/35 from-cyan-300/25 text-cyan-50" },
+  { name: "Purple", role: "Mind control", icon: Brain, className: "border-violet-300/35 from-violet-400/30 text-violet-100" },
+  { name: "Gold", role: "Relic control", icon: Gem, className: "border-amber-200/40 from-amber-300/25 text-amber-100" },
+  { name: "Silver", role: "Combat efficiency", icon: Swords, className: "border-slate-100/35 from-slate-100/18 text-slate-100" },
+  { name: "Aquamarine", role: "Time shifts", icon: TimerReset, className: "border-teal-200/35 from-teal-300/24 text-teal-50" },
+  { name: "White", role: "Plasma offense", icon: Atom, className: "border-white/40 from-white/20 text-white" },
+  { name: "Black", role: "Sacrifice loops", icon: Orbit, className: "border-zinc-400/30 from-zinc-700/28 text-zinc-100" },
 ];
 
 const infections: Infection[] = [
@@ -589,42 +595,86 @@ function EnergyAndAttack() {
 function CardsAndIdentity() {
   return (
     <div className="fracture-panel reveal p-5 sm:p-6 lg:col-span-12">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-6 grid gap-4 lg:grid-cols-[0.7fr_1fr] lg:items-end">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-100/70">
             Deck identity
           </p>
-          <h3 className="mt-2 text-2xl font-semibold text-white">Cards plug into one tactical loop</h3>
+          <h3 className="mt-2 text-2xl font-semibold text-white">Decks split into tactical parts</h3>
         </div>
-        <div className="text-xs uppercase tracking-[0.18em] text-slate-500">
-          Hero + Energy + Seconds + Stack
-        </div>
+        <p className="max-w-2xl text-sm leading-7 text-slate-400 lg:justify-self-end">
+          Card types define what enters the loop. Infection paths color how that loop
+          pressures, denies, accelerates, or corrupts the fight.
+        </p>
       </div>
-      <div className="grid gap-4 lg:grid-cols-[1fr_0.72fr]">
-        <div className="grid gap-3 sm:grid-cols-5">
+      <div className="grid gap-5 xl:grid-cols-[0.62fr_1fr]">
+        <div>
+          <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
+              Deck anatomy
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
+              Hero + cards
+            </span>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-1">
           {cardTypes.map((type) => {
             const Icon = type.icon;
             return (
-              <div key={type.name} className={`group min-h-40 border bg-white/[0.035] p-4 transition duration-300 hover:-translate-y-2 hover:bg-white/[0.07] ${type.className}`}>
-                <Icon className="size-5 text-cyan-100" />
-                <div className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-white">
-                  {type.name}
+              <div
+                key={type.name}
+                className={`group grid min-h-20 grid-cols-[2.8rem_1fr] items-center gap-3 border bg-white/[0.035] p-3 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.07] ${type.className}`}
+              >
+                <div className="flex size-11 items-center justify-center border border-current/25 bg-white/[0.035] text-cyan-100">
+                  <Icon className="size-5" />
                 </div>
-                <div className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-500">
-                  {type.role}
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold uppercase tracking-[0.16em] text-white">
+                    {type.name}
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.12em] text-slate-500">
+                    {type.role}
+                  </div>
                 </div>
               </div>
             );
           })}
+          </div>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {identityChips.map((identity) => (
-            <div key={identity.name} className={`border border-white/10 bg-gradient-to-br ${identity.className} to-white/[0.025] p-4`}>
-              <div className="text-lg font-semibold text-white">{identity.name}</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.2em]">{identity.role}</div>
-            </div>
-          ))}
+        <div>
+          <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-100">
+              Infection palette
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
+              10 paths
+            </span>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {identityChips.map((identity) => {
+              const Icon = identity.icon;
+              return (
+                <div
+                  key={identity.name}
+                  className={`group min-h-24 border bg-gradient-to-br ${identity.className} to-white/[0.025] p-3 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]`}
+                >
+                  <div className="mb-5 flex items-center justify-between">
+                    <Icon className="size-4 opacity-85" />
+                    <span className="h-px w-8 bg-current opacity-30 transition-all duration-300 group-hover:w-12" />
+                  </div>
+                  <div className="text-base font-semibold text-white">{identity.name}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.16em] opacity-75">
+                    {identity.role}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      </div>
+      <div className="mt-5 border border-white/10 bg-white/[0.03] p-3 text-xs uppercase tracking-[0.16em] text-slate-500">
+        A deck is not one color block. It is a chosen fracture pattern: card type, time cost,
+        Energy curve, and infection pressure all splitting from the Hero.
       </div>
     </div>
   );
