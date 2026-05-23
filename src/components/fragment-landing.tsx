@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
+import type { CSSProperties } from "react";
 
 type Card = {
   title: string;
@@ -51,14 +52,14 @@ const hooks: Card[] = [
 
 const timelineExamples = [
   {
-    label: "Direct line",
+    label: "Clean split",
     actions: [
       { name: "Base Attack", seconds: 3, className: "bg-red-400/25 text-red-100" },
       { name: "Mind Spike", seconds: 3, className: "bg-violet-400/25 text-violet-100" },
     ],
   },
   {
-    label: "Reactive line",
+    label: "Branch split",
     actions: [
       { name: "Phase Step", seconds: 2, className: "bg-cyan-300/25 text-cyan-50" },
       { name: "Reaction", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
@@ -70,7 +71,7 @@ const timelineExamples = [
 const cardTypes = [
   { name: "Hero", icon: Shield, role: "command unit", className: "border-cyan-200/40" },
   { name: "Ability", icon: Brain, role: "spend seconds", className: "border-violet-300/40" },
-  { name: "Relic", icon: Gem, role: "modify lines", className: "border-amber-200/40" },
+  { name: "Relic", icon: Gem, role: "alter attacks", className: "border-amber-200/40" },
   { name: "Companion", icon: Orbit, role: "temporary ally", className: "border-emerald-200/40" },
   { name: "Quick Action", icon: Bolt, role: "react now", className: "border-red-300/40" },
 ];
@@ -142,6 +143,17 @@ const heroes = [
   },
 ];
 
+const fragmentShards = [
+  { x: "70%", y: "16%", w: "6.2rem", h: "8rem", r: "18deg", o: 0.36 },
+  { x: "81%", y: "26%", w: "4.8rem", h: "5.6rem", r: "-24deg", o: 0.32 },
+  { x: "76%", y: "48%", w: "3.6rem", h: "4.4rem", r: "34deg", o: 0.3 },
+  { x: "86%", y: "58%", w: "2.8rem", h: "3.2rem", r: "-12deg", o: 0.26 },
+  { x: "64%", y: "64%", w: "2.4rem", h: "3rem", r: "48deg", o: 0.25 },
+  { x: "91%", y: "38%", w: "1.7rem", h: "2.1rem", r: "28deg", o: 0.24 },
+  { x: "58%", y: "18%", w: "2rem", h: "2.7rem", r: "-38deg", o: 0.28 },
+  { x: "88%", y: "76%", w: "1.2rem", h: "1.7rem", r: "16deg", o: 0.2 },
+];
+
 function Button({
   href,
   children,
@@ -164,6 +176,83 @@ function Button({
       {children}
       <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
     </a>
+  );
+}
+
+function FragmentationField({ className = "" }: { className?: string }) {
+  return (
+    <div className={`fragmentation-field pointer-events-none absolute inset-0 ${className}`} aria-hidden="true">
+      <div className="fragment-core" />
+      {fragmentShards.map((shard) => (
+        <div
+          key={`${shard.x}-${shard.y}`}
+          className="fragment-shard"
+          style={{
+            "--x": shard.x,
+            "--y": shard.y,
+            "--w": shard.w,
+            "--h": shard.h,
+            "--r": shard.r,
+            "--o": shard.o,
+          } as CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function FragmentSplitMap() {
+  const chips = [
+    { w: "2.8rem", h: "3.4rem", r: "-18deg", o: 0.8 },
+    { w: "2.2rem", h: "2.8rem", r: "17deg", o: 0.68 },
+    { w: "1.6rem", h: "2rem", r: "-34deg", o: 0.55 },
+    { w: "1.2rem", h: "1.6rem", r: "28deg", o: 0.42 },
+  ];
+
+  return (
+    <div className="reveal mb-5 border border-white/10 bg-white/[0.03] p-4">
+      <div className="grid gap-4 md:grid-cols-[0.55fr_0.26fr_1fr] md:items-center">
+        <div className="flex items-center gap-4">
+          <div className="split-rock shrink-0" />
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
+              One Hero
+            </div>
+            <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
+              one tactical mass
+            </div>
+          </div>
+        </div>
+        <div className="relative hidden h-16 md:block">
+          <span className="absolute left-0 top-1/2 h-px w-full -rotate-6 bg-gradient-to-r from-cyan-100/50 to-transparent" />
+          <span className="absolute left-1/2 top-1/2 h-px w-16 rotate-[26deg] bg-gradient-to-r from-violet-100/36 to-transparent" />
+          <span className="absolute left-1/2 top-1/2 h-px w-14 -rotate-[32deg] bg-gradient-to-r from-red-100/30 to-transparent" />
+        </div>
+        <div>
+          <div className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
+            Many readable fragments
+          </div>
+          <div className="grid max-w-md grid-cols-4 items-end gap-3">
+            {chips.map((chip, index) => (
+              <div key={`${chip.w}-${chip.r}`} className="flex min-h-20 flex-col items-center justify-end gap-2">
+                <div
+                  className="split-chip"
+                  style={{
+                    "--w": chip.w,
+                    "--h": chip.h,
+                    "--r": chip.r,
+                    "--o": chip.o,
+                  } as CSSProperties}
+                />
+                <span className="text-center text-[9px] uppercase tracking-[0.14em] text-slate-500">
+                  {["Energy", "Seconds", "Stack", "Attack"][index]}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -248,12 +337,12 @@ function PackShowcase() {
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
             Fragment is a tactical deckbuilding game: your Hero defines the
             strategy, while packs expand the abilities, relics, equipment,
-            Quick Actions, companions, and Energy lines you can bring into combat.
+            Quick Actions, companions, and Energy paths you can bring into combat.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
               ["Hero", "sets the plan"],
-              ["Deck", "executes the line"],
+              ["Deck", "splits the plan"],
               ["Packs", "expand options"],
             ].map(([value, label]) => (
               <div key={value} className="border border-white/10 bg-white/[0.04] p-4">
@@ -372,7 +461,7 @@ function HeroCommandPanel() {
           {[
             ["HP", "24", "survive pressure"],
             ["Initiative", "High", "acts first"],
-            ["Base Attack", "3s / 2 dmg", "physical line"],
+            ["Base Attack", "3s / 2 dmg", "physical strike"],
             ["Passive", "Psionic Echo", "repeats pressure"],
           ].map(([label, value, note]) => (
             <div key={label} className="grid grid-cols-[0.8fr_1fr] items-center border border-white/10 bg-white/[0.035] p-3">
@@ -473,7 +562,7 @@ function EnergyAndAttack() {
       </div>
       <div className="fracture-panel reveal p-5 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-red-100/70">
-          Attack line
+          Attack pattern
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="border border-red-200/20 bg-red-400/10 p-4">
@@ -545,8 +634,13 @@ function GameplaySystems() {
   return (
     <section id="systems" className="relative py-24">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(47,231,255,0.09),transparent_30rem),radial-gradient(circle_at_82%_34%,rgba(255,77,61,0.08),transparent_28rem)]" />
-      <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-red-300/25 to-transparent" />
-      <div className="container">
+      <FragmentationField className="z-0 opacity-35 [transform:scaleX(-1)]" />
+      <div className="absolute left-[6%] top-1/2 z-0 hidden h-32 w-[88%] md:block">
+        <span className="absolute left-0 top-16 h-px w-full -rotate-3 bg-gradient-to-r from-transparent via-red-300/28 to-transparent" />
+        <span className="absolute left-[42%] top-16 h-px w-56 rotate-[23deg] bg-gradient-to-r from-red-200/26 to-transparent" />
+        <span className="absolute left-[57%] top-16 h-px w-44 -rotate-[31deg] bg-gradient-to-r from-cyan-100/22 to-transparent" />
+      </div>
+      <div className="container relative z-10">
         <div className="reveal mb-10 grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-end">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-red-200/80">
@@ -562,6 +656,7 @@ function GameplaySystems() {
             reactions when the window opens.
           </p>
         </div>
+        <FragmentSplitMap />
         <div className="mb-5 grid gap-3 sm:grid-cols-4">
           {[
             ["1", "Hero"],
@@ -644,7 +739,12 @@ export function FragmentLanding() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_68%_42%,rgba(91,33,182,0.04),rgba(5,6,8,0.22)_42%,#050608_92%)]" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void/20 via-void/62 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/62 lg:to-void/8" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-52 bg-gradient-to-t from-void to-transparent" />
-        <div className="absolute left-1/2 top-28 h-px w-[75vw] -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-100/40 to-transparent" />
+        <FragmentationField className="z-0 opacity-45 [mask-image:linear-gradient(to_right,transparent,black_42%,black_92%,transparent)]" />
+        <div className="absolute left-[36%] top-24 z-0 hidden h-32 w-[58vw] md:block">
+          <span className="absolute left-0 top-14 h-px w-full -rotate-6 bg-gradient-to-r from-transparent via-cyan-100/42 to-transparent" />
+          <span className="absolute left-[45%] top-14 h-px w-44 rotate-[31deg] bg-gradient-to-r from-violet-100/32 to-transparent" />
+          <span className="absolute left-[62%] top-14 h-px w-32 -rotate-[38deg] bg-gradient-to-r from-cyan-100/30 to-transparent" />
+        </div>
         <div className="container relative z-10 grid items-center gap-12 pb-20 lg:grid-cols-[1fr_0.86fr]">
           <div className="max-w-3xl">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-cyan-100">
