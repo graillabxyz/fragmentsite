@@ -61,9 +61,7 @@ body::before {
   content: "";
   background:
     radial-gradient(circle at 52% 22%, rgba(217, 247, 255, 0.045), transparent 18rem),
-    linear-gradient(116deg, transparent 0 37%, rgba(217, 247, 255, 0.035) 37.06%, transparent 37.28% 100%),
-    linear-gradient(132deg, transparent 0 55%, rgba(47, 231, 255, 0.028) 55.08%, transparent 55.3% 100%),
-    linear-gradient(68deg, transparent 0 71%, rgba(255, 77, 61, 0.025) 71.08%, transparent 71.28% 100%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M84 226 186 198l72 38 96-18 78 46' stroke='%23d9f7ff' stroke-opacity='.08' stroke-width='2'/%3E%3Cpath d='M258 236 236 318l46 54m-24-136 38-54' stroke='%232fe7ff' stroke-opacity='.055' stroke-width='1.4'/%3E%3Cpath d='M802 84 732 156l26 64-64 76 24 86' stroke='%23d9f7ff' stroke-opacity='.07' stroke-width='2'/%3E%3Cpath d='M758 220 836 248l44 72m-122-100-92 10' stroke='%23a78bfa' stroke-opacity='.06' stroke-width='1.5'/%3E%3Cpath d='M1172 212 1098 268l30 92-66 62 18 72' stroke='%23ff4d3d' stroke-opacity='.055' stroke-width='1.7'/%3E%3Cpath d='M1128 360 1208 390l48 62m-128-92-82 12' stroke='%23d9f7ff' stroke-opacity='.05' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 84%);
 }
 
@@ -74,10 +72,9 @@ body::after {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(104deg, transparent 0 48%, rgba(217, 247, 255, 0.09) 48.08%, transparent 48.34% 100%),
-    linear-gradient(151deg, transparent 0 58%, rgba(47, 231, 255, 0.075) 58.08%, transparent 58.32% 100%),
-    linear-gradient(27deg, transparent 0 68%, rgba(255, 77, 61, 0.06) 68.08%, transparent 68.3% 100%);
-  opacity: 0.78;
+    radial-gradient(circle at 18% 78%, rgba(47, 231, 255, 0.055), transparent 20rem),
+    radial-gradient(circle at 88% 36%, rgba(255, 77, 61, 0.045), transparent 18rem);
+  opacity: 0.7;
 }
 
 ::selection {
@@ -105,10 +102,10 @@ body::after {
 
 .fracture-panel::before {
   background:
-    linear-gradient(121deg, transparent 0 32%, rgba(217, 247, 255, 0.14) 32.12%, transparent 32.42% 100%),
-    linear-gradient(38deg, transparent 0 61%, rgba(47, 231, 255, 0.12) 61.12%, transparent 61.44% 100%),
-    linear-gradient(154deg, transparent 0 74%, rgba(255, 77, 61, 0.08) 74.1%, transparent 74.36% 100%);
-  opacity: 0.42;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 520'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M42 410 134 356l86 18 74-62 92 14' stroke='%23d9f7ff' stroke-opacity='.14' stroke-width='1.6'/%3E%3Cpath d='M220 374 184 448m36-74 58 70' stroke='%232fe7ff' stroke-opacity='.12' stroke-width='1.1'/%3E%3Cpath d='M580 48 530 126l42 66-62 54 28 92' stroke='%23d9f7ff' stroke-opacity='.12' stroke-width='1.5'/%3E%3Cpath d='M572 192 656 222l34 70m-118-100-78 16' stroke='%23a78bfa' stroke-opacity='.12' stroke-width='1.1'/%3E%3Cpath d='M812 310 748 346l22 56-48 40' stroke='%23ff4d3d' stroke-opacity='.1' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.34;
 }
 
 .fracture-panel::after {
@@ -129,9 +126,9 @@ body::after {
   inset: 0;
   content: "";
   background:
-    linear-gradient(112deg, transparent 0 44%, rgba(217, 247, 255, 0.16) 44.06%, transparent 44.25% 100%),
-    linear-gradient(136deg, transparent 0 53%, rgba(167, 139, 250, 0.13) 53.06%, transparent 53.24% 100%),
-    linear-gradient(72deg, transparent 0 62%, rgba(47, 231, 255, 0.12) 62.06%, transparent 62.26% 100%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 760'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M692 96 626 172l42 86-74 72 32 116' stroke='%23d9f7ff' stroke-opacity='.18' stroke-width='1.8'/%3E%3Cpath d='M668 258 766 286l50 82m-148-110-112 28' stroke='%23a78bfa' stroke-opacity='.15' stroke-width='1.25'/%3E%3Cpath d='M944 192 874 248l26 80-82 56 24 76' stroke='%232fe7ff' stroke-opacity='.13' stroke-width='1.5'/%3E%3Cpath d='M900 328 1000 360l72 74m-172-106-94 22' stroke='%23d9f7ff' stroke-opacity='.11' stroke-width='1.1'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: center;
+  background-size: cover;
   mask-image:
     radial-gradient(ellipse at 62% 42%, rgba(0, 0, 0, 0.95), transparent 48%),
     linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9) 14%, rgba(0, 0, 0, 0.72) 72%, transparent);
@@ -184,40 +181,6 @@ body::after {
 .fragment-shard {
   left: var(--x);
   top: var(--y);
-  height: var(--h);
-  width: var(--w);
-  transform: rotate(var(--r));
-  opacity: var(--o);
-}
-
-.split-rock,
-.split-chip {
-  position: relative;
-  border: 1px solid rgba(217, 247, 255, 0.14);
-  background:
-    linear-gradient(135deg, rgba(217, 247, 255, 0.13), rgba(47, 231, 255, 0.04)),
-    rgba(12, 18, 24, 0.68);
-  clip-path: polygon(10% 0, 82% 7%, 100% 40%, 74% 100%, 16% 88%, 0 34%);
-}
-
-.split-rock::after,
-.split-chip::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background:
-    linear-gradient(116deg, transparent 0 42%, rgba(255, 255, 255, 0.28) 42.1%, transparent 42.48% 100%),
-    linear-gradient(64deg, transparent 0 56%, rgba(47, 231, 255, 0.18) 56.08%, transparent 56.4% 100%);
-  opacity: 0.45;
-}
-
-.split-rock {
-  height: 5.8rem;
-  width: 4.8rem;
-  box-shadow: 0 0 42px rgba(47, 231, 255, 0.1);
-}
-
-.split-chip {
   height: var(--h);
   width: var(--w);
   transform: rotate(var(--r));
