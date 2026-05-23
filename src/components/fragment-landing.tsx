@@ -210,8 +210,8 @@ function FragmentationField({ className = "" }: { className?: string }) {
 function FluxBadge({ label = "Flux" }: { label?: string }) {
   return (
     <div className="group/flux relative inline-flex items-center gap-2">
-      <span className="flux-ready flex size-7 items-center justify-center rounded-full border border-amber-100/55 bg-amber-200/10 text-amber-100">
-        <Bolt className="size-3.5" />
+      <span className="flux-ready flex size-7 items-center justify-center border border-amber-100/55 bg-amber-200/10 text-base leading-none text-amber-100">
+        ⚡
       </span>
       {label ? (
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-100">
@@ -454,9 +454,36 @@ function HeroCommandPanel() {
 
 function StackDemo() {
   const stackSteps = [
-    ["1", "Mind Spike", "Deal 3 psionic damage to the enemy Hero."],
-    ["2", "Flux Guard", "Opponent plays a Flux card to prevent 2 damage."],
-    ["3", "Neural Cut", "You answer with Flux: disable that prevention."],
+    {
+      step: "1",
+      name: "Mind Spike",
+      note: "Deal 3 psionic damage to the enemy Hero.",
+      type: "Ability",
+      cost: "3s / 2E",
+      effect: "Target Hero takes 3 psionic damage.",
+      accent: "border-violet-200/30 bg-violet-400/10",
+      flux: false,
+    },
+    {
+      step: "2",
+      name: "Flux Guard",
+      note: "Opponent plays a Flux card to prevent 2 damage.",
+      type: "Flux Card",
+      cost: "⚡ / 1E",
+      effect: "Prevent the next 2 damage to your Hero.",
+      accent: "border-amber-100/30 bg-amber-200/10",
+      flux: true,
+    },
+    {
+      step: "3",
+      name: "Neural Cut",
+      note: "You answer with Flux: disable that prevention.",
+      type: "Flux Card",
+      cost: "⚡ / 1E",
+      effect: "Remove prevention text from one stack effect.",
+      accent: "border-cyan-100/30 bg-cyan-100/10",
+      flux: true,
+    },
   ];
   const resolveSteps = [
     ["Neural Cut resolves", "Flux Guard loses its prevention text."],
@@ -484,18 +511,41 @@ function StackDemo() {
       </div>
       <div className="grid gap-4 md:grid-cols-[1fr_0.22fr_1fr] md:items-center">
         <div className="space-y-3">
-          {stackSteps.map(([step, name, note], index) => (
+          {stackSteps.map((card, index) => (
             <div
-              key={name}
-              className={`relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${index > 0 ? "flux-ready border-amber-100/25" : ""}`}
+              key={card.name}
+              className={`relative grid gap-3 border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 sm:grid-cols-[0.66fr_1fr] ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
               style={{ marginLeft: `${index * 22}px` }}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">Stack {step}</span>
-                {index > 0 ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
+              <div className={`relative min-h-36 border p-3 ${card.accent}`}>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
+                    {card.type}
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                    {card.cost}
+                  </span>
+                </div>
+                <div className="font-title mt-8 text-base text-white">{card.name}</div>
+                <div className="mt-3 border-t border-white/10 pt-3 text-[11px] leading-4 text-slate-300">
+                  {card.effect}
+                </div>
+                {card.flux ? (
+                  <span className="absolute right-3 top-10 text-lg leading-none text-amber-100">
+                    ⚡
+                  </span>
+                ) : null}
               </div>
-              <div className="font-title mt-3 text-lg text-white">{name}</div>
-              <div className="mt-2 text-xs leading-5 text-slate-400">{note}</div>
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
+                    Stack {card.step}
+                  </span>
+                  {card.flux ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
+                </div>
+                <div className="font-title mt-3 text-lg text-white">{card.name}</div>
+                <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
+              </div>
             </div>
           ))}
         </div>
