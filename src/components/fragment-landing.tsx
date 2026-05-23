@@ -721,20 +721,12 @@ export function FragmentLanding() {
 
       <section id="hero" className="relative isolate flex min-h-screen items-center pt-24">
         <Image
-          src="/art/fragment-hero-slide2.jpg"
+          src="/art/old-rock-hero-ruins-bg.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 -z-20 hidden object-cover object-[58%_center] opacity-90 sm:object-center md:block"
-        />
-        <Image
-          src="/art/hero-purple-male-feature.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-[62%_center] opacity-90 md:hidden"
+          className="absolute inset-0 -z-20 object-cover object-center opacity-90"
         />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_68%_42%,rgba(91,33,182,0.04),rgba(5,6,8,0.22)_42%,#050608_92%)]" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void/20 via-void/62 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/62 lg:to-void/8" />
