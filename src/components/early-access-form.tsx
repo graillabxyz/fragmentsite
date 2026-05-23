@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Check, Loader2, Zap } from "lucide-react";
+import { ArrowRight, Loader2, Zap } from "lucide-react";
 
 const games = [
   "MTG Arena",
@@ -12,7 +12,6 @@ const games = [
   "Pokemon TCG",
   "Flesh and Blood",
   "Slay the Spire",
-  "Balatro",
   "Other tabletop TCGs",
 ];
 
@@ -28,35 +27,9 @@ const heardFromOptions = [
   "Other",
 ];
 
-const playstyles = [
-  "Competitive ranked",
-  "Deckbuilding theorycraft",
-  "Limited / draft",
-  "Casual collecting",
-  "Lore and worldbuilding",
-  "Physical TCG nights",
-];
-
-const offers = [
-  "Founder cosmetic title",
-  "Exclusive card back",
-  "Priority beta invite",
-  "Early rules access",
-  "Playtest credit",
-];
-
 export function EarlyAccessForm() {
-  const [selectedGames, setSelectedGames] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-
-  function toggleGame(game: string) {
-    setSelectedGames((current) =>
-      current.includes(game)
-        ? current.filter((item) => item !== game)
-        : [...current, game],
-    );
-  }
 
   async function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,13 +41,13 @@ export function EarlyAccessForm() {
     const payload = {
       email: String(formData.get("email") ?? ""),
       name: String(formData.get("name") ?? ""),
-      gamesPlayed: selectedGames,
+      gamesPlayed: String(formData.get("gamesPlayed") ?? "")
+        .split(",")
+        .map((game) => game.trim())
+        .filter(Boolean),
       otherGames: String(formData.get("otherGames") ?? ""),
       heardFrom: String(formData.get("heardFrom") ?? ""),
-      playstyle: String(formData.get("playstyle") ?? ""),
-      platform: String(formData.get("platform") ?? ""),
       interestReason: String(formData.get("interestReason") ?? ""),
-      offerInterest: String(formData.get("offerInterest") ?? ""),
       marketingConsent: formData.get("marketingConsent") === "on",
     };
 
@@ -94,7 +67,6 @@ export function EarlyAccessForm() {
       setStatus("success");
       setMessage("You are on the list. Watch for the first fracture signal.");
       event.currentTarget.reset();
-      setSelectedGames([]);
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Could not join early access.");
@@ -104,7 +76,7 @@ export function EarlyAccessForm() {
   return (
     <form
       onSubmit={submitForm}
-      className="border border-cyan-100/20 bg-void/78 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-5"
+      className="border border-cyan-100/20 bg-void/82 p-5 shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-6"
     >
       <div className="mb-5 border border-amber-100/20 bg-amber-200/[0.06] p-3">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-amber-100">
@@ -112,7 +84,7 @@ export function EarlyAccessForm() {
           First Fracture Access
         </div>
         <p className="mt-2 text-sm leading-6 text-slate-300">
-          Joiners may receive priority invite waves, founder cosmetic identity,
+          Early joiners may receive priority invite waves, founder cosmetic identity,
           and early rules/playtest access. No pay-to-win advantage.
         </p>
       </div>
@@ -146,30 +118,23 @@ export function EarlyAccessForm() {
       </div>
 
       <div className="mt-4">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-          What do you already play?
-        </span>
-        <div className="mt-2 grid gap-2 sm:grid-cols-2">
-          {games.map((game) => {
-            const active = selectedGames.includes(game);
-
-            return (
-              <button
-                key={game}
-                type="button"
-                onClick={() => toggleGame(game)}
-                className={`flex min-h-10 items-center justify-between border px-3 py-2 text-left text-xs uppercase tracking-[0.12em] transition ${
-                  active
-                    ? "border-cyan-100/55 bg-cyan-100/12 text-cyan-50"
-                    : "border-white/10 bg-white/[0.03] text-slate-400 hover:border-white/25"
-                }`}
-              >
-                <span>{game}</span>
-                {active ? <Check className="size-3.5" /> : null}
-              </button>
-            );
-          })}
-        </div>
+        <label className="block">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            What do you already play?
+          </span>
+          <input
+            name="gamesPlayed"
+            type="text"
+            list="fragment-games"
+            className="mt-2 w-full border border-white/10 bg-white/[0.04] px-3 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-100/50"
+            placeholder="MTG Arena, Marvel Snap, Commander, Slay the Spire..."
+          />
+          <datalist id="fragment-games">
+            {games.map((game) => (
+              <option key={game} value={game} />
+            ))}
+          </datalist>
+        </label>
       </div>
 
       <label className="mt-3 block">
@@ -184,7 +149,7 @@ export function EarlyAccessForm() {
         />
       </label>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+      <div className="mt-4">
         <label className="block">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
             How did you hear?
@@ -201,65 +166,6 @@ export function EarlyAccessForm() {
               <option key={option} value={option}>
                 {option}
               </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Preferred platform
-          </span>
-          <select
-            name="platform"
-            className="mt-2 w-full border border-white/10 bg-[#0b1119] px-3 py-3 text-sm text-white outline-none transition focus:border-cyan-100/50"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            <option>PC</option>
-            <option>Mac</option>
-            <option>Mobile</option>
-            <option>Tablet</option>
-            <option>Physical cards</option>
-            <option>No preference</option>
-          </select>
-        </label>
-      </div>
-
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Player profile
-          </span>
-          <select
-            name="playstyle"
-            className="mt-2 w-full border border-white/10 bg-[#0b1119] px-3 py-3 text-sm text-white outline-none transition focus:border-cyan-100/50"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {playstyles.map((style) => (
-              <option key={style}>{style}</option>
-            ))}
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Best founder benefit
-          </span>
-          <select
-            name="offerInterest"
-            className="mt-2 w-full border border-white/10 bg-[#0b1119] px-3 py-3 text-sm text-white outline-none transition focus:border-cyan-100/50"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {offers.map((offer) => (
-              <option key={offer}>{offer}</option>
             ))}
           </select>
         </label>
