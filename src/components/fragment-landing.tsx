@@ -45,7 +45,7 @@ const hooks: Card[] = [
   },
   {
     title: "Flux Through the Stack",
-    body: "Flux cards may be played whenever you have priority, creating flexible timing and sharp counterplay.",
+    body: "Flux cards may be used whenever you have priority, either to push an action or answer one already on the stack.",
     icon: Layers3,
   },
 ];
@@ -73,7 +73,7 @@ const cardTypes = [
   { name: "Ability", icon: Brain, role: "spend seconds", className: "border-violet-300/40" },
   { name: "Relic", icon: Gem, role: "alter attacks", className: "border-amber-200/40" },
   { name: "Companion", icon: Orbit, role: "temporary ally", className: "border-emerald-200/40" },
-  { name: "Flux Card", icon: Bolt, role: "priority timing", className: "border-amber-200/45" },
+  { name: "Flux Card", icon: Bolt, role: "priority access", className: "border-amber-200/45" },
 ];
 
 const identityChips = [
@@ -453,6 +453,22 @@ function HeroCommandPanel() {
 }
 
 function StackDemo() {
+  const stackSteps = [
+    ["1", "Mind Spike", "Deal 3 psionic damage to the enemy Hero."],
+    ["2", "Flux Guard", "Opponent plays a Flux card to prevent 2 damage."],
+    ["3", "Neural Cut", "You answer with Flux: disable that prevention."],
+  ];
+  const resolveSteps = [
+    ["Neural Cut resolves", "Flux Guard loses its prevention text."],
+    ["Flux Guard resolves", "No prevention remains to stop the hit."],
+    ["Mind Spike resolves", "3 damage lands on the enemy Hero."],
+  ];
+  const fluxWindows = [
+    ["Proactive", "start pressure on your turn"],
+    ["Interrupt", "answer an action as it appears"],
+    ["Reaction", "respond while the stack is open"],
+  ];
+
   return (
     <div className="fracture-panel reveal p-5 sm:p-6 lg:col-span-7">
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -463,16 +479,12 @@ function StackDemo() {
           <h3 className="mt-2 text-2xl font-semibold text-white">Play with priority, resolve backward</h3>
         </div>
         <div className="border border-amber-200/30 bg-amber-200/10 px-3 py-2">
-          <FluxBadge label="Flux timing" />
+          <FluxBadge label="Flux card" />
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-[1fr_0.22fr_1fr] md:items-center">
         <div className="space-y-3">
-          {[
-            ["1", "Mind Spike", "enters stack"],
-            ["2", "Flux Guard", "opponent has priority"],
-            ["3", "Neural Cut", "you play Flux"],
-          ].map(([step, name, note], index) => (
+          {stackSteps.map(([step, name, note], index) => (
             <div
               key={name}
               className={`relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${index > 0 ? "flux-ready border-amber-100/25" : ""}`}
@@ -483,7 +495,7 @@ function StackDemo() {
                 {index > 0 ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
               </div>
               <div className="font-title mt-3 text-lg text-white">{name}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{note}</div>
+              <div className="mt-2 text-xs leading-5 text-slate-400">{note}</div>
             </div>
           ))}
         </div>
@@ -495,18 +507,19 @@ function StackDemo() {
           first out
         </div>
         <div className="space-y-3">
-          {["Neural Cut resolves", "Flux Guard resolves", "Mind Spike resolves"].map((item, index) => (
+          {resolveSteps.map(([item, note], index) => (
             <div key={item} className="border border-cyan-100/20 bg-cyan-100/10 p-4">
               <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                 Resolve 0{index + 1}
               </span>
               <div className="font-title mt-2 text-sm text-white">{item}</div>
+              <div className="mt-2 text-xs leading-5 text-slate-400">{note}</div>
             </div>
           ))}
         </div>
       </div>
       <div className="mt-5 grid gap-2 sm:grid-cols-3">
-        {["Your turn", "Opponent turn", "Stack open"].map((window) => (
+        {fluxWindows.map(([window, note]) => (
           <div key={window} className="border border-amber-100/20 bg-amber-200/[0.06] p-3">
             <div className="mb-2 flex items-center justify-between">
               <Bolt className="size-4 text-amber-100" />
@@ -517,6 +530,7 @@ function StackDemo() {
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white">
               {window}
             </div>
+            <div className="mt-2 text-[11px] leading-4 text-slate-400">{note}</div>
           </div>
         ))}
       </div>
@@ -531,19 +545,19 @@ function EnergyAndAttack() {
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-100/70">
           Energy development
         </p>
-        <h3 className="mt-2 text-2xl font-semibold text-white">Play Energy, then spend it with seconds</h3>
+        <h3 className="mt-2 text-2xl font-semibold text-white">Deploy Energy, then spend it with seconds</h3>
         <div className="mt-5 grid grid-cols-3 gap-3">
           {[1, 2, 3].map((turn) => (
             <div key={turn} className="border border-cyan-100/15 bg-cyan-100/[0.06] p-4 text-center">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">Turn {turn}</div>
               <div className="mt-3 text-3xl font-semibold text-cyan-100">{turn}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">Energy</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">Energy deployed</div>
             </div>
           ))}
         </div>
         <div className="mt-4 flex items-center gap-3 border border-white/10 bg-white/[0.035] p-3 text-xs uppercase tracking-[0.16em] text-slate-300">
           <Gem className="size-4 text-cyan-100" />
-          Energy cards enter the battlefield and grow future turns
+          Energy cards deploy to the battlefield and grow future turns
         </div>
       </div>
       <div className="fracture-panel reveal p-5 sm:p-6">
@@ -769,7 +783,7 @@ export function FragmentLanding() {
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-slate-400">
               Build your deck around one Hero, manage Energy, spend seconds on
-              decisive actions, and fight through a stack-based Flux timing system.
+              decisive actions, and fight through stack-based Flux interactions.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="#core">Explore the Game</Button>
@@ -803,7 +817,7 @@ export function FragmentLanding() {
               Stack pressure online
             </div>
             <div className="absolute bottom-28 right-64 border border-violet-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-violet-100 shadow-[0_0_38px_rgba(167,139,250,0.18)] backdrop-blur">
-              Flux timing ready
+              Flux cards ready
             </div>
           </div>
         </div>
