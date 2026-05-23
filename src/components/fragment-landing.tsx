@@ -16,6 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import Image from "next/image";
+import { EarlyAccessForm } from "./early-access-form";
 import type { LucideIcon } from "lucide-react";
 import type { CSSProperties } from "react";
 
@@ -1020,19 +1021,35 @@ export function FragmentLanding() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/78 to-void/22" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-transparent to-void/30" />
           <div className="absolute inset-x-8 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
-          <div className="relative z-10 max-w-2xl text-left">
-            <Bolt className="mb-5 size-8 text-cyan-100" />
-            <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
-              Enter the Fracturing World
-            </h2>
-            <p className="mt-5 text-base leading-8 text-slate-300">
-              Join the first wave of players studying the six-second battlefield,
-              testing Hero identities, and shaping Fragment before launch.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="mailto:earlyaccess@fragment.game">Join Early Access</Button>
-              <Button href="#systems" variant="secondary">Read the Rules</Button>
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:items-start">
+            <div className="max-w-2xl text-left">
+              <Bolt className="mb-5 size-8 text-cyan-100" />
+              <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
+                Enter the Fracturing World
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-300">
+                Join the first wave of players studying the six-second battlefield,
+                testing Hero identities, and shaping Fragment before launch.
+              </p>
+              <div className="mt-7 grid gap-3">
+                {[
+                  ["Priority invite waves", "Get considered for early test access as seats open."],
+                  ["Founder identity", "Cosmetic recognition for players who helped before launch."],
+                  ["Rules access", "Follow the evolving paper-ready rules before the wider public."],
+                ].map(([title, body]) => (
+                  <div key={title} className="border border-white/10 bg-white/[0.04] p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                      {title}
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-slate-400">{body}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-7">
+                <Button href="#systems" variant="secondary">Read the Rules</Button>
+              </div>
             </div>
+            <EarlyAccessForm />
           </div>
         </div>
       </section>
