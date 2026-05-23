@@ -341,7 +341,7 @@ function HeroRosterCard({ hero }: { hero: (typeof heroes)[number] }) {
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-void to-transparent" />
       </div>
       <div className="p-4">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+        <h3 className="font-title text-sm uppercase tracking-[0.18em] text-white">
           {hero.name}
         </h3>
         <p className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">
@@ -450,7 +450,7 @@ function SecondsTimeline() {
                   className={`${action.className} flex min-h-16 items-center justify-center border-r border-white/10 px-3 text-center text-xs font-semibold uppercase tracking-[0.14em] last:border-r-0`}
                   style={{ width: `${(action.seconds / 6) * 100}%` }}
                 >
-                  {action.name} / {action.seconds}s
+                  <span className="font-title">{action.name}</span> / {action.seconds}s
                 </div>
               ))}
             </div>
@@ -483,7 +483,7 @@ function HeroCommandPanel() {
             className="aspect-[0.78] w-full object-cover"
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void via-void/70 to-transparent p-4">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-white">Purple Seer</div>
+            <div className="font-title text-sm uppercase tracking-[0.2em] text-white">Purple Seer</div>
             <div className="mt-1 text-xs uppercase tracking-[0.16em] text-violet-100">Mind / Force</div>
           </div>
         </div>
@@ -497,7 +497,7 @@ function HeroCommandPanel() {
             <div key={label} className="grid grid-cols-[0.8fr_1fr] items-center border border-white/10 bg-white/[0.035] p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">{label}</div>
               <div>
-                <div className="text-sm font-semibold text-white">{value}</div>
+                <div className="font-title text-sm text-white">{value}</div>
                 <div className="text-xs text-slate-500">{note}</div>
               </div>
             </div>
@@ -538,7 +538,7 @@ function StackDemo() {
                 <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">Stack {step}</span>
                 {index > 0 ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
               </div>
-              <div className="mt-3 text-lg font-semibold text-white">{name}</div>
+              <div className="font-title mt-3 text-lg text-white">{name}</div>
               <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{note}</div>
             </div>
           ))}
@@ -556,7 +556,7 @@ function StackDemo() {
               <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                 Resolve 0{index + 1}
               </span>
-              <div className="mt-2 text-sm font-semibold text-white">{item}</div>
+              <div className="font-title mt-2 text-sm text-white">{item}</div>
             </div>
           ))}
         </div>
@@ -609,17 +609,17 @@ function EnergyAndAttack() {
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="border border-red-200/20 bg-red-400/10 p-4">
             <Swords className="mb-4 size-5 text-red-100" />
-            <div className="text-xl font-semibold text-white">Base Attack</div>
+            <div className="font-title text-xl text-white">Base Attack</div>
             <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">3s / 2 damage</div>
           </div>
           <div className="border border-amber-200/20 bg-amber-300/10 p-4">
             <Gem className="mb-4 size-5 text-amber-100" />
-            <div className="text-xl font-semibold text-white">Relic Buff</div>
+            <div className="font-title text-xl text-white">Relic Buff</div>
             <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">+1 damage</div>
           </div>
           <div className="border border-cyan-100/20 bg-cyan-100/10 p-4">
             <Clock3 className="mb-4 size-5 text-cyan-100" />
-            <div className="text-xl font-semibold text-white">Window Left</div>
+            <div className="font-title text-xl text-white">Window Left</div>
             <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">3 seconds</div>
           </div>
         </div>
@@ -665,7 +665,7 @@ function CardsAndIdentity() {
                   <Icon className="size-5" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-semibold uppercase tracking-[0.16em] text-white">
+                  <div className="font-title text-sm uppercase tracking-[0.16em] text-white">
                     {type.name}
                   </div>
                   <div className="mt-1 text-xs uppercase tracking-[0.12em] text-slate-500">
@@ -698,7 +698,7 @@ function CardsAndIdentity() {
                     <Icon className="size-4 opacity-85" />
                     <span className="h-px w-8 bg-current opacity-30 transition-all duration-300 group-hover:w-12" />
                   </div>
-                  <div className="text-base font-semibold text-white">{identity.name}</div>
+                  <div className="font-title text-base text-white">{identity.name}</div>
                   <div className="mt-1 text-[10px] uppercase tracking-[0.16em] opacity-75">
                     {identity.role}
                   </div>
@@ -778,7 +778,7 @@ function Nav() {
       <nav className="container flex h-16 items-center justify-between">
         <a href="#hero" className="flex items-center gap-3">
           <span className="size-6 border border-cyan-100/50 bg-cyan-100/10 [clip-path:polygon(0_0,100%_12%,82%_100%,0_76%)]" />
-          <span className="text-sm font-semibold uppercase tracking-[0.24em] text-white">
+          <span className="font-title text-sm uppercase tracking-[0.24em] text-white">
             Fragment
           </span>
         </a>
@@ -861,7 +861,7 @@ export function FragmentLanding() {
                 <div className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-100">
                   Purple / Mind
                 </div>
-                <div className="mt-2 text-2xl font-semibold text-white">
+                <div className="font-title mt-2 text-2xl text-white">
                   Flux control Hero
                 </div>
               </div>
@@ -938,7 +938,7 @@ export function FragmentLanding() {
                     <Icon className="size-5" />
                     <span className="h-px w-16 bg-current opacity-[0.35] transition-all duration-300 group-hover:w-24" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{infection.name}</h3>
+                  <h3 className="font-title text-lg text-white">{infection.name}</h3>
                   <p className="mt-3 text-sm leading-6 opacity-80">{infection.element}</p>
                 </article>
               );
