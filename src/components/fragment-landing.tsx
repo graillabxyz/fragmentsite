@@ -267,24 +267,24 @@ function PackShowcase() {
             ))}
           </div>
         </div>
-        <div className="reveal relative min-h-[520px]">
-          <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
-          <div className="absolute left-[5%] top-8 w-[48%] max-w-[330px] rotate-[-7deg] transition duration-500 hover:-translate-y-3 hover:rotate-[-3deg]">
+        <div className="reveal relative min-h-[520px] overflow-visible">
+          <div className="absolute left-1/2 top-[47%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
+          <div className="absolute left-[5%] top-6 w-[50%] max-w-[350px] rotate-[-7deg] drop-shadow-[0_42px_90px_rgba(255,77,61,0.28)] transition duration-500 hover:-translate-y-3 hover:rotate-[-3deg]">
             <Image
-              src="/art/pack-mythic-red.jpg"
+              src="/art/pack-mythic-red-transparent.png"
               alt="Old Rock Fragment Mythic Pack"
-              width={768}
-              height={1200}
-              className="border border-red-200/20 shadow-[0_36px_100px_rgba(255,77,61,0.22)]"
+              width={1024}
+              height={1536}
+              className="h-auto w-full"
             />
           </div>
-          <div className="absolute right-[3%] top-20 w-[46%] max-w-[320px] rotate-[7deg] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
+          <div className="absolute right-[3%] top-20 w-[48%] max-w-[340px] rotate-[7deg] drop-shadow-[0_42px_90px_rgba(47,231,255,0.24)] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
             <Image
-              src="/art/pack-core-blue.jpg"
+              src="/art/pack-core-blue-transparent.png"
               alt="Old Rock Fragment card pack"
-              width={768}
-              height={1200}
-              className="border border-cyan-100/20 shadow-[0_36px_100px_rgba(47,231,255,0.2)]"
+              width={1024}
+              height={1536}
+              className="h-auto w-full"
             />
           </div>
           <div className="absolute bottom-8 left-1/2 w-[78%] -translate-x-1/2 border border-cyan-100/20 bg-void/80 p-4 text-center text-xs uppercase tracking-[0.22em] text-slate-300 backdrop-blur">
