@@ -44,8 +44,8 @@ const hooks: Card[] = [
     icon: Clock3,
   },
   {
-    title: "React Through the Stack",
-    body: "Quick Actions interrupt the flow and resolve last-in, first-out for sharp counterplay.",
+    title: "Flux Through the Stack",
+    body: "Flux cards may be played whenever you have priority, creating flexible timing and sharp counterplay.",
     icon: Layers3,
   },
 ];
@@ -62,7 +62,7 @@ const timelineExamples = [
     label: "Branch split",
     actions: [
       { name: "Phase Step", seconds: 2, className: "bg-cyan-300/25 text-cyan-50" },
-      { name: "Reaction", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
+      { name: "Flux", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
       { name: "Base Attack", seconds: 3, className: "bg-red-400/25 text-red-100" },
     ],
   },
@@ -73,7 +73,7 @@ const cardTypes = [
   { name: "Ability", icon: Brain, role: "spend seconds", className: "border-violet-300/40" },
   { name: "Relic", icon: Gem, role: "alter attacks", className: "border-amber-200/40" },
   { name: "Companion", icon: Orbit, role: "temporary ally", className: "border-emerald-200/40" },
-  { name: "Quick Action", icon: Bolt, role: "react now", className: "border-red-300/40" },
+  { name: "Flux Card", icon: Bolt, role: "priority timing", className: "border-amber-200/45" },
 ];
 
 const identityChips = [
@@ -203,6 +203,29 @@ function FragmentationField({ className = "" }: { className?: string }) {
           } as CSSProperties}
         />
       ))}
+    </div>
+  );
+}
+
+function FluxBadge({ label = "Flux" }: { label?: string }) {
+  return (
+    <div className="group/flux relative inline-flex items-center gap-2">
+      <span className="flux-ready flex size-7 items-center justify-center rounded-full border border-amber-100/55 bg-amber-200/10 text-amber-100">
+        <Bolt className="size-3.5" />
+      </span>
+      {label ? (
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-100">
+          {label}
+        </span>
+      ) : null}
+      <span className="pointer-events-none absolute left-0 top-full z-20 mt-3 w-64 border border-amber-100/25 bg-void/95 p-3 text-left opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.35)] backdrop-blur transition duration-200 group-hover/flux:opacity-100">
+        <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">
+          ⚡ Flux
+        </span>
+        <span className="mt-2 block text-xs normal-case leading-5 tracking-normal text-slate-300">
+          May be played whenever you have priority.
+        </span>
+      </span>
     </div>
   );
 }
@@ -343,7 +366,7 @@ function PackShowcase() {
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
             Fragment is a tactical deckbuilding game: your Hero defines the
             strategy, while packs expand the abilities, relics, equipment,
-            Quick Actions, companions, and Energy paths you can bring into combat.
+            Flux cards, companions, and Energy paths you can bring into combat.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
@@ -468,7 +491,7 @@ function HeroCommandPanel() {
             ["HP", "24", "survive pressure"],
             ["Initiative", "High", "acts first"],
             ["Base Attack", "3s / 2 dmg", "physical strike"],
-            ["Passive", "Psionic Echo", "repeats pressure"],
+            ["Flux Ability", "Psionic Echo", "priority access"],
           ].map(([label, value, note]) => (
             <div key={label} className="grid grid-cols-[0.8fr_1fr] items-center border border-white/10 bg-white/[0.035] p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">{label}</div>
@@ -490,32 +513,29 @@ function StackDemo() {
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-red-100/70">
-            Stack and reactions
+            Stack and Flux
           </p>
-          <h3 className="mt-2 text-2xl font-semibold text-white">Interrupt, answer, resolve backward</h3>
+          <h3 className="mt-2 text-2xl font-semibold text-white">Play with priority, resolve backward</h3>
         </div>
-        <div className="flex items-center gap-2 border border-amber-200/30 bg-amber-200/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-amber-100">
-          <span className="flex size-6 items-center justify-center rounded-full border border-amber-100/50">
-            <Bolt className="size-3" />
-          </span>
-          Reaction window
+        <div className="border border-amber-200/30 bg-amber-200/10 px-3 py-2">
+          <FluxBadge label="Flux timing" />
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-[1fr_0.22fr_1fr] md:items-center">
         <div className="space-y-3">
           {[
             ["1", "Mind Spike", "enters stack"],
-            ["2", "Flash Guard", "opponent responds"],
-            ["3", "Neural Cut", "you answer back"],
+            ["2", "Flux Guard", "opponent has priority"],
+            ["3", "Neural Cut", "you play Flux"],
           ].map(([step, name, note], index) => (
             <div
               key={name}
-              className="relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35"
+              className={`relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${index > 0 ? "flux-ready border-amber-100/25" : ""}`}
               style={{ marginLeft: `${index * 22}px` }}
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">Stack {step}</span>
-                {index > 0 ? <Bolt className="size-4 text-amber-100" /> : <Layers3 className="size-4 text-slate-400" />}
+                {index > 0 ? <FluxBadge label="" /> : <Layers3 className="size-4 text-slate-400" />}
               </div>
               <div className="mt-3 text-lg font-semibold text-white">{name}</div>
               <div className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{note}</div>
@@ -530,7 +550,7 @@ function StackDemo() {
           first out
         </div>
         <div className="space-y-3">
-          {["Neural Cut resolves", "Flash Guard resolves", "Mind Spike resolves"].map((item, index) => (
+          {["Neural Cut resolves", "Flux Guard resolves", "Mind Spike resolves"].map((item, index) => (
             <div key={item} className="border border-cyan-100/20 bg-cyan-100/10 p-4">
               <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                 Resolve 0{index + 1}
@@ -539,6 +559,21 @@ function StackDemo() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="mt-5 grid gap-2 sm:grid-cols-3">
+        {["Your turn", "Opponent turn", "Stack open"].map((window) => (
+          <div key={window} className="border border-amber-100/20 bg-amber-200/[0.06] p-3">
+            <div className="mb-2 flex items-center justify-between">
+              <Bolt className="size-4 text-amber-100" />
+              <span className="text-[10px] uppercase tracking-[0.18em] text-amber-100/70">
+                Flux
+              </span>
+            </div>
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white">
+              {window}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -702,8 +737,8 @@ function GameplaySystems() {
           </div>
           <p className="max-w-2xl text-base leading-8 text-slate-300 lg:justify-self-end">
             Fragment is driven by a tight loop: choose a Hero, build Energy,
-            spend six seconds, place actions on the stack, then answer with
-            reactions when the window opens.
+            spend six seconds, place actions on the stack, then use Flux
+            whenever priority opens.
           </p>
         </div>
         <FragmentSplitMap />
@@ -800,7 +835,7 @@ export function FragmentLanding() {
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-slate-400">
               Build your deck around one Hero, manage Energy, spend seconds on
-              decisive actions, and fight through a stack-based reaction system.
+              decisive actions, and fight through a stack-based Flux timing system.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="#core">Explore the Game</Button>
@@ -826,7 +861,7 @@ export function FragmentLanding() {
                   Purple / Mind
                 </div>
                 <div className="mt-2 text-2xl font-semibold text-white">
-                  Reactive control Hero
+                  Flux control Hero
                 </div>
               </div>
             </div>
@@ -834,7 +869,7 @@ export function FragmentLanding() {
               Stack pressure online
             </div>
             <div className="absolute bottom-28 right-64 border border-violet-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-violet-100 shadow-[0_0_38px_rgba(167,139,250,0.18)] backdrop-blur">
-              6s combat window
+              Flux timing ready
             </div>
           </div>
         </div>
@@ -844,7 +879,7 @@ export function FragmentLanding() {
         <SectionTitle
           eyebrow="Core Hook"
           title="A card game measured in seconds"
-          body="Each turn gives your Hero 6 seconds. Every attack, ability, relic, or card takes time. Quick Actions can interrupt the flow, creating sharp tactical exchanges."
+          body="Each turn gives your Hero 6 seconds. Every attack, ability, relic, or card takes time. Flux cards can be played whenever you have priority, opening tactical stack exchanges."
         />
         <div className="grid gap-5 md:grid-cols-3">
           {hooks.map((item) => <FeatureCard key={item.title} item={item} />)}
