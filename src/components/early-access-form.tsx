@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Loader2, Zap } from "lucide-react";
+import { ArrowRight, ChevronDown, Loader2, X, Zap } from "lucide-react";
 
 const games = [
   "MTG Arena",
@@ -28,8 +28,24 @@ const heardFromOptions = [
 ];
 
 export function EarlyAccessForm() {
+  const [selectedGames, setSelectedGames] = useState<string[]>([]);
+  const [gamesOpen, setGamesOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const availableGames = games.filter((game) => !selectedGames.includes(game));
+
+  function addGame(game: string) {
+    if (!game) {
+      return;
+    }
+
+    setSelectedGames((current) => current.includes(game) ? current : [...current, game]);
+    setGamesOpen(false);
+  }
+
+  function removeGame(game: string) {
+    setSelectedGames((current) => current.filter((item) => item !== game));
+  }
 
   async function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,10 +57,7 @@ export function EarlyAccessForm() {
     const payload = {
       email: String(formData.get("email") ?? ""),
       name: String(formData.get("name") ?? ""),
-      gamesPlayed: String(formData.get("gamesPlayed") ?? "")
-        .split(",")
-        .map((game) => game.trim())
-        .filter(Boolean),
+      gamesPlayed: selectedGames,
       otherGames: String(formData.get("otherGames") ?? ""),
       heardFrom: String(formData.get("heardFrom") ?? ""),
       interestReason: String(formData.get("interestReason") ?? ""),
@@ -67,6 +80,8 @@ export function EarlyAccessForm() {
       setStatus("success");
       setMessage("You are on the list. Watch for the first fracture signal.");
       event.currentTarget.reset();
+      setSelectedGames([]);
+      setGamesOpen(false);
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Could not join early access.");
@@ -118,23 +133,65 @@ export function EarlyAccessForm() {
       </div>
 
       <div className="mt-4">
-        <label className="block">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            What do you already play?
-          </span>
-          <input
-            name="gamesPlayed"
-            type="text"
-            list="fragment-games"
-            className="mt-2 w-full border border-white/10 bg-white/[0.04] px-3 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-100/50"
-            placeholder="MTG Arena, Marvel Snap, Commander, Slay the Spire..."
-          />
-          <datalist id="fragment-games">
-            {games.map((game) => (
-              <option key={game} value={game} />
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+          What do you already play?
+        </span>
+        <div className="relative mt-2">
+          <button
+            type="button"
+            onClick={() => setGamesOpen((open) => !open)}
+            className="flex min-h-11 w-full items-center justify-between border border-white/10 bg-[#0b1119] px-3 py-3 text-left text-sm text-white outline-none transition hover:border-white/25 focus:border-cyan-100/50"
+            aria-expanded={gamesOpen}
+            aria-controls="game-picker-options"
+          >
+            <span className={selectedGames.length ? "text-white" : "text-slate-500"}>
+              {availableGames.length ? "Add a game or community" : "All listed games added"}
+            </span>
+            <ChevronDown className={`size-4 text-slate-400 transition ${gamesOpen ? "rotate-180" : ""}`} />
+          </button>
+          {gamesOpen ? (
+            <div
+              id="game-picker-options"
+              className="absolute inset-x-0 top-full z-30 mt-2 max-h-64 overflow-y-auto border border-cyan-100/20 bg-[#080d14] p-1 shadow-[0_24px_70px_rgba(0,0,0,0.45)]"
+            >
+              {availableGames.length ? (
+                availableGames.map((game) => (
+                  <button
+                    key={game}
+                    type="button"
+                    onClick={() => addGame(game)}
+                    className="block w-full px-3 py-2.5 text-left text-xs font-semibold uppercase tracking-[0.12em] text-slate-300 transition hover:bg-cyan-100/10 hover:text-cyan-50"
+                  >
+                    {game}
+                  </button>
+                ))
+              ) : (
+                <div className="px-3 py-2.5 text-xs text-slate-500">
+                  All listed games have been added.
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
+        {selectedGames.length > 0 ? (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {selectedGames.map((game) => (
+              <button
+                key={game}
+                type="button"
+                onClick={() => removeGame(game)}
+                className="inline-flex items-center gap-2 border border-cyan-100/25 bg-cyan-100/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-50 transition hover:border-cyan-100/45 hover:bg-cyan-100/15"
+              >
+                {game}
+                <X className="size-3.5" />
+              </button>
             ))}
-          </datalist>
-        </label>
+          </div>
+        ) : (
+          <p className="mt-2 text-xs leading-5 text-slate-500">
+            Add as many as apply. Use the field below for anything not listed.
+          </p>
+        )}
       </div>
 
       <label className="mt-3 block">
