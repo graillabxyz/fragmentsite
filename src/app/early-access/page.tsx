@@ -52,7 +52,7 @@ export default function EarlyAccessPage() {
             <p className="mt-6 text-base leading-8 text-slate-300">
               Tell us where you play and how you found Fragment. The first invites
               will prioritize players who can help test six-second combat, Hero
-              identities, Flux interactions, and the paper-ready rules.
+              identities, Thread interactions, and the paper-ready rules.
             </p>
 
             <div className="mt-8 grid gap-3">

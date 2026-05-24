@@ -57,8 +57,8 @@ const hooks: Card[] = [
     icon: Clock3,
   },
   {
-    title: "Flux Through the Stack",
-    body: "Flux cards may be used whenever you have priority, either to push an action or answer one already on the stack.",
+    title: "Instants Open the Thread",
+    body: "Instant cards may be used whenever you have priority, either to push an action or answer one already on the Thread.",
     icon: Layers3,
   },
 ];
@@ -75,7 +75,7 @@ const timelineExamples = [
     label: "Branch split",
     actions: [
       { name: "Phase Step", seconds: 2, className: "bg-cyan-300/25 text-cyan-50" },
-      { name: "Flux", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
+      { name: "Instant", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
       { name: "Base Attack", seconds: 3, className: "bg-red-400/25 text-red-100" },
     ],
   },
@@ -86,7 +86,7 @@ const cardTypes = [
   { name: "Ability", icon: Brain, role: "spend seconds", className: "border-violet-300/40" },
   { name: "Relic", icon: Gem, role: "alter attacks", className: "border-amber-200/40" },
   { name: "Companion", icon: Orbit, role: "temporary ally", className: "border-emerald-200/40" },
-  { name: "Flux Card", icon: Bolt, role: "priority access", className: "border-amber-200/45" },
+  { name: "Instant", icon: Bolt, role: "priority access", className: "border-amber-200/45" },
 ];
 
 const identityChips = [
@@ -383,7 +383,7 @@ function PackShowcase() {
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
             Fragment is a tactical deckbuilding game: your Hero defines the
             strategy, while packs expand the abilities, relics, equipment,
-            Flux cards, companions, and Energy paths you can bring into combat.
+            Instants, companions, and Energy paths you can bring into combat.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
@@ -524,8 +524,8 @@ function HeroCommandPanel() {
   );
 }
 
-function StackDemo() {
-  const stackSteps = [
+function ThreadDemo() {
+  const threadSteps = [
     {
       step: "1",
       name: "Mind Spike",
@@ -552,9 +552,9 @@ function StackDemo() {
     },
     {
       step: "2",
-      name: "Flux Guard",
-      note: "Opponent plays a Flux card to prevent 2 damage.",
-      type: "Flux Card",
+      name: "Guard Pulse",
+      note: "Opponent plays an Instant to prevent 2 damage.",
+      type: "Instant",
       cost: { flux: true, colorless: 1 },
       effect: "Prevent the next 2 damage to your Hero.",
       accent: "border-amber-100/30 bg-amber-200/10",
@@ -563,23 +563,23 @@ function StackDemo() {
     {
       step: "3",
       name: "Neural Cut",
-      note: "You answer with Flux: disable that prevention.",
-      type: "Flux Card",
+      note: "You answer with an Instant: disable that prevention.",
+      type: "Instant",
       cost: { flux: true, colorless: 1 },
-      effect: "Remove prevention text from one stack effect.",
+      effect: "Remove prevention text from one Thread effect.",
       accent: "border-cyan-100/30 bg-cyan-100/10",
       flux: true,
     },
   ];
   const resolveSteps = [
-    ["Neural Cut resolves", "Flux Guard loses its prevention text."],
-    ["Flux Guard resolves", "No prevention remains to stop the hit."],
+    ["Neural Cut resolves", "Guard Pulse loses its prevention text."],
+    ["Guard Pulse resolves", "No prevention remains to stop the hit."],
     ["Mind Spike resolves", "3 damage lands on the enemy Hero."],
   ];
-  const fluxWindows = [
+  const instantWindows = [
     ["Proactive", "start pressure on your turn"],
     ["Interrupt", "answer an action as it appears"],
-    ["Reaction", "respond while the stack is open"],
+    ["Reaction", "respond while the Thread is open"],
   ];
 
   return (
@@ -587,17 +587,17 @@ function StackDemo() {
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-red-100/70">
-            Stack and Flux
+            Thread and Instants
           </p>
           <h3 className="mt-2 text-2xl font-semibold text-white">Play with priority, resolve backward</h3>
         </div>
         <div className="border border-amber-200/30 bg-amber-200/10 px-3 py-2">
-          <FluxBadge label="Flux card" />
+          <FluxBadge label="Instant" />
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-[1fr_0.22fr_1fr] md:items-center">
         <div className="space-y-3">
-          {stackSteps.map((card, index) => (
+          {threadSteps.map((card, index) => (
             <div
               key={card.name}
               className={`group/card relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
@@ -605,7 +605,7 @@ function StackDemo() {
             >
               <div className="flex items-start justify-between gap-4">
                 <span className="min-w-0 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
-                  Stack {card.step}
+                  Thread {card.step}
                 </span>
                 <div className="flex shrink-0 items-start gap-2">
                   {card.flux ? <FluxBadge label="" /> : <Layers3 className="mt-1 size-4 text-slate-400" />}
@@ -671,12 +671,12 @@ function StackDemo() {
         </div>
       </div>
       <div className="mt-5 grid gap-2 sm:grid-cols-3">
-        {fluxWindows.map(([window, note]) => (
+        {instantWindows.map(([window, note]) => (
           <div key={window} className="border border-amber-100/20 bg-amber-200/[0.06] p-3">
             <div className="mb-2 flex items-center justify-between">
               <Bolt className="size-4 text-amber-100" />
               <span className="text-[10px] uppercase tracking-[0.18em] text-amber-100/70">
-                Flux
+                Instant
               </span>
             </div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white">
@@ -691,6 +691,13 @@ function StackDemo() {
 }
 
 function EnergyAndAttack() {
+  const usedPermanents = [
+    { name: "Hero", note: "stays upright", icon: Shield, className: "border-cyan-100/25 bg-cyan-100/10", used: false },
+    { name: "Energy", note: "used", icon: Gem, className: "border-cyan-100/25 bg-cyan-100/10", used: true },
+    { name: "Relic", note: "used", icon: Gem, className: "border-amber-100/25 bg-amber-200/10", used: true },
+    { name: "Ally", note: "used", icon: Orbit, className: "border-emerald-100/25 bg-emerald-200/10", used: true },
+  ];
+
   return (
     <div className="grid gap-5 lg:col-span-5">
       <div className="fracture-panel reveal p-5 sm:p-6">
@@ -733,6 +740,42 @@ function EnergyAndAttack() {
             <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">3 seconds</div>
           </div>
         </div>
+      </div>
+      <div className="fracture-panel reveal p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-100/70">
+              Used permanents
+            </p>
+            <h3 className="mt-2 text-xl font-semibold text-white">Turn battlefield cards slightly right</h3>
+          </div>
+          <span className="border border-amber-100/25 bg-amber-200/10 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-100">
+            Used
+          </span>
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {usedPermanents.map((card) => {
+            const Icon = card.icon;
+
+            return (
+              <div
+                key={card.name}
+                className={`${card.className} min-h-28 border p-3 transition duration-300 ${card.used ? "rotate-[7deg]" : ""}`}
+              >
+                <Icon className="mb-5 size-5 text-cyan-100" />
+                <div className="font-title text-sm uppercase tracking-[0.16em] text-white">
+                  {card.name}
+                </div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-slate-500">
+                  {card.note}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-5 text-xs leading-6 text-slate-400">
+          Energy, relics, and companions turn slightly right when used. Hero cards do not turn.
+        </p>
       </div>
     </div>
   );
@@ -843,7 +886,7 @@ function GameplaySystems() {
           </div>
           <p className="max-w-2xl text-base leading-8 text-slate-300 lg:justify-self-end">
             Fragment is driven by a tight loop: choose a Hero, build Energy,
-            spend six seconds, place actions on the stack, then use Flux
+            spend six seconds, place actions on the Thread, then use Instants
             whenever priority opens.
           </p>
         </div>
@@ -852,7 +895,7 @@ function GameplaySystems() {
             ["1", "Hero"],
             ["2", "Energy"],
             ["3", "Seconds"],
-            ["4", "Stack"],
+            ["4", "Thread"],
           ].map(([step, label]) => (
             <div key={label} className="border border-white/10 bg-white/[0.035] p-4">
               <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
@@ -867,7 +910,7 @@ function GameplaySystems() {
         <div className="grid gap-5 lg:grid-cols-12">
           <SecondsTimeline />
           <HeroCommandPanel />
-          <StackDemo />
+          <ThreadDemo />
           <EnergyAndAttack />
           <CardsAndIdentity />
         </div>
@@ -935,7 +978,7 @@ export function FragmentLanding() {
             </p>
             <p className="mt-5 max-w-xl text-base leading-8 text-slate-400">
               Build your deck around one Hero, manage Energy, spend seconds on
-              decisive actions, and fight through stack-based Flux interactions.
+              decisive actions, and fight through Thread-based Instant interactions.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="#core">Explore the Game</Button>
@@ -961,15 +1004,15 @@ export function FragmentLanding() {
                   Purple / Mind
                 </div>
                 <div className="font-title mt-2 text-2xl text-white">
-                  Flux control Hero
+                  Thread control Hero
                 </div>
               </div>
             </div>
             <div className="absolute right-80 top-24 border border-cyan-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-cyan-100 shadow-[0_0_38px_rgba(47,231,255,0.16)] backdrop-blur">
-              Stack pressure online
+              Thread pressure online
             </div>
             <div className="absolute bottom-28 right-64 border border-violet-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-violet-100 shadow-[0_0_38px_rgba(167,139,250,0.18)] backdrop-blur">
-              Flux cards ready
+              Instants ready
             </div>
           </div>
         </div>
@@ -979,7 +1022,7 @@ export function FragmentLanding() {
         <SectionTitle
           eyebrow="Core Hook"
           title="A card game measured in seconds"
-          body="Each turn gives your Hero 6 seconds. Every attack, ability, relic, or card takes time. Flux cards can be played whenever you have priority, opening tactical stack exchanges."
+          body="Each turn gives your Hero 6 seconds. Every attack, ability, relic, or card takes time. Instants can be played whenever you have priority, opening tactical Thread exchanges."
         />
         <div className="grid gap-5 md:grid-cols-3">
           {hooks.map((item) => <FeatureCard key={item.title} item={item} />)}
@@ -1058,7 +1101,7 @@ export function FragmentLanding() {
           </div>
           <p className="relative z-10 text-base leading-8 text-slate-300">
             Fragment is being developed first as a digital game with automated rules,
-            animated stack interactions, and fast matchmaking. The core rules are being
+            animated Thread interactions, and fast matchmaking. The core rules are being
             designed with physical cards in mind, so the game can eventually become a
             paper TCG without needing to be redesigned from scratch.
           </p>

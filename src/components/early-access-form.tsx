@@ -236,7 +236,7 @@ export function EarlyAccessForm() {
           name="interestReason"
           rows={3}
           className="mt-2 w-full resize-none border border-white/10 bg-white/[0.04] px-3 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-100/50"
-          placeholder="Stack play, hero decks, paper TCG potential, lore..."
+          placeholder="Thread play, hero decks, paper TCG potential, lore..."
         />
       </label>
 
