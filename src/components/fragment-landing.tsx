@@ -32,6 +32,19 @@ type Infection = {
   className: string;
 };
 
+type ColoredEnergy = {
+  icon: LucideIcon;
+  className: string;
+  label: string;
+};
+
+type CardCost = {
+  seconds?: number;
+  colorless?: number;
+  colored?: ColoredEnergy[];
+  flux?: boolean;
+};
+
 const hooks: Card[] = [
   {
     title: "Choose a Hero",
@@ -227,6 +240,65 @@ function FluxBadge({ label = "Flux" }: { label?: string }) {
         </span>
       </span>
     </div>
+  );
+}
+
+function TimeCostPip({ seconds }: { seconds: number }) {
+  return (
+    <span
+      className="inline-flex size-7 items-center justify-center rounded-full border border-black bg-slate-100 text-[11px] font-semibold leading-none text-black shadow-[0_0_0_1px_rgba(255,255,255,0.22)]"
+      aria-label={`${seconds} seconds`}
+      title={`${seconds} seconds`}
+    >
+      {seconds}
+    </span>
+  );
+}
+
+function ColorlessEnergyPip({ value }: { value: number }) {
+  return (
+    <span
+      className="inline-flex size-7 items-center justify-center rounded-full border border-slate-300/45 bg-slate-500/85 text-[11px] font-semibold leading-none text-slate-950 shadow-[inset_0_1px_8px_rgba(255,255,255,0.22)]"
+      aria-label={`${value} colorless Energy`}
+      title={`${value} colorless Energy`}
+    >
+      {value}
+    </span>
+  );
+}
+
+function ColoredEnergyPip({ energy }: { energy: ColoredEnergy }) {
+  const Icon = energy.icon;
+
+  return (
+    <span
+      className={`inline-flex size-7 items-center justify-center rounded-full border text-white shadow-[inset_0_1px_8px_rgba(255,255,255,0.18)] ${energy.className}`}
+      aria-label={energy.label}
+      title={energy.label}
+    >
+      <Icon className="size-3.5" />
+    </span>
+  );
+}
+
+function CostPips({ cost }: { cost: CardCost }) {
+  return (
+    <span className="inline-flex flex-wrap items-center gap-1.5">
+      {cost.flux ? (
+        <span
+          className="inline-flex size-7 items-center justify-center border border-amber-100/55 bg-amber-200/10 text-base leading-none text-amber-100"
+          aria-label="Flux"
+          title="Flux"
+        >
+          ⚡
+        </span>
+      ) : null}
+      {typeof cost.seconds === "number" ? <TimeCostPip seconds={cost.seconds} /> : null}
+      {cost.colored?.map((energy, index) => (
+        <ColoredEnergyPip key={`${energy.label}-${index}`} energy={energy} />
+      ))}
+      {typeof cost.colorless === "number" ? <ColorlessEnergyPip value={cost.colorless} /> : null}
+    </span>
   );
 }
 
@@ -459,7 +531,21 @@ function StackDemo() {
       name: "Mind Spike",
       note: "Deal 3 psionic damage to the enemy Hero.",
       type: "Ability",
-      cost: "3s / 2E",
+      cost: {
+        seconds: 3,
+        colored: [
+          {
+            icon: Brain,
+            className: "border-violet-100/55 bg-violet-500 text-violet-50",
+            label: "Purple Energy",
+          },
+          {
+            icon: Brain,
+            className: "border-violet-100/55 bg-violet-500 text-violet-50",
+            label: "Purple Energy",
+          },
+        ],
+      },
       effect: "Target Hero takes 3 psionic damage.",
       accent: "border-violet-200/30 bg-violet-400/10",
       flux: false,
@@ -469,7 +555,7 @@ function StackDemo() {
       name: "Flux Guard",
       note: "Opponent plays a Flux card to prevent 2 damage.",
       type: "Flux Card",
-      cost: "⚡ / 1E",
+      cost: { flux: true, colorless: 1 },
       effect: "Prevent the next 2 damage to your Hero.",
       accent: "border-amber-100/30 bg-amber-200/10",
       flux: true,
@@ -479,7 +565,7 @@ function StackDemo() {
       name: "Neural Cut",
       note: "You answer with Flux: disable that prevention.",
       type: "Flux Card",
-      cost: "⚡ / 1E",
+      cost: { flux: true, colorless: 1 },
       effect: "Remove prevention text from one stack effect.",
       accent: "border-cyan-100/30 bg-cyan-100/10",
       flux: true,
@@ -536,15 +622,15 @@ function StackDemo() {
                       Card
                     </span>
                     <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-slate-400">
-                      {card.cost}
+                      <CostPips cost={card.cost} />
                     </span>
                     <span className="pointer-events-none absolute right-0 top-full z-30 mt-3 w-64 translate-y-1 border border-cyan-100/25 bg-void/95 p-3 text-left opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.4)] backdrop-blur transition duration-200 group-hover/card:translate-y-0 group-hover/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100">
                       <span className="flex items-center justify-between gap-3">
                         <span className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
                           {card.type}
                         </span>
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                          {card.cost}
+                        <span className="shrink-0">
+                          <CostPips cost={card.cost} />
                         </span>
                       </span>
                       <span className="font-title mt-5 block text-base text-white">
