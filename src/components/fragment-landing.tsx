@@ -246,7 +246,7 @@ function FluxBadge({ label = "Flux" }: { label?: string }) {
 function TimeCostPip({ seconds }: { seconds: number }) {
   return (
     <span
-      className="inline-flex size-7 items-center justify-center rounded-full border border-black bg-slate-100 text-[11px] font-semibold leading-none text-black shadow-[0_0_0_1px_rgba(255,255,255,0.22)]"
+      className="inline-flex size-6 items-center justify-center rounded-full border border-black bg-slate-100 text-[10px] font-semibold leading-none text-black shadow-[0_0_0_1px_rgba(255,255,255,0.22)]"
       aria-label={`${seconds} seconds`}
       title={`${seconds} seconds`}
     >
@@ -258,7 +258,7 @@ function TimeCostPip({ seconds }: { seconds: number }) {
 function ColorlessEnergyPip({ value }: { value: number }) {
   return (
     <span
-      className="inline-flex size-7 items-center justify-center rounded-full border border-slate-300/45 bg-slate-500/85 text-[11px] font-semibold leading-none text-slate-950 shadow-[inset_0_1px_8px_rgba(255,255,255,0.22)]"
+      className="inline-flex size-6 items-center justify-center rounded-full border border-slate-300/45 bg-slate-500/85 text-[10px] font-semibold leading-none text-slate-950 shadow-[inset_0_1px_8px_rgba(255,255,255,0.22)]"
       aria-label={`${value} colorless Energy`}
       title={`${value} colorless Energy`}
     >
@@ -272,21 +272,21 @@ function ColoredEnergyPip({ energy }: { energy: ColoredEnergy }) {
 
   return (
     <span
-      className={`inline-flex size-7 items-center justify-center rounded-full border text-white shadow-[inset_0_1px_8px_rgba(255,255,255,0.18)] ${energy.className}`}
+      className={`inline-flex size-6 items-center justify-center rounded-full border text-white shadow-[inset_0_1px_8px_rgba(255,255,255,0.18)] ${energy.className}`}
       aria-label={energy.label}
       title={energy.label}
     >
-      <Icon className="size-3.5" />
+      <Icon className="size-3" />
     </span>
   );
 }
 
 function CostPips({ cost }: { cost: CardCost }) {
   return (
-    <span className="inline-flex flex-wrap items-center gap-1.5">
+    <span className="inline-flex flex-nowrap items-center gap-1.5">
       {cost.flux ? (
         <span
-          className="inline-flex size-7 items-center justify-center border border-amber-100/55 bg-amber-200/10 text-base leading-none text-amber-100"
+          className="inline-flex size-6 items-center justify-center border border-amber-100/55 bg-amber-200/10 text-sm leading-none text-amber-100"
           aria-label="Flux"
           title="Flux"
         >
@@ -607,9 +607,9 @@ function ThreadDemo() {
                 <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                   Thread {card.step}
                 </span>
-                <div className={`flex w-full items-center justify-between gap-3 border px-3 py-2 sm:w-auto sm:min-w-44 ${card.accent}`}>
-                  <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                    {card.flux ? <Bolt className="size-3.5 text-amber-100" /> : <Layers3 className="size-3.5 text-slate-400" />}
+                <div className={`flex w-full items-center justify-between gap-2 border px-3 py-2 sm:w-auto sm:min-w-40 ${card.accent}`}>
+                  <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-100">
+                    {card.flux ? <Bolt className="size-3 text-amber-100" /> : <Layers3 className="size-3 text-slate-400" />}
                     {card.type}
                   </span>
                   <CostPips cost={card.cost} />
