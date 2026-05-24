@@ -603,50 +603,29 @@ function ThreadDemo() {
               className={`group/card relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
               style={{ marginLeft: `${index * 12}px` }}
             >
-              <div className="flex items-start justify-between gap-4">
-                <span className="min-w-0 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                   Thread {card.step}
                 </span>
-                <div className="flex shrink-0 items-start gap-2">
-                  {card.flux ? <FluxBadge label="" /> : <Layers3 className="mt-1 size-4 text-slate-400" />}
-                  <button
-                    type="button"
-                    className={`relative min-w-28 border px-2.5 py-2 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-1 focus:ring-cyan-100/50 ${card.accent}`}
-                    aria-label={`${card.name} card preview`}
-                  >
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                      Card
-                    </span>
-                    <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-slate-400">
-                      <CostPips cost={card.cost} />
-                    </span>
-                    <span className="pointer-events-none absolute right-0 top-full z-30 mt-3 w-64 translate-y-1 border border-cyan-100/25 bg-void/95 p-3 text-left opacity-0 shadow-[0_18px_45px_rgba(0,0,0,0.4)] backdrop-blur transition duration-200 group-hover/card:translate-y-0 group-hover/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:opacity-100">
-                      <span className="flex items-center justify-between gap-3">
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
-                          {card.type}
-                        </span>
-                        <span className="shrink-0">
-                          <CostPips cost={card.cost} />
-                        </span>
-                      </span>
-                      <span className="font-title mt-5 block text-base text-white">
-                        {card.name}
-                      </span>
-                      <span className="mt-3 block border-t border-white/10 pt-3 text-xs leading-5 text-slate-300">
-                        {card.effect}
-                      </span>
-                      {card.flux ? (
-                        <span className="absolute right-3 top-9 text-lg leading-none text-amber-100">
-                          ⚡
-                        </span>
-                      ) : null}
-                    </span>
-                  </button>
+                <div className={`flex w-full items-center justify-between gap-3 border px-3 py-2 sm:w-auto sm:min-w-44 ${card.accent}`}>
+                  <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                    {card.flux ? <Bolt className="size-3.5 text-amber-100" /> : <Layers3 className="size-3.5 text-slate-400" />}
+                    {card.type}
+                  </span>
+                  <CostPips cost={card.cost} />
                 </div>
               </div>
-              <div className="mt-5 max-w-[22rem]">
-                <div className="font-title text-lg text-white">{card.name}</div>
-                <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-[0.8fr_1fr]">
+                <div>
+                  <div className="font-title text-lg text-white">{card.name}</div>
+                  <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
+                </div>
+                <div className={`border px-3 py-3 ${card.accent}`}>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    Effect
+                  </div>
+                  <div className="mt-2 text-xs leading-5 text-slate-300">{card.effect}</div>
+                </div>
               </div>
             </div>
           ))}
