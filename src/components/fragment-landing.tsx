@@ -601,21 +601,17 @@ function StackDemo() {
             <div
               key={card.name}
               className={`group/card relative border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35 ${card.flux ? "flux-ready border-amber-100/25" : ""}`}
-              style={{ marginLeft: `${index * 22}px` }}
+              style={{ marginLeft: `${index * 12}px` }}
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
-                    Stack {card.step}
-                  </span>
-                  <div className="font-title mt-3 text-lg text-white">{card.name}</div>
-                  <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
-                </div>
+                <span className="min-w-0 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
+                  Stack {card.step}
+                </span>
                 <div className="flex shrink-0 items-start gap-2">
                   {card.flux ? <FluxBadge label="" /> : <Layers3 className="mt-1 size-4 text-slate-400" />}
                   <button
                     type="button"
-                    className={`relative border px-2.5 py-2 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-1 focus:ring-cyan-100/50 ${card.accent}`}
+                    className={`relative min-w-28 border px-2.5 py-2 text-left transition hover:-translate-y-0.5 focus:outline-none focus:ring-1 focus:ring-cyan-100/50 ${card.accent}`}
                     aria-label={`${card.name} card preview`}
                   >
                     <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
@@ -647,6 +643,10 @@ function StackDemo() {
                     </span>
                   </button>
                 </div>
+              </div>
+              <div className="mt-5 max-w-[22rem]">
+                <div className="font-title text-lg text-white">{card.name}</div>
+                <div className="mt-2 text-xs leading-5 text-slate-400">{card.note}</div>
               </div>
             </div>
           ))}
