@@ -562,28 +562,28 @@ function ThreadDemo() {
     },
     {
       step: "2",
-      name: "Guard Pulse",
-      note: "Opponent plays an Instant to prevent 2 damage.",
+      name: "Thaw Pulse",
+      note: "Opponent plays an Instant to keep their next action from losing seconds.",
       type: "Instant",
       cost: { flux: true, colorless: 1 },
-      effect: "Prevent the next 2 damage to your Hero.",
+      effect: "Prevent the next 2 seconds of timing loss.",
       accent: "border-amber-100/30 bg-amber-200/10",
       flux: true,
     },
     {
       step: "3",
-      name: "Neural Cut",
-      note: "You answer with an Instant: disable that prevention.",
+      name: "Cold Snap",
+      note: "You answer with an Instant: make the freeze effect stick.",
       type: "Instant",
       cost: { flux: true, colorless: 1 },
-      effect: "Remove prevention text from one Thread effect.",
+      effect: "Remove timing prevention from one Thread effect.",
       accent: "border-cyan-100/30 bg-cyan-100/10",
       flux: true,
     },
   ];
   const resolveSteps = [
-    ["Neural Cut resolves", "Guard Pulse loses its prevention text."],
-    ["Guard Pulse resolves", "No prevention remains to stop the hit."],
+    ["Cold Snap resolves", "Thaw Pulse loses its timing prevention."],
+    ["Thaw Pulse resolves", "No prevention remains to protect the action."],
     ["Frost Lock resolves", "The enemy Hero loses 3 seconds of timing."],
   ];
   const instantWindows = [
@@ -785,7 +785,7 @@ function CardsAndIdentity() {
         </div>
         <p className="max-w-2xl text-sm leading-7 text-slate-400 lg:justify-self-end">
           Card types define what enters the loop. The launch strains define how
-          your Hero pressures, denies, or manipulates the fight.
+          your Hero pressures or denies the fight.
         </p>
       </div>
       <div className="grid gap-5 xl:grid-cols-[0.62fr_1fr]">
