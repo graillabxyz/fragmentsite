@@ -1010,11 +1010,14 @@ export function FragmentLanding() {
                 </div>
               </div>
             </div>
-            <div className="absolute right-80 top-24 border border-cyan-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-cyan-100 shadow-[0_0_38px_rgba(47,231,255,0.16)] backdrop-blur">
-              Thread pressure online
+            <div className="absolute right-80 top-20 max-w-64 border border-cyan-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-cyan-100 shadow-[0_0_38px_rgba(47,231,255,0.16)] backdrop-blur">
+              The first two Fragments have stabilized
             </div>
-            <div className="absolute bottom-28 right-64 border border-blue-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-blue-100 shadow-[0_0_38px_rgba(96,165,250,0.18)] backdrop-blur">
-              Blue responses ready
+            <div className="absolute right-4 top-48 max-w-52 border border-red-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-red-100 shadow-[0_0_38px_rgba(248,113,113,0.16)] backdrop-blur">
+              Pressure against timing
+            </div>
+            <div className="absolute bottom-28 right-64 max-w-64 border border-blue-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-blue-100 shadow-[0_0_38px_rgba(96,165,250,0.18)] backdrop-blur">
+              Every second becomes a choice
             </div>
           </div>
         </div>
