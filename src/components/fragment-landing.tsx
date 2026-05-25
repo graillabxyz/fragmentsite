@@ -946,7 +946,7 @@ export function FragmentLanding() {
 
       <section id="hero" className="relative isolate flex min-h-screen items-center pt-24">
         <Image
-          src="/art/old-rock-hero-ruins-bg.jpg"
+          src="/art/old-rock-red-ruins-bg.png"
           alt=""
           fill
           priority
