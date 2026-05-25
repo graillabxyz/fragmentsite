@@ -5,7 +5,7 @@ import { EarlyAccessForm } from "@/components/early-access-form";
 
 const benefits = [
   ["Priority waves", "Get considered as early test seats open."],
-  ["Founder identity", "Cosmetic recognition for helping shape Fragment before launch."],
+  ["Focused beta", "Help tune Red pressure against Blue timing before more Fragments stabilize."],
   ["Rules access", "Follow the evolving paper-ready rules and playtest notes."],
 ];
 
@@ -50,9 +50,9 @@ export default function EarlyAccessPage() {
               Join the early access list
             </h1>
             <p className="mt-6 text-base leading-8 text-slate-300">
-              Tell us where you play and how you found Fragment. The first invites
-              will prioritize players who can help test six-second combat, Hero
-              identities, Thread interactions, and the paper-ready rules.
+              Tell us where you play and how you found Fragment. The first beta
+              invites focus on Red and Blue: pressure, timing, Hero combat,
+              Thread interactions, and battlefield readability.
             </p>
 
             <div className="mt-8 grid gap-3">

@@ -59,7 +59,7 @@ const timelineExamples = [
     label: "Clean split",
     actions: [
       { name: "Base Attack", seconds: 3, className: "bg-red-400/25 text-red-100" },
-      { name: "Mind Spike", seconds: 3, className: "bg-violet-400/25 text-violet-100" },
+      { name: "Frost Lock", seconds: 3, className: "bg-blue-400/25 text-blue-100" },
     ],
   },
   {
@@ -84,27 +84,21 @@ const launchIdentities = [
   {
     name: "Red",
     signal: "Pressure / Fire / Momentum",
-    body: "Red wins by forcing the fight forward: burning pressure, self-damage, throne guardians, and overwhelming tempo.",
+    body: "Red wins by forcing the fight forward: aggression, self-damage, attack empowerment, and burning momentum.",
     icon: Flame,
     className: "border-red-400/40 bg-red-500/10 text-red-100",
   },
   {
     name: "Blue",
     signal: "Tempo / Ice / Timing",
-    body: "Blue controls the six-second window: freeze timing, seconds manipulation, tactical denial, and precision responses.",
+    body: "Blue controls the six-second window: timing denial, freeze effects, tactical responses, Thread interaction, and precision control.",
     icon: Snowflake,
     className: "border-blue-300/40 bg-blue-400/10 text-blue-100",
-  },
-  {
-    name: "Purple",
-    signal: "Psionics / Force / Manipulation",
-    body: "Purple pressures the mind and the Thread: information warfare, force distortion, and interference at the exact wrong moment.",
-    icon: Brain,
-    className: "border-violet-300/40 bg-violet-400/10 text-violet-50",
   },
 ];
 
 const unstableFragments = [
+  { mark: "03", icon: Brain, className: "border-violet-100/20 bg-violet-200/[0.035]" },
   { mark: "04", icon: Sparkles, className: "border-yellow-100/20 bg-yellow-200/[0.035]" },
   { mark: "05", icon: Zap, className: "border-cyan-100/20 bg-cyan-200/[0.035]" },
   { mark: "06", icon: Gem, className: "border-amber-100/20 bg-amber-200/[0.035]" },
@@ -134,12 +128,6 @@ const heroes = [
     accent: "from-cyan-400/35",
   },
   {
-    name: "Purple Seer",
-    path: "Mind / Force",
-    src: "/art/hero-purple-female.webp",
-    accent: "from-violet-400/35",
-  },
-  {
     name: "Red Crown",
     path: "Fire / Pressure",
     src: "/art/hero-red-male.webp",
@@ -152,12 +140,6 @@ const heroes = [
     accent: "from-blue-400/35",
   },
   {
-    name: "Purple Cipher",
-    path: "Mind / Thread",
-    src: "/art/hero-purple-male.webp",
-    accent: "from-violet-500/35",
-  },
-  {
     name: "Red Bastion",
     path: "Fire / Momentum",
     src: "/art/hero-red-female.webp",
@@ -168,12 +150,6 @@ const heroes = [
     path: "Ice / Timing",
     src: "/art/hero-blue-female.webp",
     accent: "from-cyan-400/30",
-  },
-  {
-    name: "Purple Veil",
-    path: "Force / Manipulation",
-    src: "/art/hero-purple-female.webp",
-    accent: "from-violet-400/30",
   },
 ];
 
@@ -526,15 +502,15 @@ function HeroCommandPanel() {
       <div className="grid gap-4 md:grid-cols-[0.72fr_1fr]">
         <div className="relative overflow-hidden border border-cyan-100/20 bg-cyan-100/10">
           <Image
-            src="/art/hero-purple-female.webp"
-            alt="Purple Seer hero card"
+            src="/art/hero-blue-female.webp"
+            alt="Blue Runner hero card"
             width={760}
             height={760}
             className="aspect-[0.78] w-full object-cover"
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void via-void/70 to-transparent p-4">
-            <div className="font-title text-sm uppercase tracking-[0.2em] text-white">Purple Seer</div>
-            <div className="mt-1 text-xs uppercase tracking-[0.16em] text-violet-100">Mind / Force</div>
+            <div className="font-title text-sm uppercase tracking-[0.2em] text-white">Blue Runner</div>
+            <div className="mt-1 text-xs uppercase tracking-[0.16em] text-blue-100">Ice / Timing</div>
           </div>
         </div>
         <div className="grid gap-3">
@@ -542,7 +518,7 @@ function HeroCommandPanel() {
             ["HP", "24", "survive pressure"],
             ["Initiative", "High", "acts first"],
             ["Base Attack", "3s / 2 dmg", "physical strike"],
-            ["Instant", "Psionic Echo", "priority access"],
+            ["Instant", "Cold Snap", "priority access"],
           ].map(([label, value, note]) => (
             <div key={label} className="grid grid-cols-[0.8fr_1fr] items-center border border-white/10 bg-white/[0.035] p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">{label}</div>
@@ -562,26 +538,26 @@ function ThreadDemo() {
   const threadSteps = [
     {
       step: "1",
-      name: "Mind Spike",
-      note: "Deal 3 psionic damage to the enemy Hero.",
+      name: "Frost Lock",
+      note: "Freeze the next 3 seconds of the enemy Hero's plan.",
       type: "Ability",
       cost: {
         seconds: 3,
         colored: [
           {
-            icon: Brain,
-            className: "border-violet-100/55 bg-violet-500 text-violet-50",
-            label: "Purple Energy",
+            icon: Snowflake,
+            className: "border-blue-100/55 bg-blue-500 text-blue-50",
+            label: "Blue Energy",
           },
           {
-            icon: Brain,
-            className: "border-violet-100/55 bg-violet-500 text-violet-50",
-            label: "Purple Energy",
+            icon: Snowflake,
+            className: "border-blue-100/55 bg-blue-500 text-blue-50",
+            label: "Blue Energy",
           },
         ],
       },
-      effect: "Target Hero takes 3 psionic damage.",
-      accent: "border-violet-200/30 bg-violet-400/10",
+      effect: "Enemy Hero's next action loses 3 seconds of timing.",
+      accent: "border-blue-200/30 bg-blue-400/10",
       flux: false,
     },
     {
@@ -608,7 +584,7 @@ function ThreadDemo() {
   const resolveSteps = [
     ["Neural Cut resolves", "Guard Pulse loses its prevention text."],
     ["Guard Pulse resolves", "No prevention remains to stop the hit."],
-    ["Mind Spike resolves", "3 damage lands on the enemy Hero."],
+    ["Frost Lock resolves", "The enemy Hero loses 3 seconds of timing."],
   ];
   const instantWindows = [
     ["Proactive", "start pressure on your turn"],
@@ -849,13 +825,13 @@ function CardsAndIdentity() {
         <div>
           <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
             <span className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-100">
-              Stabilized strains
+              Beta strains
             </span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
-              Launch set
+              Red vs Blue
             </span>
           </div>
-          <div className="grid gap-2 lg:grid-cols-3">
+          <div className="grid gap-2 lg:grid-cols-2">
             {launchIdentities.map((identity) => {
               const Icon = identity.icon;
               return (
@@ -878,8 +854,8 @@ function CardsAndIdentity() {
         </div>
       </div>
       <div className="mt-5 border border-white/10 bg-white/[0.03] p-3 text-xs uppercase tracking-[0.16em] text-slate-500">
-        A deck is not a swarm. It is one Hero, one timing plan, and a chosen
-        pressure pattern splitting through cards, Energy, seconds, and the Thread.
+        The beta asks one clean question: can Red pressure break through Blue
+        timing before the six-second window closes?
       </div>
     </div>
   );
@@ -1005,10 +981,10 @@ export function FragmentLanding() {
             </p>
           </div>
           <div className="relative hidden min-h-[620px] lg:block">
-            <div className="absolute right-0 top-1/2 h-[560px] w-[440px] -translate-y-1/2 overflow-hidden border border-violet-200/20 bg-violet-300/10 shadow-[0_40px_120px_rgba(167,139,250,0.18)]">
+            <div className="absolute right-0 top-1/2 h-[560px] w-[440px] -translate-y-1/2 overflow-hidden border border-red-200/20 bg-red-300/10 shadow-[0_40px_120px_rgba(248,113,113,0.18)]">
               <Image
-                src="/art/hero-purple-male-feature.png"
-                alt="Purple infected Fragment hero"
+                src="/art/hero-red-female.webp"
+                alt="Red Fragment beta hero"
                 fill
                 priority
                 sizes="440px"
@@ -1016,19 +992,19 @@ export function FragmentLanding() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-100">
-                  Purple / Mind
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-red-100">
+                  Red / Pressure
                 </div>
                 <div className="font-title mt-2 text-2xl text-white">
-                  Thread control Hero
+                  Momentum Hero
                 </div>
               </div>
             </div>
             <div className="absolute right-80 top-24 border border-cyan-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-cyan-100 shadow-[0_0_38px_rgba(47,231,255,0.16)] backdrop-blur">
               Thread pressure online
             </div>
-            <div className="absolute bottom-28 right-64 border border-violet-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-violet-100 shadow-[0_0_38px_rgba(167,139,250,0.18)] backdrop-blur">
-              Instants ready
+            <div className="absolute bottom-28 right-64 border border-blue-100/25 bg-void/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-blue-100 shadow-[0_0_38px_rgba(96,165,250,0.18)] backdrop-blur">
+              Blue responses ready
             </div>
           </div>
         </div>
@@ -1051,16 +1027,16 @@ export function FragmentLanding() {
         <div className="mb-10 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:items-end">
           <div className="reveal">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">
-              Nine Launch Heroes
+              Beta Heroes
             </p>
             <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
               Build around a single fractured combatant
             </h2>
           </div>
           <p className="reveal max-w-2xl text-base leading-8 text-slate-300 lg:justify-self-end">
-            The first public roster centers on Red, Blue, and Purple. Every
-            deck begins with one Hero, then sharpens around their timing,
-            durability, and pressure pattern.
+            The first beta focuses on Red and Blue. Every deck begins with one
+            Hero, then sharpens around pressure, timing, durability, and
+            battlefield readability.
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -1083,11 +1059,11 @@ export function FragmentLanding() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void via-void/75 to-void" />
         <div className="container">
           <SectionTitle
-            eyebrow="Launch Identities"
-            title="Three Fragment strains have stabilized"
-            body="Red, Blue, and Purple are the first readable combat frequencies. Each gives the same six-second battlefield a different kind of pressure."
+            eyebrow="Beta Identities"
+            title="The first two stabilized Fragments"
+            body="The beta opens with Red pressure against Blue timing: a focused duel built to prove seconds, Thread interaction, and Hero combat readability."
           />
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-2">
             {launchIdentities.map((identity) => {
               const Icon = identity.icon;
               return (
@@ -1117,12 +1093,12 @@ export function FragmentLanding() {
                 </p>
                 <h3 className="text-2xl font-semibold text-white">Reality is still fragmenting</h3>
                 <p className="mt-4 text-sm leading-7 text-slate-400">
-                  Other signals have been detected, but none are stable enough
-                  for public combat. Their shapes remain locked, distorted, and
-                  subject to change.
+                  Other Fragment types exist beneath the surface, but none are
+                  cleared for public beta combat. Their marks remain classified,
+                  unstable, and subject to change.
                 </p>
               </div>
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                 {unstableFragments.map((fragment) => {
                   const Icon = fragment.icon;
 
@@ -1140,7 +1116,7 @@ export function FragmentLanding() {
                       </div>
                       <div className="relative mt-8 h-px w-full bg-slate-500/25" />
                       <div className="relative mt-4 text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                        Locked
+                        Classified
                       </div>
                     </div>
                   );
