@@ -459,19 +459,31 @@ function SecondsTimeline() {
             <div className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
               {example.label}
             </div>
-            <div className="flex overflow-hidden border border-white/10">
+            <div className="flex min-h-12 overflow-hidden border border-white/10">
               {example.actions.map((action) => (
                 <div
                   key={`${example.label}-${action.name}`}
-                  className={`${action.className} flex min-h-20 flex-col items-center justify-center gap-1.5 border-r border-white/10 px-1.5 text-center font-semibold uppercase last:border-r-0 sm:px-2`}
+                  className={`${action.className} relative border-r border-white/10 last:border-r-0`}
                   style={{ width: `${(action.seconds / 6) * 100}%` }}
+                  aria-label={`${action.name}, ${action.seconds} seconds`}
                 >
-                  <span
-                    className={`font-title max-w-full leading-4 ${action.seconds === 1 ? "text-[9px] tracking-[0.04em]" : "text-[11px] tracking-[0.1em]"}`}
-                  >
-                    {action.name}
-                  </span>
-                  <span className="border border-white/20 bg-void/35 px-1.5 py-0.5 text-[10px] leading-none tracking-normal text-white/90">
+                  <span className="absolute inset-x-2 bottom-2 h-px bg-white/35" />
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {example.actions.map((action) => (
+                <div
+                  key={`${example.label}-${action.name}-legend`}
+                  className="flex min-w-0 items-center justify-between gap-3 border border-white/10 bg-white/[0.035] px-3 py-2"
+                >
+                  <div className="flex min-w-0 items-center gap-2">
+                    <span className={`size-2.5 shrink-0 border border-white/20 ${action.className}`} />
+                    <span className="truncate font-title text-[11px] uppercase tracking-[0.12em] text-white">
+                      {action.name}
+                    </span>
+                  </div>
+                  <span className="shrink-0 border border-cyan-100/25 bg-cyan-100/10 px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-normal text-cyan-100">
                     {action.seconds}s
                   </span>
                 </div>
