@@ -463,10 +463,17 @@ function SecondsTimeline() {
               {example.actions.map((action) => (
                 <div
                   key={`${example.label}-${action.name}`}
-                  className={`${action.className} flex min-h-16 items-center justify-center border-r border-white/10 px-3 text-center text-xs font-semibold uppercase tracking-[0.14em] last:border-r-0`}
+                  className={`${action.className} flex min-h-20 flex-col items-center justify-center gap-1.5 border-r border-white/10 px-1.5 text-center font-semibold uppercase last:border-r-0 sm:px-2`}
                   style={{ width: `${(action.seconds / 6) * 100}%` }}
                 >
-                  <span className="font-title">{action.name}</span> / {action.seconds}s
+                  <span
+                    className={`font-title max-w-full leading-4 ${action.seconds === 1 ? "text-[9px] tracking-[0.04em]" : "text-[11px] tracking-[0.1em]"}`}
+                  >
+                    {action.name}
+                  </span>
+                  <span className="border border-white/20 bg-void/35 px-1.5 py-0.5 text-[10px] leading-none tracking-normal text-white/90">
+                    {action.seconds}s
+                  </span>
                 </div>
               ))}
             </div>
