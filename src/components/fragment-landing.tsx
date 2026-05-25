@@ -56,14 +56,18 @@ const hooks: Card[] = [
 
 const timelineExamples = [
   {
-    label: "Clean split",
+    label: "Example turn A",
+    title: "Attack, then lock timing",
+    result: "Base Attack 3s + Frost Lock 3s = full turn",
     actions: [
       { name: "Base Attack", seconds: 3, className: "bg-red-400/25 text-red-100" },
       { name: "Frost Lock", seconds: 3, className: "bg-blue-400/25 text-blue-100" },
     ],
   },
   {
-    label: "Branch split",
+    label: "Example turn B",
+    title: "Move, answer, then strike",
+    result: "Phase Step 2s + Instant 1s + Base Attack 3s = full turn",
     actions: [
       { name: "Phase Step", seconds: 2, className: "bg-cyan-300/25 text-cyan-50" },
       { name: "Instant", seconds: 1, className: "bg-amber-300/25 text-amber-50" },
@@ -438,8 +442,8 @@ function SecondsTimeline() {
       </div>
       <div className="grid grid-cols-6 border border-white/10">
         {[1, 2, 3, 4, 5, 6].map((second) => (
-          <div key={second} className="relative min-h-16 border-r border-white/10 bg-white/[0.03] p-3 last:border-r-0">
-            <span className="text-xs font-semibold text-cyan-100">{second}s</span>
+          <div key={second} className="relative min-h-14 border-r border-white/10 bg-white/[0.03] p-3 last:border-r-0">
+            <span className="text-xs font-semibold text-cyan-100">{second}</span>
             <span className="absolute inset-x-3 bottom-3 h-px bg-cyan-100/30" />
           </div>
         ))}
@@ -447,37 +451,43 @@ function SecondsTimeline() {
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {timelineExamples.map((example) => (
           <div key={example.label} className="border border-white/10 bg-void/50 p-4">
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              {example.label}
+            <div className="mb-4">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                {example.label}
+              </div>
+              <div className="mt-1 font-title text-base text-white">{example.title}</div>
             </div>
-            <div className="flex min-h-12 overflow-hidden border border-white/10">
+            <div className="flex min-h-20 overflow-hidden border border-white/10 bg-black/20">
               {example.actions.map((action) => (
                 <div
                   key={`${example.label}-${action.name}`}
-                  className={`${action.className} relative border-r border-white/10 last:border-r-0`}
+                  className={`${action.className} relative flex min-w-0 flex-col justify-between border-r border-white/10 p-3 last:border-r-0`}
                   style={{ width: `${(action.seconds / 6) * 100}%` }}
                   aria-label={`${action.name}, ${action.seconds} seconds`}
                 >
-                  <span className="absolute inset-x-2 bottom-2 h-px bg-white/35" />
-                </div>
-              ))}
-            </div>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {example.actions.map((action) => (
-                <div
-                  key={`${example.label}-${action.name}-legend`}
-                  className="flex min-w-0 items-center justify-between gap-3 border border-white/10 bg-white/[0.035] px-3 py-2"
-                >
-                  <div className="flex min-w-0 items-center gap-2">
-                    <span className={`size-2.5 shrink-0 border border-white/20 ${action.className}`} />
-                    <span className="truncate font-title text-[11px] uppercase tracking-[0.12em] text-white">
-                      {action.name}
-                    </span>
-                  </div>
-                  <span className="shrink-0 border border-cyan-100/25 bg-cyan-100/10 px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-normal text-cyan-100">
+                  <span className="font-title text-[11px] uppercase leading-4 tracking-[0.12em] text-white">
+                    {action.name}
+                  </span>
+                  <span className="w-fit border border-cyan-100/25 bg-void/45 px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-normal text-cyan-100">
                     {action.seconds}s
                   </span>
                 </div>
+              ))}
+            </div>
+            <div className="mt-3 flex items-center justify-between gap-3 border border-cyan-100/15 bg-cyan-100/[0.045] px-3 py-2">
+              <span className="text-[11px] leading-5 text-slate-300">{example.result}</span>
+              <span className="shrink-0 border border-cyan-100/25 bg-cyan-100/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-cyan-100">
+                6s spent
+              </span>
+            </div>
+            <div className="mt-3 grid grid-cols-6 gap-1">
+              {example.actions.map((action) => (
+                <div
+                  key={`${example.label}-${action.name}-seconds`}
+                  className={`h-1.5 ${action.className}`}
+                  style={{ gridColumn: `span ${action.seconds} / span ${action.seconds}` }}
+                  aria-hidden="true"
+                />
               ))}
             </div>
           </div>
