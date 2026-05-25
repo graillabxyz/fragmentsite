@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Atom,
   Bolt,
   Brain,
   Clock3,
@@ -12,7 +11,6 @@ import {
   Snowflake,
   Sparkles,
   Swords,
-  TimerReset,
   Zap,
 } from "lucide-react";
 import Image from "next/image";
@@ -23,13 +21,6 @@ type Card = {
   title: string;
   body: string;
   icon: LucideIcon;
-};
-
-type Infection = {
-  name: string;
-  element: string;
-  icon: LucideIcon;
-  className: string;
 };
 
 type ColoredEnergy = {
@@ -48,7 +39,7 @@ type CardCost = {
 const hooks: Card[] = [
   {
     title: "Choose a Hero",
-    body: "Start with one command unit, then build a deck around their tempo, infection path, and tactical identity.",
+    body: "Start with one command unit, then build a deck around their tempo, strain, and tactical identity.",
     icon: Shield,
   },
   {
@@ -89,30 +80,36 @@ const cardTypes = [
   { name: "Instant", icon: Bolt, role: "priority access", className: "border-amber-200/45" },
 ];
 
-const identityChips = [
-  { name: "Red", role: "Burst pressure", icon: Flame, className: "border-red-400/35 from-red-500/30 text-red-100" },
-  { name: "Blue", role: "Slow denial", icon: Snowflake, className: "border-blue-300/35 from-blue-400/30 text-blue-100" },
-  { name: "Yellow", role: "Spread pressure", icon: Sparkles, className: "border-yellow-200/35 from-yellow-300/25 text-yellow-50" },
-  { name: "Turquoise", role: "Speed economy", icon: Zap, className: "border-cyan-300/35 from-cyan-300/25 text-cyan-50" },
-  { name: "Purple", role: "Mind control", icon: Brain, className: "border-violet-300/35 from-violet-400/30 text-violet-100" },
-  { name: "Gold", role: "Relic control", icon: Gem, className: "border-amber-200/40 from-amber-300/25 text-amber-100" },
-  { name: "Silver", role: "Combat efficiency", icon: Swords, className: "border-slate-100/35 from-slate-100/18 text-slate-100" },
-  { name: "Aquamarine", role: "Time shifts", icon: TimerReset, className: "border-teal-200/35 from-teal-300/24 text-teal-50" },
-  { name: "White", role: "Plasma offense", icon: Atom, className: "border-white/40 from-white/20 text-white" },
-  { name: "Black", role: "Sacrifice loops", icon: Orbit, className: "border-zinc-400/30 from-zinc-700/28 text-zinc-100" },
+const launchIdentities = [
+  {
+    name: "Red",
+    signal: "Pressure / Fire / Momentum",
+    body: "Red wins by forcing the fight forward: burning pressure, self-damage, throne guardians, and overwhelming tempo.",
+    icon: Flame,
+    className: "border-red-400/40 bg-red-500/10 text-red-100",
+  },
+  {
+    name: "Blue",
+    signal: "Tempo / Ice / Timing",
+    body: "Blue controls the six-second window: freeze timing, seconds manipulation, tactical denial, and precision responses.",
+    icon: Snowflake,
+    className: "border-blue-300/40 bg-blue-400/10 text-blue-100",
+  },
+  {
+    name: "Purple",
+    signal: "Psionics / Force / Manipulation",
+    body: "Purple pressures the mind and the Thread: information warfare, force distortion, and interference at the exact wrong moment.",
+    icon: Brain,
+    className: "border-violet-300/40 bg-violet-400/10 text-violet-50",
+  },
 ];
 
-const infections: Infection[] = [
-  { name: "Red", element: "Fire / Burst damage", icon: Flame, className: "border-red-400/40 bg-red-500/10 text-red-100" },
-  { name: "Blue", element: "Ice / Slow and denial", icon: Snowflake, className: "border-blue-300/40 bg-blue-400/10 text-blue-100" },
-  { name: "Yellow", element: "Gas / Spread and pressure", icon: Sparkles, className: "border-yellow-200/40 bg-yellow-300/10 text-yellow-50" },
-  { name: "Turquoise", element: "Electricity / Speed and efficiency", icon: Zap, className: "border-cyan-300/40 bg-cyan-300/10 text-cyan-50" },
-  { name: "Purple", element: "Force and Mind / Manipulation", icon: Brain, className: "border-violet-300/40 bg-violet-400/10 text-violet-50" },
-  { name: "Gold", element: "Ferrokinesis / Relics and control", icon: Gem, className: "border-amber-200/50 bg-amber-300/10 text-amber-50" },
-  { name: "Silver", element: "Physical Enhancement / Combat efficiency", icon: Swords, className: "border-slate-100/45 bg-slate-100/10 text-slate-50" },
-  { name: "Aquamarine", element: "Temporal / Time manipulation", icon: TimerReset, className: "border-teal-200/45 bg-teal-300/10 text-teal-50" },
-  { name: "White", element: "Plasma / Pure energy offense", icon: Atom, className: "border-white/50 bg-white/10 text-white" },
-  { name: "Black", element: "Dark Matter / Sacrifice and corruption", icon: Orbit, className: "border-zinc-400/35 bg-zinc-950/80 text-zinc-100" },
+const unstableFragments = [
+  { mark: "04", icon: Sparkles, className: "border-yellow-100/20 bg-yellow-200/[0.035]" },
+  { mark: "05", icon: Zap, className: "border-cyan-100/20 bg-cyan-200/[0.035]" },
+  { mark: "06", icon: Gem, className: "border-amber-100/20 bg-amber-200/[0.035]" },
+  { mark: "07", icon: Swords, className: "border-slate-100/20 bg-slate-200/[0.035]" },
+  { mark: "08", icon: Orbit, className: "border-zinc-100/20 bg-zinc-200/[0.025]" },
 ];
 
 const loadingLines = [
@@ -143,10 +140,10 @@ const heroes = [
     accent: "from-violet-400/35",
   },
   {
-    name: "Pure Anchor",
-    path: "Pure / Adaptable",
-    src: "/art/hero-common-male.webp",
-    accent: "from-amber-300/30",
+    name: "Red Crown",
+    path: "Fire / Pressure",
+    src: "/art/hero-red-male.webp",
+    accent: "from-red-600/35",
   },
   {
     name: "Blue Warden",
@@ -155,10 +152,28 @@ const heroes = [
     accent: "from-blue-400/35",
   },
   {
-    name: "Red Crown",
-    path: "Fire / Pressure",
-    src: "/art/hero-red-male.webp",
-    accent: "from-red-600/35",
+    name: "Purple Cipher",
+    path: "Mind / Thread",
+    src: "/art/hero-purple-male.webp",
+    accent: "from-violet-500/35",
+  },
+  {
+    name: "Red Bastion",
+    path: "Fire / Momentum",
+    src: "/art/hero-red-female.webp",
+    accent: "from-red-500/30",
+  },
+  {
+    name: "Blue Parallax",
+    path: "Ice / Timing",
+    src: "/art/hero-blue-female.webp",
+    accent: "from-cyan-400/30",
+  },
+  {
+    name: "Purple Veil",
+    path: "Force / Manipulation",
+    src: "/art/hero-purple-female.webp",
+    accent: "from-violet-400/30",
   },
 ];
 
@@ -350,7 +365,7 @@ function HeroRosterCard({ hero }: { hero: (typeof heroes)[number] }) {
           src={hero.src}
           alt={`${hero.name} hero artwork`}
           fill
-          sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 80vw"
+          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <div className={`absolute inset-0 bg-gradient-to-t ${hero.accent} via-void/10 to-transparent`} />
@@ -793,8 +808,8 @@ function CardsAndIdentity() {
           <h3 className="mt-2 text-2xl font-semibold text-white">Decks split into tactical parts</h3>
         </div>
         <p className="max-w-2xl text-sm leading-7 text-slate-400 lg:justify-self-end">
-          Card types define what enters the loop. Infection paths color how that loop
-          pressures, denies, accelerates, or corrupts the fight.
+          Card types define what enters the loop. The launch strains define how
+          your Hero pressures, denies, or manipulates the fight.
         </p>
       </div>
       <div className="grid gap-5 xl:grid-cols-[0.62fr_1fr]">
@@ -834,27 +849,27 @@ function CardsAndIdentity() {
         <div>
           <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
             <span className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-100">
-              Infection palette
+              Stabilized strains
             </span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
-              10 paths
+              Launch set
             </span>
           </div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {identityChips.map((identity) => {
+          <div className="grid gap-2 lg:grid-cols-3">
+            {launchIdentities.map((identity) => {
               const Icon = identity.icon;
               return (
                 <div
                   key={identity.name}
-                  className={`group min-h-24 border bg-gradient-to-br ${identity.className} to-white/[0.025] p-3 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]`}
+                  className={`group min-h-32 border bg-gradient-to-br ${identity.className} to-white/[0.025] p-3 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]`}
                 >
-                  <div className="mb-5 flex items-center justify-between">
+                  <div className="mb-6 flex items-center justify-between">
                     <Icon className="size-4 opacity-85" />
                     <span className="h-px w-8 bg-current opacity-30 transition-all duration-300 group-hover:w-12" />
                   </div>
                   <div className="font-title text-base text-white">{identity.name}</div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.16em] opacity-75">
-                    {identity.role}
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.14em] opacity-75">
+                    {identity.signal}
                   </div>
                 </div>
               );
@@ -863,8 +878,8 @@ function CardsAndIdentity() {
         </div>
       </div>
       <div className="mt-5 border border-white/10 bg-white/[0.03] p-3 text-xs uppercase tracking-[0.16em] text-slate-500">
-        A deck is not one color block. It is a chosen fracture pattern: card type, time cost,
-        Energy curve, and infection pressure all splitting from the Hero.
+        A deck is not a swarm. It is one Hero, one timing plan, and a chosen
+        pressure pattern splitting through cards, Energy, seconds, and the Thread.
       </div>
     </div>
   );
@@ -934,7 +949,7 @@ function Nav() {
           <a className="transition hover:text-cyan-100" href="#core">Game</a>
           <a className="transition hover:text-cyan-100" href="#heroes">Heroes</a>
           <a className="transition hover:text-cyan-100" href="#systems">Systems</a>
-          <a className="transition hover:text-cyan-100" href="#infection">Infection</a>
+          <a className="transition hover:text-cyan-100" href="#infection">Strains</a>
           <a className="transition hover:text-cyan-100" href="#philosophy">World</a>
         </div>
         <a
@@ -1036,19 +1051,19 @@ export function FragmentLanding() {
         <div className="mb-10 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:items-end">
           <div className="reveal">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">
-              Hero Identities
+              Nine Launch Heroes
             </p>
             <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
               Build around a single fractured combatant
             </h2>
           </div>
           <p className="reveal max-w-2xl text-base leading-8 text-slate-300 lg:justify-self-end">
-            Every deck begins with a Hero. Their infection path, durability,
-            seconds economy, and personal relic synergies define what your
-            cards are trying to become.
+            The first public roster centers on Red, Blue, and Purple. Every
+            deck begins with one Hero, then sharpens around their timing,
+            durability, and pressure pattern.
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {heroes.map((hero) => (
             <HeroRosterCard key={hero.name} hero={hero} />
           ))}
@@ -1068,24 +1083,70 @@ export function FragmentLanding() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void via-void/75 to-void" />
         <div className="container">
           <SectionTitle
-            eyebrow="Infection Types"
-            title="Ten paths through fractured power"
-            body="Each path specializes the Hero and deck toward a distinct pressure profile, from clean plasma offense to corrupt dark matter exchange."
+            eyebrow="Launch Identities"
+            title="Three Fragment strains have stabilized"
+            body="Red, Blue, and Purple are the first readable combat frequencies. Each gives the same six-second battlefield a different kind of pressure."
           />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {infections.map((infection) => {
-              const Icon = infection.icon;
+          <div className="grid gap-5 lg:grid-cols-3">
+            {launchIdentities.map((identity) => {
+              const Icon = identity.icon;
               return (
-                <article key={infection.name} className={`reveal group border p-5 backdrop-blur-md transition duration-300 hover:-translate-y-1 ${infection.className}`}>
-                  <div className="mb-7 flex items-center justify-between">
-                    <Icon className="size-5" />
-                    <span className="h-px w-16 bg-current opacity-[0.35] transition-all duration-300 group-hover:w-24" />
+                <article key={identity.name} className={`reveal group min-h-72 border p-6 backdrop-blur-md transition duration-300 hover:-translate-y-1 ${identity.className}`}>
+                  <div className="mb-10 flex items-center justify-between">
+                    <div className="flex size-12 items-center justify-center border border-current/30 bg-white/[0.035]">
+                      <Icon className="size-5" />
+                    </div>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] opacity-60">
+                      Stabilized
+                    </span>
                   </div>
-                  <h3 className="font-title text-lg text-white">{infection.name}</h3>
-                  <p className="mt-3 text-sm leading-6 opacity-80">{infection.element}</p>
+                  <h3 className="font-title text-3xl text-white">{identity.name}</h3>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] opacity-80">
+                    {identity.signal}
+                  </p>
+                  <p className="mt-6 text-sm leading-7 text-slate-300">{identity.body}</p>
                 </article>
               );
             })}
+          </div>
+          <div className="reveal mt-10 border border-white/10 bg-void/72 p-5 backdrop-blur">
+            <div className="grid gap-6 lg:grid-cols-[0.7fr_1fr] lg:items-center">
+              <div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
+                  Unstable Frequencies
+                </p>
+                <h3 className="text-2xl font-semibold text-white">Reality is still fragmenting</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-400">
+                  Other signals have been detected, but none are stable enough
+                  for public combat. Their shapes remain locked, distorted, and
+                  subject to change.
+                </p>
+              </div>
+              <div className="grid grid-cols-5 gap-2">
+                {unstableFragments.map((fragment) => {
+                  const Icon = fragment.icon;
+
+                  return (
+                    <div
+                      key={fragment.mark}
+                      className={`relative min-h-28 overflow-hidden border p-3 opacity-70 ${fragment.className}`}
+                    >
+                      <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.08)_48%,transparent_52%)] opacity-50" />
+                      <div className="relative flex items-center justify-between">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          {fragment.mark}
+                        </span>
+                        <Icon className="size-4 text-slate-400 blur-[0.5px]" />
+                      </div>
+                      <div className="relative mt-8 h-px w-full bg-slate-500/25" />
+                      <div className="relative mt-4 text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                        Locked
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1128,10 +1189,9 @@ export function FragmentLanding() {
               Everything Fragments
             </h2>
             <p className="mt-6 text-base leading-8 text-slate-300">
-              In the world of Fragment, reality does not simply decay. It specializes.
-              Concepts, memories, bodies, powers, and civilizations split into increasingly
-              specific versions of themselves as time passes. Every Hero is a fragment of
-              what they were, what they believe, and what they are becoming.
+              Reality does not simply break. It specializes. Every Hero is a
+              fragment of what they were, what they believe, and what the
+              battlefield is forcing them to become.
             </p>
           </div>
           <div className="space-y-3">
