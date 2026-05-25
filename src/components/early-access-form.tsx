@@ -209,22 +209,25 @@ export function EarlyAccessForm() {
       <div className="mt-4">
         <label className="block">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            How did you hear?
+            How did you hear about us?
           </span>
-          <select
-            name="heardFrom"
-            className="mt-2 w-full border border-white/10 bg-[#0b1119] px-3 py-3 text-sm text-white outline-none transition focus:border-cyan-100/50"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {heardFromOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
+          <span className="relative mt-2 block">
+            <select
+              name="heardFrom"
+              className="w-full appearance-none border border-white/10 bg-[#0b1119] px-3 py-3 pr-11 text-sm text-white outline-none transition focus:border-cyan-100/50"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select one
               </option>
-            ))}
-          </select>
+              {heardFromOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-slate-300" />
+          </span>
         </label>
       </div>
 
