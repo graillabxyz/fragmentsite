@@ -983,8 +983,8 @@ export function FragmentLanding() {
           <div className="relative hidden min-h-[620px] lg:block">
             <div className="absolute right-0 top-1/2 h-[560px] w-[440px] -translate-y-1/2 overflow-hidden border border-red-200/20 bg-red-300/10 shadow-[0_40px_120px_rgba(248,113,113,0.18)]">
               <Image
-                src="/art/hero-red-female.webp"
-                alt="Red Fragment beta hero"
+                src="/art/hero-red-throne.png"
+                alt="Red Fragment throne hero"
                 fill
                 priority
                 sizes="440px"
