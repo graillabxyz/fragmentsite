@@ -515,7 +515,7 @@ function HeroCommandPanel() {
             ["HP", "24", "survive pressure"],
             ["Initiative", "High", "acts first"],
             ["Base Attack", "3s / 2 dmg", "physical strike"],
-            ["Flux Ability", "Psionic Echo", "priority access"],
+            ["Instant", "Psionic Echo", "priority access"],
           ].map(([label, value, note]) => (
             <div key={label} className="grid grid-cols-[0.8fr_1fr] items-center border border-white/10 bg-white/[0.035] p-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-500">{label}</div>
