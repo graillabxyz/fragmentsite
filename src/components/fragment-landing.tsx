@@ -1101,18 +1101,20 @@ export function FragmentLanding() {
               >
                 {card.src ? (
                   <>
-                    <Image
-                      src={card.src}
-                      alt=""
-                      fill
-                      sizes="390px"
-                      className="absolute inset-0 -z-20 object-cover opacity-90 transition duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/75 to-black/50" />
+                    <div className="absolute inset-y-0 left-0 -z-20 w-[143%] transition duration-500 group-hover:scale-[1.035]">
+                      <Image
+                        src={card.src}
+                        alt=""
+                        fill
+                        sizes="560px"
+                        className="object-cover opacity-90"
+                      />
+                    </div>
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/25" />
                   </>
                 ) : card.icon === "discord" ? (
                   <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/88 to-void`}>
-                    <DiscordMark className="absolute right-7 top-1/2 size-16 -translate-y-1/2 text-[#5865f2] opacity-80 transition duration-300 group-hover:scale-105 group-hover:opacity-100" />
+                    <DiscordMark className="absolute right-7 top-1/2 size-24 -translate-y-1/2 text-[#5865f2] opacity-85 transition duration-300 group-hover:scale-105 group-hover:opacity-100" />
                   </div>
                 ) : null}
                 <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
@@ -1138,18 +1140,20 @@ export function FragmentLanding() {
             >
               {card.src ? (
                 <>
-                  <Image
-                    src={card.src}
-                    alt=""
-                    fill
-                    sizes="100vw"
-                    className="absolute inset-0 -z-20 object-cover opacity-90"
-                  />
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/75 to-black/50" />
+                  <div className="absolute inset-y-0 left-0 -z-20 w-[143%]">
+                    <Image
+                      src={card.src}
+                      alt=""
+                      fill
+                      sizes="143vw"
+                      className="object-cover opacity-90"
+                    />
+                  </div>
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/25" />
                 </>
               ) : card.icon === "discord" ? (
                 <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/88 to-void`}>
-                  <DiscordMark className="absolute right-5 top-1/2 size-14 -translate-y-1/2 text-[#5865f2] opacity-80" />
+                  <DiscordMark className="absolute right-5 top-1/2 size-20 -translate-y-1/2 text-[#5865f2] opacity-85" />
                 </div>
               ) : null}
               <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
