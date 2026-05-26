@@ -940,11 +940,15 @@ function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-red-100/16 bg-void/78 shadow-[0_12px_45px_rgba(0,0,0,0.38)] backdrop-blur-xl">
       <nav className="container flex h-16 items-center justify-between">
-        <a href="#hero" className="flex items-center gap-3">
-          <span className="size-6 border border-red-100/50 bg-red-500/14 shadow-[0_0_18px_rgba(255,77,61,0.18)] [clip-path:polygon(0_0,100%_12%,82%_100%,0_76%)]" />
-          <span className="font-title text-sm uppercase tracking-[0.24em] text-white">
-            Fragment
-          </span>
+        <a href="#hero" className="relative -my-2 block h-14 w-44 sm:w-48">
+          <Image
+            src="/art/fragment-nav-logo.png"
+            alt="Fragment"
+            fill
+            priority
+            sizes="192px"
+            className="object-contain object-left drop-shadow-[0_0_18px_rgba(28,255,219,0.16)]"
+          />
         </a>
         <div className="hidden items-center gap-7 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 lg:flex">
           <a className="transition hover:text-red-100" href="#core">Game</a>
