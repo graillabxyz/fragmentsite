@@ -1026,7 +1026,7 @@ export function FragmentLanding() {
           </div>
           <div className="hero-visual relative z-10 min-h-[430px] sm:min-h-[540px] lg:min-h-[680px]">
             <div className="hero-red-slash absolute left-[8%] top-[43%] h-3 w-[88%] -rotate-[18deg] bg-ember/70 blur-sm" />
-            <div className="hero-card-back absolute left-[4%] top-[7%] hidden w-[45%] max-w-[370px] origin-center -rotate-[15deg] opacity-55 blur-[2px] md:block lg:left-[7%] lg:top-[8%]">
+            <div className="hero-card-back absolute left-[-12%] top-[-8%] hidden w-[45%] max-w-[370px] origin-center opacity-55 blur-[2px] md:block lg:left-[-7%] lg:top-[-10%]">
               <Image
                 src="/art/fragment-card-numbered-new.png"
                 alt="Fragment numbered combat card drifting in the background"
@@ -1037,25 +1037,25 @@ export function FragmentLanding() {
                 className="w-full drop-shadow-[0_28px_80px_rgba(255,45,32,0.28)]"
               />
             </div>
-            <div className="hero-floating-card group absolute right-[-4%] top-[2%] w-[72%] max-w-[500px] origin-center rotate-[9deg] transition duration-500 hover:rotate-[6deg] sm:right-[0%] lg:right-[2%] lg:top-[2%] lg:w-[68%]">
+            <div className="hero-floating-card group absolute right-[-22%] top-[-5%] w-[104%] max-w-[780px] origin-center transition duration-500 sm:right-[-18%] lg:right-[-13%] lg:top-[-7%] lg:w-[102%]">
               <Image
-                src="/art/fragment-card-foreground-new.png"
-                alt="Fragment red combat card floating in the foreground"
-                width={620}
-                height={940}
+                src="/art/fragment-momentum-hero-main.png"
+                alt="Momentum Hero card floating in the foreground"
+                width={1536}
+                height={1024}
                 priority
-                sizes="(min-width: 1024px) 500px, 72vw"
-                className="w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.025]"
+                sizes="(min-width: 1024px) 780px, 104vw"
+                className="hero-main-card-crop w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.015]"
               />
             </div>
-            <div className="hero-mini-card absolute bottom-[12%] left-[16%] hidden w-28 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:w-36">
+            <div className="hero-mini-card absolute bottom-[9%] left-[18%] hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:w-32">
               <Image
-                src="/art/hero-red-female.webp"
-                alt="Red Vector hero mini card"
-                width={1024}
-                height={1024}
-                sizes="144px"
-                className="aspect-square w-full object-cover"
+                src="/art/fragment-card-foreground-new.png"
+                alt="Fragment red combat card in the lower hero scene"
+                width={620}
+                height={940}
+                sizes="128px"
+                className="w-full"
               />
             </div>
           </div>

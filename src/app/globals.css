@@ -436,6 +436,10 @@ body::after {
   animation: hero-card-back-float 22s ease-in-out infinite;
 }
 
+.hero-main-card-crop {
+  clip-path: polygon(31% 15%, 62.5% 5%, 78% 78%, 40% 91%);
+}
+
 .hero-character {
   animation: hero-character-drift 9s ease-in-out infinite;
 }
@@ -488,10 +492,10 @@ body::after {
 @keyframes hero-card-back-float {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(-15deg);
+    transform: translate3d(0, 0, 0) rotate(-22deg);
   }
   50% {
-    transform: translate3d(0.14rem, -0.22rem, 0) rotate(-15.8deg);
+    transform: translate3d(0.14rem, -0.22rem, 0) rotate(-22.8deg);
   }
 }
 
