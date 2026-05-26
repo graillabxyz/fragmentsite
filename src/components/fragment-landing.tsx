@@ -1068,18 +1068,18 @@ export function FragmentLanding() {
                 className="w-full"
               />
             </div>
-            <div className="hero-floating-card group absolute right-[-22%] top-[-5%] w-[104%] max-w-[780px] origin-center transition duration-500 sm:right-[-18%] lg:right-[-13%] lg:top-[-7%] lg:w-[102%]">
+            <div className="hero-floating-card group absolute right-[-58%] top-[12%] w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-54%] lg:right-[-48%] lg:top-[10%] lg:w-[190%]">
               <Image
                 src="/art/fragment-momentum-hero-main.png"
                 alt="Momentum Hero card floating in the foreground"
                 width={1536}
                 height={1024}
                 priority
-                sizes="(min-width: 1024px) 780px, 104vw"
+                sizes="(min-width: 1024px) 1500px, 198vw"
                 className="hero-main-card-crop w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.015]"
               />
             </div>
-            <div className="hero-mini-card absolute bottom-[9%] left-[18%] hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:w-32">
+            <div className="hero-mini-card absolute bottom-[-1%] left-[6%] hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:bottom-[-4%] lg:left-[7%] lg:w-32">
               <Image
                 src="/art/fragment-card-foreground-new.png"
                 alt="Fragment red combat card in the lower hero scene"
