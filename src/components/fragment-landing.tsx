@@ -1083,7 +1083,7 @@ export function FragmentLanding() {
                 className="hero-main-card-crop w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.015]"
               />
             </div>
-            <div className="hero-mini-card absolute bottom-[-1%] left-[6%] z-40 hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:bottom-[-4%] lg:left-[7%] lg:w-32">
+            <div className="hero-mini-card absolute bottom-[-1%] left-[6%] z-40 hidden w-24 -rotate-[8deg] sm:block lg:bottom-[-4%] lg:left-[7%] lg:w-32">
               <Image
                 src="/art/fragment-card-foreground-new.png"
                 alt="Fragment red combat card in the lower hero scene"
