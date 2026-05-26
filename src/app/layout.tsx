@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import { Oxanium } from "next/font/google";
+import { Exo_2, Oxanium } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  weight: ["800"],
+  variable: "--font-exo-title",
+  display: "swap",
+});
 
 const oxanium = Oxanium({
   subsets: ["latin"],
@@ -22,7 +29,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oxanium.variable} dark`}>
+    <html lang="en" className={`${exo2.variable} ${oxanium.variable} dark`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

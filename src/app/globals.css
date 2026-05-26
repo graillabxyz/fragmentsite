@@ -41,6 +41,11 @@ h3,
   font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
 }
 
+.promo-card-title {
+  font-family: var(--font-exo-title), var(--font-ui), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+}
+
 .rules-text {
   font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   font-weight: 600;

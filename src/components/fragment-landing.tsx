@@ -37,6 +37,15 @@ type CardCost = {
   flux?: boolean;
 };
 
+type HeroPromoCard = {
+  kicker: string;
+  title: string;
+  action: string;
+  src?: string;
+  className: string;
+  icon?: "discord";
+};
+
 const hooks: Card[] = [
   {
     title: "Choose a Hero",
@@ -61,27 +70,27 @@ const heroFeatureCallouts = [
   { title: "New challenge", body: "every run, every turn", icon: Swords },
 ];
 
-const heroPromoCards = [
+const heroPromoCards: HeroPromoCard[] = [
   {
     kicker: "Latest Drop",
     title: "New Hero Reveal",
     action: "Explore",
-    src: "/art/hero-red-bastion-square.jpg",
+    src: "/art/promo-new-hero-bg.png",
     className: "from-red-500/40",
   },
   {
     kicker: "Dev Update",
     title: "Combat System Deep Dive",
     action: "Read More",
-    src: "/art/old-rock-red-ruins-bg.png",
+    src: "/art/promo-combat-system-bg.png",
     className: "from-ember/35",
   },
   {
     kicker: "Community",
     title: "Join the Discord",
     action: "Join Now",
-    src: "/art/hero-blue-parallax-square.jpg",
-    className: "from-blue-500/35",
+    className: "from-[#5865f2]/24",
+    icon: "discord",
   },
 ];
 
@@ -955,6 +964,17 @@ function Nav() {
   );
 }
 
+function DiscordMark({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 71 55" aria-hidden="true" className={className}>
+      <path
+        fill="currentColor"
+        d="M60.1 4.9A58.5 58.5 0 0 0 45.6.5a41 41 0 0 0-1.9 4A54.7 54.7 0 0 0 27.5 4c-.5-1.2-1.2-2.8-2-4A58 58 0 0 0 11 4.5C1.8 18.2-.7 31.5.6 44.6A58.9 58.9 0 0 0 18.4 54c1.4-1.9 2.7-3.9 3.8-6a37.8 37.8 0 0 1-6-2.9l1.5-1.2a41.9 41.9 0 0 0 35.7 0l1.5 1.2a38 38 0 0 1-6 2.9c1.1 2.1 2.4 4.1 3.8 6a58.8 58.8 0 0 0 17.8-9.4c1.5-15.2-2.5-28.3-10.4-39.7ZM23.7 36.5c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.2 6.4 7.2 0 4-2.8 7.2-6.4 7.2Zm23.2 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.2 6.4 7.2 0 4-2.8 7.2-6.4 7.2Z"
+      />
+    </svg>
+  );
+}
+
 export function FragmentLanding() {
   return (
     <main className="min-h-screen overflow-hidden">
@@ -1068,18 +1088,26 @@ export function FragmentLanding() {
                 href={card.title === "Join the Discord" ? "/early-access" : "#systems"}
                 className="group relative min-h-32 overflow-hidden border-r border-white/10 p-5 last:border-r-0"
               >
-                <Image
-                  src={card.src}
-                  alt=""
-                  fill
-                  sizes="390px"
-                  className="absolute inset-0 -z-20 object-cover opacity-48 grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                />
-                <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/72 to-void/95`} />
+                {card.src ? (
+                  <>
+                    <Image
+                      src={card.src}
+                      alt=""
+                      fill
+                      sizes="390px"
+                      className="absolute inset-0 -z-20 object-cover opacity-90 transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/75 to-black/50" />
+                  </>
+                ) : card.icon === "discord" ? (
+                  <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/88 to-void`}>
+                    <DiscordMark className="absolute right-7 top-1/2 size-16 -translate-y-1/2 text-[#5865f2] opacity-80 transition duration-300 group-hover:scale-105 group-hover:opacity-100" />
+                  </div>
+                ) : null}
                 <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                   {`// ${card.kicker}`}
                 </div>
-                <div className="font-title mt-2 max-w-56 text-lg uppercase leading-6 text-white">
+                <div className="promo-card-title mt-2 max-w-56 text-lg uppercase leading-6 text-white">
                   {card.title}
                 </div>
                 <div className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ember">
@@ -1097,18 +1125,26 @@ export function FragmentLanding() {
               href={card.title === "Join the Discord" ? "/early-access" : "#systems"}
               className="group relative overflow-hidden border border-white/10 bg-void/72 p-4 backdrop-blur"
             >
-              <Image
-                src={card.src}
-                alt=""
-                fill
-                sizes="100vw"
-                className="absolute inset-0 -z-20 object-cover opacity-35 grayscale"
-              />
-              <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/72 to-void/95`} />
+              {card.src ? (
+                <>
+                  <Image
+                    src={card.src}
+                    alt=""
+                    fill
+                    sizes="100vw"
+                    className="absolute inset-0 -z-20 object-cover opacity-90"
+                  />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/75 to-black/50" />
+                </>
+              ) : card.icon === "discord" ? (
+                <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/88 to-void`}>
+                  <DiscordMark className="absolute right-5 top-1/2 size-14 -translate-y-1/2 text-[#5865f2] opacity-80" />
+                </div>
+              ) : null}
               <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 {`// ${card.kicker}`}
               </div>
-              <div className="font-title mt-1 text-base uppercase text-white">{card.title}</div>
+              <div className="promo-card-title mt-1 text-base uppercase text-white">{card.title}</div>
               <div className="mt-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ember">
                 {card.action}
                 <ArrowRight className="size-3" />
