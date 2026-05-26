@@ -429,11 +429,11 @@ body::after {
 }
 
 .hero-floating-card {
-  animation: hero-card-float 7.5s ease-in-out infinite;
+  animation: hero-card-float 18s ease-in-out infinite;
 }
 
 .hero-card-back {
-  animation: hero-card-back-float 8.5s ease-in-out infinite;
+  animation: hero-card-back-float 22s ease-in-out infinite;
 }
 
 .hero-character {
@@ -441,7 +441,7 @@ body::after {
 }
 
 .hero-mini-card {
-  animation: hero-mini-float 6.5s ease-in-out infinite;
+  animation: hero-mini-float 20s ease-in-out infinite;
 }
 
 .hero-red-slash {
@@ -481,7 +481,7 @@ body::after {
     transform: translate3d(0, 0, 0) rotate(9deg);
   }
   50% {
-    transform: translate3d(-0.65rem, -1rem, 0) rotate(11deg);
+    transform: translate3d(-0.18rem, -0.28rem, 0) rotate(9.6deg);
   }
 }
 
@@ -491,7 +491,7 @@ body::after {
     transform: translate3d(0, 0, 0) rotate(-15deg);
   }
   50% {
-    transform: translate3d(0.45rem, -0.7rem, 0) rotate(-18deg);
+    transform: translate3d(0.14rem, -0.22rem, 0) rotate(-15.8deg);
   }
 }
 
@@ -511,7 +511,7 @@ body::after {
     transform: translate3d(0, 0, 0) rotate(-8deg);
   }
   50% {
-    transform: translate3d(0.35rem, -0.55rem, 0) rotate(-5deg);
+    transform: translate3d(0.12rem, -0.18rem, 0) rotate(-7.2deg);
   }
 }
 
