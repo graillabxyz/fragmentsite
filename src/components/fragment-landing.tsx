@@ -1011,7 +1011,7 @@ export function FragmentLanding() {
               Everything
             </p>
             <h1 className="hero-title text-6xl font-black uppercase leading-none tracking-normal text-ember sm:text-8xl lg:text-[8.7rem]">
-              Fragments.
+              Fragments
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-100 sm:text-2xl">
               A hero-based tactical deckbuilding card game where combat unfolds in six-second windows.
