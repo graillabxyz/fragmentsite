@@ -146,13 +146,13 @@ const heroes = [
   {
     name: "Red Bastion",
     path: "Fire / Momentum",
-    src: "/art/hero-red-female.webp",
+    src: "/art/hero-red-bastion-square.jpg",
     accent: "from-red-500/30",
   },
   {
     name: "Blue Parallax",
     path: "Ice / Timing",
-    src: "/art/hero-blue-female.webp",
+    src: "/art/hero-blue-parallax-square.jpg",
     accent: "from-cyan-400/30",
   },
 ];
