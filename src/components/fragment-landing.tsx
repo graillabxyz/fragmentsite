@@ -14,6 +14,7 @@ import {
   Zap,
 } from "lucide-react";
 import Image from "next/image";
+import { GameButton } from "@/components/game-button";
 import type { LucideIcon } from "lucide-react";
 import type { CSSProperties } from "react";
 
@@ -197,31 +198,6 @@ const fragmentShards = [
   { x: "58%", y: "18%", w: "2rem", h: "2.7rem", r: "-38deg", o: 0.28 },
   { x: "88%", y: "76%", w: "1.2rem", h: "1.7rem", r: "16deg", o: 0.2 },
 ];
-
-function Button({
-  href,
-  children,
-  variant = "primary",
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-}) {
-  const styles =
-    variant === "primary"
-      ? "hero-cta-primary border-ember/70 bg-ember text-white shadow-fracture-red hover:bg-red-500"
-      : "border-white/25 bg-void/35 text-edge hover:border-ember/60 hover:bg-ember/10";
-
-  return (
-    <a
-      href={href}
-      className={`group inline-flex min-h-11 items-center justify-center gap-2 border px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition duration-300 ${styles}`}
-    >
-      {children}
-      <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-    </a>
-  );
-}
 
 function FragmentationField({ className = "" }: { className?: string }) {
   return (
@@ -1044,33 +1020,31 @@ export function FragmentLanding() {
               })}
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="#core" variant="primary">Explore the Game</Button>
-              <Button href="/early-access" variant="secondary">Join Early Access</Button>
+              <GameButton href="#core" variant="primary" size="lg" rightArrow>Explore the Game</GameButton>
+              <GameButton href="/early-access" variant="secondary" size="lg" rightArrow>Join Early Access</GameButton>
             </div>
           </div>
           <div className="hero-visual relative z-10 min-h-[430px] sm:min-h-[540px] lg:min-h-[680px]">
-            <div className="absolute left-[22%] top-[14%] hidden h-72 w-48 -rotate-[17deg] border border-red-200/20 bg-void/50 shadow-[0_0_70px_rgba(255,77,61,0.18)] backdrop-blur-sm md:block" />
             <div className="hero-red-slash absolute left-[8%] top-[43%] h-3 w-[88%] -rotate-[18deg] bg-ember/70 blur-sm" />
-            <div className="hero-character absolute left-[13%] top-[18%] hidden w-[52%] max-w-[460px] -rotate-[12deg] overflow-hidden border border-red-100/20 bg-void/70 shadow-[0_30px_90px_rgba(255,77,61,0.22)] md:block">
+            <div className="hero-card-back absolute left-[4%] top-[7%] hidden w-[45%] max-w-[370px] origin-center -rotate-[15deg] opacity-55 blur-[2px] md:block lg:left-[7%] lg:top-[8%]">
               <Image
-                src="/art/hero-red-bastion-square.jpg"
-                alt="Red Bastion hero artwork"
-                width={1023}
-                height={1023}
-                priority
-                sizes="310px"
-                className="aspect-square w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-void/55 to-transparent" />
-            </div>
-            <div className="hero-floating-card group absolute right-[-12%] top-[7%] w-[86%] max-w-[620px] origin-center rotate-[8deg] transition duration-500 hover:rotate-[5deg] lg:right-[-14%] lg:top-[5%] lg:w-[86%]">
-              <Image
-                src="/art/fragment-floating-card-cropped.png"
-                alt="Momentum Hero floating card"
-                width={940}
+                src="/art/fragment-card-numbered-new.png"
+                alt="Fragment numbered combat card drifting in the background"
+                width={620}
                 height={940}
                 priority
-                sizes="(min-width: 1024px) 620px, 86vw"
+                sizes="370px"
+                className="w-full drop-shadow-[0_28px_80px_rgba(255,45,32,0.28)]"
+              />
+            </div>
+            <div className="hero-floating-card group absolute right-[-4%] top-[2%] w-[72%] max-w-[500px] origin-center rotate-[9deg] transition duration-500 hover:rotate-[6deg] sm:right-[0%] lg:right-[2%] lg:top-[2%] lg:w-[68%]">
+              <Image
+                src="/art/fragment-card-foreground-new.png"
+                alt="Fragment red combat card floating in the foreground"
+                width={620}
+                height={940}
+                priority
+                sizes="(min-width: 1024px) 500px, 72vw"
                 className="w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.025]"
               />
             </div>
@@ -1358,8 +1332,8 @@ export function FragmentLanding() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button href="/early-access">Join Early Access</Button>
-              <Button href="#systems" variant="secondary">Read the Rules</Button>
+              <GameButton href="/early-access" variant="primary" size="lg" rightArrow>Join Early Access</GameButton>
+              <GameButton href="#systems" variant="secondary" size="lg" rightArrow>Read the Rules</GameButton>
             </div>
           </div>
         </div>
