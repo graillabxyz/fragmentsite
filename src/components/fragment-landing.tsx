@@ -323,7 +323,7 @@ function SectionTitle({
 }) {
   return (
     <div className="reveal mx-auto mb-10 max-w-3xl text-center">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">
+      <p className="tactical-kicker mb-3 text-xs font-semibold uppercase tracking-[0.34em]">
         {eyebrow}
       </p>
       <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-4xl lg:text-5xl">
@@ -342,8 +342,8 @@ function FeatureCard({ item }: { item: Card }) {
   const Icon = item.icon;
 
   return (
-    <article className="fracture-panel clip-fragment reveal group p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-200/35 hover:shadow-fracture-cyan">
-      <div className="mb-8 flex size-12 items-center justify-center border border-cyan-100/20 bg-cyan-100/10 text-cyan-100">
+    <article className="fracture-panel clip-fragment reveal group p-6 transition duration-300 hover:-translate-y-1 hover:border-red-200/35 hover:shadow-[0_0_44px_rgba(255,77,61,0.16)]">
+      <div className="mb-8 flex size-12 items-center justify-center border border-red-100/20 bg-red-500/10 text-red-100">
         <Icon className="size-5" />
       </div>
       <h3 className="text-xl font-semibold text-white">{item.title}</h3>
@@ -354,7 +354,7 @@ function FeatureCard({ item }: { item: Card }) {
 
 function HeroRosterCard({ hero }: { hero: (typeof heroes)[number] }) {
   return (
-    <article className="group reveal overflow-hidden border border-white/10 bg-white/[0.035] transition duration-300 hover:-translate-y-1 hover:border-cyan-100/35">
+    <article className="group reveal overflow-hidden border border-red-100/15 bg-black/35 shadow-[inset_0_0_24px_rgba(255,77,61,0.045)] transition duration-300 hover:-translate-y-1 hover:border-red-100/35 hover:shadow-[0_0_42px_rgba(255,77,61,0.13)]">
       <div className="relative aspect-[0.82] overflow-hidden">
         <Image
           src={hero.src}
@@ -381,7 +381,7 @@ function HeroRosterCard({ hero }: { hero: (typeof heroes)[number] }) {
 function PackShowcase() {
   return (
     <section id="deckbuilding" className="relative py-24">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_24%_34%,rgba(255,77,61,0.1),transparent_28rem),radial-gradient(circle_at_78%_46%,rgba(47,231,255,0.12),transparent_26rem)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_24%_34%,rgba(255,77,61,0.13),transparent_28rem),radial-gradient(circle_at_78%_46%,rgba(255,28,20,0.12),transparent_26rem)]" />
       <div className="container grid gap-10 lg:grid-cols-[0.78fr_1fr] lg:items-center">
         <div className="reveal">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-amber-100/80">
@@ -401,8 +401,8 @@ function PackShowcase() {
               ["Deck", "splits the plan"],
               ["Packs", "expand options"],
             ].map(([value, label]) => (
-              <div key={value} className="border border-white/10 bg-white/[0.04] p-4">
-                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-100">
+              <div key={value} className="tactical-tile border border-white/10 p-4">
+                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-red-100">
                   {value}
                 </div>
                 <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-500">
@@ -413,7 +413,7 @@ function PackShowcase() {
           </div>
         </div>
         <div className="reveal relative min-h-[520px] overflow-visible">
-          <div className="absolute left-1/2 top-[47%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
+          <div className="absolute left-1/2 top-[47%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/14 blur-3xl" />
           <div className="absolute left-[5%] top-6 w-[50%] max-w-[350px] rotate-[-7deg] drop-shadow-[0_42px_90px_rgba(255,77,61,0.28)] transition duration-500 hover:-translate-y-3 hover:rotate-[-3deg]">
             <Image
               src="/art/pack-mythic-red-transparent.png"
@@ -423,7 +423,7 @@ function PackShowcase() {
               className="h-auto w-full"
             />
           </div>
-          <div className="absolute right-[3%] top-20 w-[48%] max-w-[340px] rotate-[7deg] drop-shadow-[0_42px_90px_rgba(47,231,255,0.24)] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
+          <div className="absolute right-[3%] top-20 w-[48%] max-w-[340px] rotate-[7deg] drop-shadow-[0_42px_90px_rgba(255,77,61,0.18)] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
             <Image
               src="/art/pack-core-blue-transparent.png"
               alt="Old Rock Fragment card pack"
@@ -432,7 +432,7 @@ function PackShowcase() {
               className="h-auto w-full"
             />
           </div>
-          <div className="absolute bottom-8 left-1/2 w-[78%] -translate-x-1/2 border border-cyan-100/20 bg-void/80 p-4 text-center text-xs uppercase tracking-[0.22em] text-slate-300 backdrop-blur">
+          <div className="absolute bottom-8 left-1/2 w-[78%] -translate-x-1/2 border border-red-100/20 bg-void/80 p-4 text-center text-xs uppercase tracking-[0.22em] text-slate-300 backdrop-blur">
             Open packs. Tune your Hero. Enter the six-second battlefield.
           </div>
         </div>
@@ -889,7 +889,7 @@ function CardsAndIdentity() {
 function GameplaySystems() {
   return (
     <section id="systems" className="relative py-24">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(47,231,255,0.09),transparent_30rem),radial-gradient(circle_at_82%_34%,rgba(255,77,61,0.08),transparent_28rem)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(255,77,61,0.11),transparent_30rem),radial-gradient(circle_at_82%_34%,rgba(255,35,28,0.1),transparent_28rem)]" />
       <FragmentationField className="z-0 opacity-35 [transform:scaleX(-1)]" />
       <div className="container relative z-10">
         <div className="reveal mb-10 grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-end">
@@ -914,7 +914,7 @@ function GameplaySystems() {
             ["3", "Seconds"],
             ["4", "Thread"],
           ].map(([step, label]) => (
-            <div key={label} className="border border-white/10 bg-white/[0.035] p-4">
+            <div key={label} className="tactical-tile border border-white/10 p-4">
               <span className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
                 {step}
               </span>
@@ -938,24 +938,24 @@ function GameplaySystems() {
 
 function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-void/72 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-red-100/16 bg-void/78 shadow-[0_12px_45px_rgba(0,0,0,0.38)] backdrop-blur-xl">
       <nav className="container flex h-16 items-center justify-between">
         <a href="#hero" className="flex items-center gap-3">
-          <span className="size-6 border border-cyan-100/50 bg-cyan-100/10 [clip-path:polygon(0_0,100%_12%,82%_100%,0_76%)]" />
+          <span className="size-6 border border-red-100/50 bg-red-500/14 shadow-[0_0_18px_rgba(255,77,61,0.18)] [clip-path:polygon(0_0,100%_12%,82%_100%,0_76%)]" />
           <span className="font-title text-sm uppercase tracking-[0.24em] text-white">
             Fragment
           </span>
         </a>
         <div className="hidden items-center gap-7 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 lg:flex">
-          <a className="transition hover:text-cyan-100" href="#core">Game</a>
-          <a className="transition hover:text-cyan-100" href="#heroes">Heroes</a>
-          <a className="transition hover:text-cyan-100" href="#systems">Systems</a>
-          <a className="transition hover:text-cyan-100" href="#infection">Strains</a>
-          <a className="transition hover:text-cyan-100" href="#philosophy">World</a>
+          <a className="transition hover:text-red-100" href="#core">Game</a>
+          <a className="transition hover:text-red-100" href="#heroes">Heroes</a>
+          <a className="transition hover:text-red-100" href="#systems">Systems</a>
+          <a className="transition hover:text-red-100" href="#infection">Strains</a>
+          <a className="transition hover:text-red-100" href="#philosophy">World</a>
         </div>
         <a
           href="/early-access"
-          className="border border-cyan-100/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100 transition hover:bg-cyan-100 hover:text-void"
+          className="border border-red-100/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-red-100 shadow-[inset_0_0_18px_rgba(255,77,61,0.06)] transition hover:bg-red-100 hover:text-void"
         >
           Early Access
         </a>
@@ -977,7 +977,7 @@ function DiscordMark({ className = "" }: { className?: string }) {
 
 export function FragmentLanding() {
   return (
-    <main className="min-h-screen overflow-hidden">
+    <main className="fragment-page min-h-screen overflow-hidden">
       <Nav />
 
       <section id="hero" className="hero-game-scene relative isolate min-h-screen overflow-hidden pt-20">
@@ -989,7 +989,7 @@ export function FragmentLanding() {
           sizes="100vw"
           className="hero-bg-motion absolute inset-0 -z-30 object-cover object-center opacity-95"
         />
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_64%_45%,rgba(255,77,61,0.28),transparent_22rem),radial-gradient(circle_at_20%_12%,rgba(47,231,255,0.15),transparent_28rem)]" />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_64%_45%,rgba(255,77,61,0.28),transparent_22rem),radial-gradient(circle_at_20%_12%,rgba(255,77,61,0.12),transparent_28rem)]" />
         <div className="absolute inset-0 -z-20 bg-gradient-to-b from-void/10 via-void/24 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/58 lg:to-void/4" />
         <div className="absolute inset-x-0 bottom-0 -z-20 h-72 bg-gradient-to-t from-void via-void/70 to-transparent" />
         <div className="hero-noise absolute inset-0 -z-10" aria-hidden="true" />
@@ -1185,7 +1185,7 @@ export function FragmentLanding() {
       <section id="heroes" className="container py-24">
         <div className="mb-10 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:items-end">
           <div className="reveal">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">
+            <p className="tactical-kicker mb-3 text-xs font-semibold uppercase tracking-[0.34em]">
               Beta Heroes
             </p>
             <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
@@ -1215,7 +1215,7 @@ export function FragmentLanding() {
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover opacity-50"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void via-void/75 to-void" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_65%_24%,rgba(255,77,61,0.22),transparent_28rem),linear-gradient(to_bottom,rgba(5,6,8,0.98),rgba(5,6,8,0.75),#050608)]" />
         <div className="container">
           <SectionTitle
             eyebrow="Beta Identities"
@@ -1244,7 +1244,7 @@ export function FragmentLanding() {
               );
             })}
           </div>
-          <div className="reveal mt-10 border border-white/10 bg-void/72 p-5 backdrop-blur">
+          <div className="fracture-panel reveal mt-10 p-5 backdrop-blur">
             <div className="grid gap-6 lg:grid-cols-[0.7fr_1fr] lg:items-center">
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
@@ -1308,7 +1308,7 @@ export function FragmentLanding() {
               alt=""
               width={760}
               height={1140}
-              className="absolute -right-8 -top-20 h-72 w-auto rotate-12 opacity-90 drop-shadow-[0_24px_55px_rgba(47,231,255,0.2)]"
+              className="absolute -right-8 -top-20 h-72 w-auto rotate-12 opacity-90 drop-shadow-[0_24px_55px_rgba(255,77,61,0.2)]"
             />
           </div>
         </div>
@@ -1341,7 +1341,7 @@ export function FragmentLanding() {
       </section>
 
       <section id="early-access" className="container pb-20 pt-16">
-        <div className="relative overflow-hidden border border-cyan-100/20 p-8 shadow-fracture-cyan sm:p-14 lg:min-h-[560px]">
+        <div className="fracture-panel relative overflow-hidden p-8 sm:p-14 lg:min-h-[560px]">
           <Image
             src="/art/old-rock-forest.webp"
             alt=""
@@ -1360,7 +1360,7 @@ export function FragmentLanding() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-transparent to-void/30" />
           <div className="absolute inset-x-8 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
           <div className="relative z-10 max-w-2xl text-left">
-            <Bolt className="mb-5 size-8 text-cyan-100" />
+            <Bolt className="mb-5 size-8 text-red-100" />
             <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
               Enter the Fracturing World
             </h2>
@@ -1374,8 +1374,8 @@ export function FragmentLanding() {
                 ["Founder identity", "Cosmetic recognition for players who helped before launch."],
                 ["Rules access", "Follow the evolving paper-ready rules before the wider public."],
               ].map(([title, body]) => (
-                <div key={title} className="border border-white/10 bg-white/[0.04] p-4">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                <div key={title} className="tactical-tile border border-white/10 p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-red-100">
                     {title}
                   </div>
                   <div className="mt-2 text-sm leading-6 text-slate-400">{body}</div>
