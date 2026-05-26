@@ -1057,6 +1057,17 @@ export function FragmentLanding() {
                 className="w-full drop-shadow-[0_28px_80px_rgba(255,45,32,0.28)]"
               />
             </div>
+            <div className="hero-throne-character pointer-events-none absolute right-[6%] top-[2%] hidden w-[48%] max-w-[390px] opacity-72 mix-blend-screen drop-shadow-[0_34px_90px_rgba(255,45,32,0.22)] md:block lg:right-[14%] lg:top-[3%] lg:w-[52%] lg:max-w-[470px]">
+              <Image
+                src="/art/hero-throne-character.png"
+                alt=""
+                width={1024}
+                height={1024}
+                priority
+                sizes="470px"
+                className="w-full"
+              />
+            </div>
             <div className="hero-floating-card group absolute right-[-22%] top-[-5%] w-[104%] max-w-[780px] origin-center transition duration-500 sm:right-[-18%] lg:right-[-13%] lg:top-[-7%] lg:w-[102%]">
               <Image
                 src="/art/fragment-momentum-hero-main.png"

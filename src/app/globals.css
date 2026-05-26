@@ -441,6 +441,14 @@ body::after {
   animation: hero-card-back-float 22s ease-in-out infinite;
 }
 
+.hero-throne-character {
+  animation: hero-throne-drift 24s ease-in-out infinite;
+  mask-image:
+    radial-gradient(ellipse at 50% 48%, black 0 48%, rgba(0, 0, 0, 0.72) 62%, transparent 78%),
+    linear-gradient(to bottom, transparent 0%, black 13%, black 82%, transparent 100%);
+  mask-composite: intersect;
+}
+
 .hero-main-card-crop {
   clip-path: polygon(31% 15%, 62.5% 5%, 78% 78%, 40% 91%);
 }
@@ -501,6 +509,16 @@ body::after {
   }
   50% {
     transform: translate3d(0.14rem, -0.22rem, 0) rotate(-22.8deg);
+  }
+}
+
+@keyframes hero-throne-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0.18rem, -0.22rem, 0) scale(1.012);
   }
 }
 
