@@ -1046,7 +1046,7 @@ export function FragmentLanding() {
           </div>
           <div className="hero-visual relative z-10 min-h-[430px] sm:min-h-[540px] lg:min-h-[680px]">
             <div className="hero-red-slash absolute left-[8%] top-[43%] h-3 w-[88%] -rotate-[18deg] bg-ember/70 blur-sm" />
-            <div className="hero-card-back absolute left-[-12%] top-[-8%] hidden w-[45%] max-w-[370px] origin-center opacity-55 blur-[2px] md:block lg:left-[-7%] lg:top-[-10%]">
+            <div className="hero-card-back absolute left-[-12%] top-[-8%] z-10 hidden w-[45%] max-w-[370px] origin-center opacity-55 blur-[2px] md:block lg:left-[-7%] lg:top-[-10%]">
               <Image
                 src="/art/fragment-card-numbered-new.png"
                 alt="Fragment numbered combat card drifting in the background"
@@ -1057,7 +1057,7 @@ export function FragmentLanding() {
                 className="w-full drop-shadow-[0_28px_80px_rgba(255,45,32,0.28)]"
               />
             </div>
-            <div className="hero-throne-character pointer-events-none absolute right-[6%] top-[2%] hidden w-[48%] max-w-[390px] opacity-72 mix-blend-screen drop-shadow-[0_34px_90px_rgba(255,45,32,0.22)] md:block lg:right-[14%] lg:top-[3%] lg:w-[52%] lg:max-w-[470px]">
+            <div className="hero-throne-character pointer-events-none absolute bottom-[-17%] left-1/2 z-20 hidden w-[150%] max-w-[760px] opacity-95 drop-shadow-[0_42px_110px_rgba(255,45,32,0.38)] md:block lg:bottom-[-20%] lg:left-[52%] lg:w-[170%] lg:max-w-[860px]">
               <Image
                 src="/art/hero-throne-character.png"
                 alt=""
@@ -1068,7 +1068,7 @@ export function FragmentLanding() {
                 className="w-full"
               />
             </div>
-            <div className="hero-floating-card group absolute right-[-58%] top-[12%] w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-54%] lg:right-[-48%] lg:top-[10%] lg:w-[190%]">
+            <div className="hero-floating-card group absolute right-[-58%] top-[12%] z-30 w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-54%] lg:right-[-48%] lg:top-[10%] lg:w-[190%]">
               <Image
                 src="/art/fragment-momentum-hero-main.png"
                 alt="Momentum Hero card floating in the foreground"
@@ -1079,7 +1079,7 @@ export function FragmentLanding() {
                 className="hero-main-card-crop w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.015]"
               />
             </div>
-            <div className="hero-mini-card absolute bottom-[-1%] left-[6%] hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:bottom-[-4%] lg:left-[7%] lg:w-32">
+            <div className="hero-mini-card absolute bottom-[-1%] left-[6%] z-40 hidden w-24 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:bottom-[-4%] lg:left-[7%] lg:w-32">
               <Image
                 src="/art/fragment-card-foreground-new.png"
                 alt="Fragment red combat card in the lower hero scene"
