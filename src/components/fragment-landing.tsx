@@ -54,6 +54,36 @@ const hooks: Card[] = [
   },
 ];
 
+const heroFeatureCallouts = [
+  { title: "Fast-paced", body: "6-second combat", icon: Zap },
+  { title: "Hero powers", body: "build, combo, dominate", icon: Shield },
+  { title: "New challenge", body: "every run, every turn", icon: Swords },
+];
+
+const heroPromoCards = [
+  {
+    kicker: "Latest Drop",
+    title: "New Hero Reveal",
+    action: "Explore",
+    src: "/art/hero-red-bastion-square.jpg",
+    className: "from-red-500/40",
+  },
+  {
+    kicker: "Dev Update",
+    title: "Combat System Deep Dive",
+    action: "Read More",
+    src: "/art/old-rock-red-ruins-bg.png",
+    className: "from-ember/35",
+  },
+  {
+    kicker: "Community",
+    title: "Join the Discord",
+    action: "Join Now",
+    src: "/art/hero-blue-parallax-square.jpg",
+    className: "from-blue-500/35",
+  },
+];
+
 const timelineExamples = [
   {
     label: "Example turn A",
@@ -179,8 +209,8 @@ function Button({
 }) {
   const styles =
     variant === "primary"
-      ? "border-cyan-200/60 bg-cyan-100 text-void shadow-fracture-cyan hover:bg-white"
-      : "border-white/15 bg-white/[0.04] text-edge hover:border-white/35 hover:bg-white/[0.08]";
+      ? "hero-cta-primary border-ember/70 bg-ember text-white shadow-fracture-red hover:bg-red-500"
+      : "border-white/25 bg-void/35 text-edge hover:border-ember/60 hover:bg-ember/10";
 
   return (
     <a
@@ -954,72 +984,163 @@ export function FragmentLanding() {
     <main className="min-h-screen overflow-hidden">
       <Nav />
 
-      <section id="hero" className="relative isolate flex min-h-screen items-center pt-24">
+      <section id="hero" className="hero-game-scene relative isolate min-h-screen overflow-hidden pt-20">
         <Image
-          src="/art/old-rock-red-ruins-bg.png"
+          src="/art/fragment-hero-game-bg.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-center opacity-90"
+          className="hero-bg-motion absolute inset-0 -z-30 object-cover object-center opacity-95"
         />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_68%_42%,rgba(91,33,182,0.04),rgba(5,6,8,0.22)_42%,#050608_92%)]" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-void/20 via-void/62 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/62 lg:to-void/8" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-52 bg-gradient-to-t from-void to-transparent" />
-        <FragmentationField className="z-0 opacity-45 [mask-image:linear-gradient(to_right,transparent,black_42%,black_92%,transparent)]" />
-        <div className="container relative z-10 grid items-center gap-12 pb-20 lg:grid-cols-[1fr_0.86fr]">
-          <div className="max-w-3xl">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-cyan-100">
-              Everything Fragments.
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_64%_45%,rgba(255,77,61,0.28),transparent_22rem),radial-gradient(circle_at_20%_12%,rgba(47,231,255,0.15),transparent_28rem)]" />
+        <div className="absolute inset-0 -z-20 bg-gradient-to-b from-void/10 via-void/24 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/58 lg:to-void/4" />
+        <div className="absolute inset-x-0 bottom-0 -z-20 h-72 bg-gradient-to-t from-void via-void/70 to-transparent" />
+        <div className="hero-noise absolute inset-0 -z-10" aria-hidden="true" />
+        <div className="hero-embers absolute inset-0 -z-10" aria-hidden="true">
+          {Array.from({ length: 18 }).map((_, index) => (
+            <span
+              key={index}
+              style={{
+                "--x": `${8 + ((index * 17) % 88)}%`,
+                "--delay": `${(index % 9) * 0.45}s`,
+                "--size": `${2 + (index % 4)}px`,
+              } as CSSProperties}
+            />
+          ))}
+        </div>
+        <div className="container relative z-10 grid min-h-[calc(100vh-5rem)] items-center gap-10 pb-36 pt-10 lg:grid-cols-[0.82fr_1.18fr] lg:pb-44 lg:pt-16">
+          <div className="relative z-20 max-w-3xl">
+            <p className="hero-kicker mb-2 text-3xl font-black uppercase tracking-normal text-white sm:text-4xl">
+              Everything
             </p>
-            <h1 className="text-6xl font-semibold tracking-normal text-white sm:text-7xl lg:text-8xl">
-              Fragment
+            <h1 className="hero-title text-6xl font-black uppercase leading-none tracking-normal text-ember sm:text-8xl lg:text-[8.7rem]">
+              Fragments.
             </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-200 sm:text-2xl">
+            <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-100 sm:text-2xl">
               A hero-based tactical deckbuilding card game where combat unfolds in six-second windows.
             </p>
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-400">
-              Build your deck around one Hero, manage Energy, spend seconds on
-              decisive actions, and fight through Thread-based Instant interactions.
+            <p className="mt-5 max-w-xl text-base leading-8 text-slate-300">
+              Build your deck around one Hero. Manage Energy. Spend seconds on
+              decisive actions. Fight through Thread-based Instant interactions.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="#core">Explore the Game</Button>
+            <div className="mt-7 grid max-w-2xl gap-3 sm:grid-cols-3">
+              {heroFeatureCallouts.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div key={item.title} className="hero-feature group">
+                    <Icon className="size-6 text-ember transition duration-300 group-hover:scale-110" />
+                    <div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ember">
+                        {item.title}
+                      </div>
+                      <div className="mt-1 text-xs font-semibold uppercase leading-4 tracking-[0.14em] text-white">
+                        {item.body}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="#core" variant="primary">Explore the Game</Button>
               <Button href="/early-access" variant="secondary">Join Early Access</Button>
             </div>
-            <p className="mt-6 max-w-xl text-xs uppercase tracking-[0.2em] text-slate-500">
-              Launching first as a digital card game. Designed for physical play in the future.
-            </p>
           </div>
-          <div className="relative hidden min-h-[620px] lg:block">
-            <div className="absolute right-0 top-1/2 h-[560px] w-[440px] -translate-y-1/2 overflow-hidden border border-red-200/20 bg-red-300/10 shadow-[0_40px_120px_rgba(248,113,113,0.18)]">
+          <div className="hero-visual relative z-10 min-h-[430px] sm:min-h-[540px] lg:min-h-[680px]">
+            <div className="absolute left-[22%] top-[14%] hidden h-72 w-48 -rotate-[17deg] border border-red-200/20 bg-void/50 shadow-[0_0_70px_rgba(255,77,61,0.18)] backdrop-blur-sm md:block" />
+            <div className="hero-red-slash absolute left-[8%] top-[43%] h-3 w-[88%] -rotate-[18deg] bg-ember/70 blur-sm" />
+            <div className="hero-character absolute left-[13%] top-[18%] hidden w-[52%] max-w-[460px] -rotate-[12deg] overflow-hidden border border-red-100/20 bg-void/70 shadow-[0_30px_90px_rgba(255,77,61,0.22)] md:block">
               <Image
-                src="/art/hero-red-throne.png"
-                alt="Red Fragment throne hero"
-                fill
+                src="/art/hero-red-bastion-square.jpg"
+                alt="Red Bastion hero artwork"
+                width={1023}
+                height={1023}
                 priority
-                sizes="440px"
-                className="object-cover object-center"
+                sizes="310px"
+                className="aspect-square w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-red-100">
-                  Red / Pressure
-                </div>
-                <div className="font-title mt-2 text-2xl text-white">
-                  Momentum Hero
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-void/55 to-transparent" />
             </div>
-            <div className="absolute right-80 top-20 max-w-64 border border-cyan-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-cyan-100 shadow-[0_0_38px_rgba(47,231,255,0.16)] backdrop-blur">
-              The first two Fragments have stabilized
+            <div className="hero-floating-card group absolute right-[-12%] top-[7%] w-[86%] max-w-[620px] origin-center rotate-[8deg] transition duration-500 hover:rotate-[5deg] lg:right-[-14%] lg:top-[5%] lg:w-[86%]">
+              <Image
+                src="/art/fragment-floating-card-cropped.png"
+                alt="Momentum Hero floating card"
+                width={940}
+                height={940}
+                priority
+                sizes="(min-width: 1024px) 620px, 86vw"
+                className="w-full drop-shadow-[0_42px_100px_rgba(255,45,32,0.45)] transition duration-500 group-hover:scale-[1.025]"
+              />
             </div>
-            <div className="absolute right-4 top-48 max-w-52 border border-red-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-red-100 shadow-[0_0_38px_rgba(248,113,113,0.16)] backdrop-blur">
-              Pressure against timing
-            </div>
-            <div className="absolute bottom-28 right-64 max-w-64 border border-blue-100/25 bg-void/72 px-4 py-3 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-blue-100 shadow-[0_0_38px_rgba(96,165,250,0.18)] backdrop-blur">
-              Every second becomes a choice
+            <div className="hero-mini-card absolute bottom-[12%] left-[16%] hidden w-28 -rotate-[8deg] overflow-hidden border border-red-100/30 bg-void/70 shadow-[0_18px_55px_rgba(255,77,61,0.24)] sm:block lg:w-36">
+              <Image
+                src="/art/hero-red-female.webp"
+                alt="Red Vector hero mini card"
+                width={1024}
+                height={1024}
+                sizes="144px"
+                className="aspect-square w-full object-cover"
+              />
             </div>
           </div>
+        </div>
+        <div className="container absolute inset-x-0 bottom-6 z-20 hidden lg:block">
+          <div className="grid overflow-hidden border border-white/10 bg-void/62 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur md:grid-cols-3">
+            {heroPromoCards.map((card) => (
+              <a
+                key={card.title}
+                href={card.title === "Join the Discord" ? "/early-access" : "#systems"}
+                className="group relative min-h-32 overflow-hidden border-r border-white/10 p-5 last:border-r-0"
+              >
+                <Image
+                  src={card.src}
+                  alt=""
+                  fill
+                  sizes="390px"
+                  className="absolute inset-0 -z-20 object-cover opacity-48 grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                />
+                <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/72 to-void/95`} />
+                <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {`// ${card.kicker}`}
+                </div>
+                <div className="font-title mt-2 max-w-56 text-lg uppercase leading-6 text-white">
+                  {card.title}
+                </div>
+                <div className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ember">
+                  {card.action}
+                  <ArrowRight className="size-3 transition group-hover:translate-x-1" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="container relative z-20 -mt-24 grid gap-3 pb-8 lg:hidden">
+          {heroPromoCards.map((card) => (
+            <a
+              key={card.title}
+              href={card.title === "Join the Discord" ? "/early-access" : "#systems"}
+              className="group relative overflow-hidden border border-white/10 bg-void/72 p-4 backdrop-blur"
+            >
+              <Image
+                src={card.src}
+                alt=""
+                fill
+                sizes="100vw"
+                className="absolute inset-0 -z-20 object-cover opacity-35 grayscale"
+              />
+              <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-void/72 to-void/95`} />
+              <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {`// ${card.kicker}`}
+              </div>
+              <div className="font-title mt-1 text-base uppercase text-white">{card.title}</div>
+              <div className="mt-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ember">
+                {card.action}
+                <ArrowRight className="size-3" />
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
