@@ -537,7 +537,8 @@ body::after {
 }
 
 .hero-throne-character {
-  animation: hero-throne-drift 24s ease-in-out infinite;
+  animation: hero-throne-drift 18s ease-in-out infinite;
+  transform-origin: 50% 58%;
 }
 
 .hero-main-card-crop {
@@ -606,10 +607,10 @@ body::after {
 @keyframes hero-throne-drift {
   0%,
   100% {
-    transform: translate3d(-50%, 0, 0) scale(1);
+    transform: translate3d(-50%, -0.35rem, 0) scale(1.018);
   }
   50% {
-    transform: translate3d(calc(-50% + 0.18rem), -0.22rem, 0) scale(1.012);
+    transform: translate3d(calc(-50% - 0.45rem), -1.15rem, 0) scale(1.05);
   }
 }
 
