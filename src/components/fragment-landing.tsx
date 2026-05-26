@@ -573,12 +573,12 @@ function ThreadDemo() {
         colored: [
           {
             icon: Snowflake,
-            className: "border-blue-100/55 bg-blue-500 text-blue-50",
+            className: "border-[#b8dbff]/65 bg-[#1f6feb] text-[#e8f5ff]",
             label: "Blue Energy",
           },
           {
             icon: Snowflake,
-            className: "border-blue-100/55 bg-blue-500 text-blue-50",
+            className: "border-[#b8dbff]/65 bg-[#1f6feb] text-[#e8f5ff]",
             label: "Blue Energy",
           },
         ],
@@ -649,7 +649,7 @@ function ThreadDemo() {
                     Play 0{card.step}
                   </span>
                 </span>
-                <div className={`system-chip flex w-full items-center justify-between gap-2 px-3 py-2 sm:w-auto sm:min-w-48 ${card.flux ? "system-chip--gold" : ""}`}>
+                <div className={`system-chip flex w-full items-center justify-between gap-2 px-3 py-2 sm:w-auto sm:min-w-48 ${card.flux ? "system-chip--gold" : "system-chip--ability"}`}>
                   <span className={`flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] ${card.flux ? "text-[#f0c45c]" : "text-[#9fb7d7]"}`}>
                     {card.flux ? <Bolt className="size-3 text-[#f0c45c]" /> : <Layers3 className="size-3 text-[#9fb7d7]" />}
                     {card.type}
@@ -662,7 +662,7 @@ function ThreadDemo() {
                   <div className="font-title text-xl text-white">{card.name}</div>
                   <div className="mt-3 text-sm leading-6 text-[#aeb9c9]">{card.note}</div>
                 </div>
-                <div className={`system-chip px-4 py-4 ${card.flux ? "system-chip--gold" : ""}`}>
+                <div className={`system-chip px-4 py-4 ${card.flux ? "system-chip--gold" : "system-chip--ability"}`}>
                   <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#89a1bf]">
                     Effect
                   </div>
