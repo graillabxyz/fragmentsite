@@ -162,7 +162,7 @@ const heroes = [
   {
     name: "Red Vector",
     path: "Fire / Burst",
-    src: "/art/hero-red-female.webp",
+    src: "/art/hero-red-vector-square.jpg",
     accent: "from-red-500/35",
   },
   {
@@ -367,7 +367,7 @@ function HeroRosterCard({ hero }: { hero: (typeof heroes)[number] }) {
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-void to-transparent" />
       </div>
       <div className="p-4">
-        <h3 className="font-title text-sm uppercase tracking-[0.18em] text-white">
+        <h3 className="promo-card-title text-sm uppercase tracking-[0.18em] text-white">
           {hero.name}
         </h3>
         <p className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-400">
