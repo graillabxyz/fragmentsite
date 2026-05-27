@@ -6,6 +6,11 @@
   color-scheme: dark;
   background: #050608;
   --font-card-title: "Protest Revolution";
+  --fragment-red: 255 77 61;
+  --fragment-blue: 80 166 255;
+  --fragment-teal: 35 255 219;
+  --fragment-gold: 240 196 92;
+  --fragment-violet: 158 118 255;
 }
 
 * {
@@ -21,10 +26,11 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 16% 10%, rgba(255, 77, 61, 0.18), transparent 28rem),
-    radial-gradient(circle at 82% 18%, rgba(167, 20, 18, 0.2), transparent 26rem),
-    radial-gradient(circle at 55% 70%, rgba(255, 146, 88, 0.08), transparent 34rem),
-    linear-gradient(180deg, #050608 0%, #110708 42%, #050608 100%);
+    radial-gradient(circle at 14% 10%, rgb(var(--fragment-red) / 0.16), transparent 28rem),
+    radial-gradient(circle at 80% 14%, rgb(var(--fragment-blue) / 0.14), transparent 28rem),
+    radial-gradient(circle at 54% 66%, rgb(var(--fragment-gold) / 0.08), transparent 34rem),
+    radial-gradient(circle at 88% 78%, rgb(var(--fragment-teal) / 0.075), transparent 28rem),
+    linear-gradient(180deg, #050608 0%, #0d0a12 42%, #050608 100%);
   color: #edf8ff;
   font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   font-weight: 500;
@@ -67,10 +73,10 @@ body::before {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, rgba(255, 77, 61, 0.055) 0 1px, transparent 1px 100%),
-    linear-gradient(0deg, rgba(255, 77, 61, 0.035) 0 1px, transparent 1px 100%),
+    linear-gradient(90deg, rgb(var(--fragment-red) / 0.045) 0 1px, transparent 1px 100%),
+    linear-gradient(0deg, rgb(var(--fragment-blue) / 0.032) 0 1px, transparent 1px 100%),
     radial-gradient(circle at 52% 22%, rgba(255, 225, 218, 0.04), transparent 18rem),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M84 226 186 198l72 38 96-18 78 46' stroke='%23ffb2a8' stroke-opacity='.08' stroke-width='2'/%3E%3Cpath d='M258 236 236 318l46 54m-24-136 38-54' stroke='%23ff4d3d' stroke-opacity='.065' stroke-width='1.4'/%3E%3Cpath d='M802 84 732 156l26 64-64 76 24 86' stroke='%23ffd2cc' stroke-opacity='.06' stroke-width='2'/%3E%3Cpath d='M758 220 836 248l44 72m-122-100-92 10' stroke='%23ff4d3d' stroke-opacity='.07' stroke-width='1.5'/%3E%3Cpath d='M1172 212 1098 268l30 92-66 62 18 72' stroke='%23ff4d3d' stroke-opacity='.085' stroke-width='1.7'/%3E%3Cpath d='M1128 360 1208 390l48 62m-128-92-82 12' stroke='%23ffd2cc' stroke-opacity='.055' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 900'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M84 226 186 198l72 38 96-18 78 46' stroke='%23ffb2a8' stroke-opacity='.08' stroke-width='2'/%3E%3Cpath d='M258 236 236 318l46 54m-24-136 38-54' stroke='%2350a6ff' stroke-opacity='.07' stroke-width='1.4'/%3E%3Cpath d='M802 84 732 156l26 64-64 76 24 86' stroke='%23f0c45c' stroke-opacity='.07' stroke-width='2'/%3E%3Cpath d='M758 220 836 248l44 72m-122-100-92 10' stroke='%23ff4d3d' stroke-opacity='.07' stroke-width='1.5'/%3E%3Cpath d='M1172 212 1098 268l30 92-66 62 18 72' stroke='%2323ffdb' stroke-opacity='.075' stroke-width='1.7'/%3E%3Cpath d='M1128 360 1208 390l48 62m-128-92-82 12' stroke='%239e76ff' stroke-opacity='.06' stroke-width='1.2'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 96px 96px, 96px 96px, auto, cover;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 84%);
 }
@@ -82,8 +88,9 @@ body::after {
   pointer-events: none;
   content: "";
   background:
-    radial-gradient(circle at 18% 78%, rgba(255, 77, 61, 0.07), transparent 20rem),
-    radial-gradient(circle at 88% 36%, rgba(255, 77, 61, 0.065), transparent 18rem),
+    radial-gradient(circle at 18% 78%, rgb(var(--fragment-red) / 0.07), transparent 20rem),
+    radial-gradient(circle at 88% 36%, rgb(var(--fragment-blue) / 0.06), transparent 18rem),
+    linear-gradient(115deg, transparent 0 44%, rgb(var(--fragment-teal) / 0.04) 44.2%, transparent 44.8% 100%),
     linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.32));
   opacity: 0.7;
 }
@@ -95,14 +102,41 @@ body::after {
 .fracture-panel {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 100, 92, 0.18);
+  --panel-rgb: var(--fragment-red);
+  --panel-glow-rgb: var(--fragment-red);
+  border: 1px solid rgb(var(--panel-rgb) / 0.22);
   background:
-    linear-gradient(135deg, rgba(255, 77, 61, 0.12), rgba(255, 255, 255, 0.028) 42%, rgba(255, 77, 61, 0.035)),
+    radial-gradient(circle at 15% 8%, rgb(var(--panel-rgb) / 0.13), transparent 18rem),
+    linear-gradient(135deg, rgb(var(--panel-rgb) / 0.095), rgba(255, 255, 255, 0.028) 42%, rgb(var(--panel-glow-rgb) / 0.04)),
     rgba(9, 9, 12, 0.82);
   box-shadow:
-    inset 0 0 32px rgba(255, 77, 61, 0.045),
+    inset 0 0 32px rgb(var(--panel-rgb) / 0.052),
     0 24px 80px rgba(0, 0, 0, 0.36);
   backdrop-filter: blur(18px);
+}
+
+.panel-red {
+  --panel-rgb: var(--fragment-red);
+}
+
+.panel-blue {
+  --panel-rgb: var(--fragment-blue);
+  --panel-glow-rgb: var(--fragment-teal);
+}
+
+.panel-gold {
+  --panel-rgb: var(--fragment-gold);
+  --panel-glow-rgb: var(--fragment-red);
+}
+
+.panel-teal {
+  --panel-rgb: var(--fragment-teal);
+  --panel-glow-rgb: var(--fragment-blue);
+}
+
+.panel-violet {
+  --panel-rgb: var(--fragment-violet);
+  --panel-glow-rgb: var(--fragment-blue);
 }
 
 .fracture-panel::before,
@@ -123,7 +157,7 @@ body::after {
 }
 
 .fracture-panel::after {
-  border: 1px solid rgba(255, 100, 92, 0.12);
+  border: 1px solid rgb(var(--panel-rgb) / 0.14);
   clip-path: polygon(0 0, 100% 0, 100% 76%, 91% 100%, 0 100%);
 }
 
@@ -151,8 +185,24 @@ body::after {
 
 .fragment-page {
   background:
-    radial-gradient(circle at 72% 12%, rgba(255, 77, 61, 0.1), transparent 24rem),
-    linear-gradient(180deg, rgba(255, 77, 61, 0.035), transparent 24rem);
+    radial-gradient(circle at 72% 12%, rgb(var(--fragment-red) / 0.1), transparent 24rem),
+    radial-gradient(circle at 18% 34%, rgb(var(--fragment-blue) / 0.07), transparent 28rem),
+    linear-gradient(180deg, rgb(var(--fragment-red) / 0.03), transparent 24rem);
+}
+
+.fragment-page::before {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(180deg, transparent 0 48%, rgb(var(--fragment-teal) / 0.028) 49%, transparent 50% 100%),
+    linear-gradient(90deg, transparent, rgb(var(--fragment-gold) / 0.02), transparent);
+  background-size: 100% 8rem, 46rem 100%;
+  mix-blend-mode: screen;
+  opacity: 0.16;
+  animation: page-scan 10s linear infinite;
 }
 
 .fragment-page section:not(#hero) {
@@ -166,40 +216,8 @@ body::after {
   height: 1px;
   pointer-events: none;
   content: "";
-  background: linear-gradient(90deg, transparent, rgba(255, 77, 61, 0.34), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--fragment-blue) / 0.24), rgb(var(--fragment-red) / 0.34), rgb(var(--fragment-gold) / 0.22), transparent);
   opacity: 0.72;
-}
-
-.fragment-page [class*="text-cyan"],
-.fragment-page [class*="text-blue"],
-.fragment-page [class*="text-violet"],
-.fragment-page [class*="text-emerald"] {
-  color: rgba(255, 178, 168, 0.92) !important;
-}
-
-.fragment-page [class*="border-cyan"],
-.fragment-page [class*="border-blue"],
-.fragment-page [class*="border-violet"],
-.fragment-page [class*="border-emerald"],
-.fragment-page [class*="border-white"] {
-  border-color: rgba(255, 90, 82, 0.26) !important;
-}
-
-.fragment-page [class*="bg-cyan"],
-.fragment-page [class*="bg-blue"],
-.fragment-page [class*="bg-violet"],
-.fragment-page [class*="bg-emerald"],
-.fragment-page [class*="bg-white/"] {
-  background-color: rgba(255, 77, 61, 0.09) !important;
-}
-
-.fragment-page [class*="from-cyan"],
-.fragment-page [class*="from-blue"],
-.fragment-page [class*="from-violet"],
-.fragment-page [class*="from-emerald"] {
-  --tw-gradient-from: rgba(255, 77, 61, 0.24) var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(255, 77, 61, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
 .fragment-page [class*="via-void"] {
@@ -215,11 +233,33 @@ body::after {
 .tactical-tile {
   position: relative;
   overflow: hidden;
-  border-color: rgba(255, 90, 82, 0.2) !important;
+  --tile-rgb: var(--fragment-teal);
+  border-color: rgb(var(--tile-rgb) / 0.26) !important;
   background:
-    linear-gradient(135deg, rgba(255, 77, 61, 0.1), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at 0 0, rgb(var(--tile-rgb) / 0.14), transparent 10rem),
+    linear-gradient(135deg, rgb(var(--tile-rgb) / 0.09), rgba(255, 255, 255, 0.025)),
     rgba(5, 6, 8, 0.72) !important;
-  box-shadow: inset 0 0 24px rgba(255, 77, 61, 0.045);
+  box-shadow: inset 0 0 24px rgb(var(--tile-rgb) / 0.045);
+}
+
+.tile-red {
+  --tile-rgb: var(--fragment-red);
+}
+
+.tile-blue {
+  --tile-rgb: var(--fragment-blue);
+}
+
+.tile-gold {
+  --tile-rgb: var(--fragment-gold);
+}
+
+.tile-teal {
+  --tile-rgb: var(--fragment-teal);
+}
+
+.tile-violet {
+  --tile-rgb: var(--fragment-violet);
 }
 
 .tactical-tile::after {
@@ -232,8 +272,10 @@ body::after {
 }
 
 .tactical-kicker {
-  color: rgba(255, 110, 96, 0.86) !important;
-  text-shadow: 0 0 18px rgba(255, 77, 61, 0.24);
+  color: rgb(var(--fragment-teal) / 0.9) !important;
+  text-shadow:
+    0 0 18px rgb(var(--fragment-teal) / 0.2),
+    0 0 26px rgb(var(--fragment-red) / 0.12);
 }
 
 .system-panel {
@@ -536,9 +578,11 @@ body::after {
 .hero-noise {
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(255, 77, 61, 0.08) 0 1px, transparent 1px 100%),
-    radial-gradient(circle at 68% 44%, rgba(255, 77, 61, 0.18), transparent 18rem);
-  background-size: 90px 100%, auto;
+    linear-gradient(90deg, rgb(var(--fragment-red) / 0.075) 0 1px, transparent 1px 100%),
+    linear-gradient(0deg, rgb(var(--fragment-blue) / 0.04) 0 1px, transparent 1px 100%),
+    radial-gradient(circle at 68% 44%, rgb(var(--fragment-red) / 0.18), transparent 18rem),
+    radial-gradient(circle at 82% 24%, rgb(var(--fragment-blue) / 0.14), transparent 16rem);
+  background-size: 90px 100%, 90px 90px, auto, auto;
   mix-blend-mode: screen;
   opacity: 0.42;
 }
@@ -559,14 +603,48 @@ body::after {
 }
 
 .hero-feature {
+  --feature-rgb: var(--fragment-red);
   display: grid;
   grid-template-columns: 1.75rem minmax(0, 1fr);
   gap: 0.75rem;
   align-items: center;
-  border: 1px solid rgba(255, 77, 61, 0.18);
-  background: linear-gradient(135deg, rgba(255, 77, 61, 0.14), rgba(5, 6, 8, 0.45));
+  border: 1px solid rgb(var(--feature-rgb) / 0.24);
+  background:
+    linear-gradient(135deg, rgb(var(--feature-rgb) / 0.16), rgba(5, 6, 8, 0.45)),
+    rgba(5, 6, 8, 0.48);
   padding: 0.75rem;
-  box-shadow: inset 0 0 22px rgba(255, 77, 61, 0.055);
+  box-shadow:
+    inset 0 0 22px rgb(var(--feature-rgb) / 0.06),
+    0 0 22px rgb(var(--feature-rgb) / 0.045);
+}
+
+.hero-feature--red {
+  --feature-rgb: var(--fragment-red);
+}
+
+.hero-feature--gold {
+  --feature-rgb: var(--fragment-gold);
+}
+
+.hero-feature--blue {
+  --feature-rgb: var(--fragment-blue);
+}
+
+.hero-feature--teal {
+  --feature-rgb: var(--fragment-teal);
+}
+
+.hero-feature--violet {
+  --feature-rgb: var(--fragment-violet);
+}
+
+.hero-feature__icon {
+  color: rgb(var(--feature-rgb) / 0.94);
+  filter: drop-shadow(0 0 10px rgb(var(--feature-rgb) / 0.24));
+}
+
+.hero-feature__label {
+  color: rgb(var(--feature-rgb) / 0.95);
 }
 
 .game-button {
@@ -782,6 +860,15 @@ body::after {
   }
   50% {
     transform: scale(1.045) translate3d(-0.6rem, -0.35rem, 0);
+  }
+}
+
+@keyframes page-scan {
+  0% {
+    background-position: 0 -12rem, -34rem 0;
+  }
+  100% {
+    background-position: 0 36rem, 34rem 0;
   }
 }
 

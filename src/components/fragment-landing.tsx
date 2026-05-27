@@ -22,6 +22,7 @@ type Card = {
   title: string;
   body: string;
   icon: LucideIcon;
+  tone: "red" | "blue" | "gold" | "teal" | "violet";
 };
 
 type ColoredEnergy = {
@@ -51,23 +52,26 @@ const hooks: Card[] = [
     title: "Choose a Hero",
     body: "Start with one command unit, then build a deck around their tempo, strain, and tactical identity.",
     icon: Shield,
+    tone: "blue",
   },
   {
     title: "Spend Your 6 Seconds",
     body: "Every attack, ability, relic, and card consumes time. The turn is a tactical window.",
     icon: Clock3,
+    tone: "gold",
   },
   {
     title: "Instants Open the Thread",
     body: "Instant cards may be used whenever you have priority, either to push an action or answer one already on the Thread.",
     icon: Layers3,
+    tone: "teal",
   },
 ];
 
 const heroFeatureCallouts = [
-  { title: "Fast-paced", body: "6-second combat", icon: Zap },
-  { title: "Hero powers", body: "build, combo, dominate", icon: Shield },
-  { title: "New challenge", body: "every run, every turn", icon: Swords },
+  { title: "Fast-paced", body: "6-second combat", icon: Zap, tone: "red" },
+  { title: "Hero powers", body: "build, combo, dominate", icon: Shield, tone: "blue" },
+  { title: "New challenge", body: "every run, every turn", icon: Swords, tone: "gold" },
 ];
 
 const heroPromoCards: HeroPromoCard[] = [
@@ -76,14 +80,14 @@ const heroPromoCards: HeroPromoCard[] = [
     title: "New Hero Reveal",
     action: "Explore",
     src: "/art/promo-new-hero-bg.png",
-    className: "from-red-500/40",
+    className: "from-red-500/38",
   },
   {
     kicker: "Dev Update",
     title: "Combat System Deep Dive",
     action: "Read More",
     src: "/art/promo-combat-system-bg.png",
-    className: "from-ember/35",
+    className: "from-cyan-500/28",
   },
   {
     kicker: "Community",
@@ -342,8 +346,8 @@ function FeatureCard({ item }: { item: Card }) {
   const Icon = item.icon;
 
   return (
-    <article className="fracture-panel clip-fragment reveal group p-6 transition duration-300 hover:-translate-y-1 hover:border-red-200/35 hover:shadow-[0_0_44px_rgba(255,77,61,0.16)]">
-      <div className="mb-8 flex size-12 items-center justify-center border border-red-100/20 bg-red-500/10 text-red-100">
+    <article className={`fracture-panel panel-${item.tone} clip-fragment reveal group p-6 transition duration-300 hover:-translate-y-1`}>
+      <div className={`tactical-tile tile-${item.tone} mb-8 flex size-12 items-center justify-center border p-0 text-white`}>
         <Icon className="size-5" />
       </div>
       <h3 className="text-xl font-semibold text-white">{item.title}</h3>
@@ -397,12 +401,12 @@ function PackShowcase() {
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
-              ["Hero", "sets the plan"],
-              ["Deck", "splits the plan"],
-              ["Packs", "expand options"],
-            ].map(([value, label]) => (
-              <div key={value} className="tactical-tile border border-white/10 p-4">
-                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-red-100">
+              ["Hero", "sets the plan", "tile-blue"],
+              ["Deck", "splits the plan", "tile-teal"],
+              ["Packs", "expand options", "tile-gold"],
+            ].map(([value, label, tile]) => (
+              <div key={value} className={`tactical-tile ${tile} border p-4`}>
+                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-white">
                   {value}
                 </div>
                 <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-500">
@@ -413,7 +417,7 @@ function PackShowcase() {
           </div>
         </div>
         <div className="reveal relative min-h-[520px] overflow-visible">
-          <div className="absolute left-1/2 top-[47%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/14 blur-3xl" />
+          <div className="absolute left-1/2 top-[47%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/12 blur-3xl" />
           <div className="absolute left-[5%] top-6 w-[50%] max-w-[350px] rotate-[-7deg] drop-shadow-[0_42px_90px_rgba(255,77,61,0.28)] transition duration-500 hover:-translate-y-3 hover:rotate-[-3deg]">
             <Image
               src="/art/pack-mythic-red-transparent.png"
@@ -423,7 +427,7 @@ function PackShowcase() {
               className="h-auto w-full"
             />
           </div>
-          <div className="absolute right-[3%] top-20 w-[48%] max-w-[340px] rotate-[7deg] drop-shadow-[0_42px_90px_rgba(255,77,61,0.18)] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
+          <div className="absolute right-[3%] top-20 w-[48%] max-w-[340px] rotate-[7deg] drop-shadow-[0_42px_90px_rgba(80,166,255,0.22)] transition duration-500 hover:-translate-y-3 hover:rotate-[3deg]">
             <Image
               src="/art/pack-core-blue-transparent.png"
               alt="Old Rock Fragment card pack"
@@ -808,7 +812,7 @@ function EnergyAndAttack() {
 
 function CardsAndIdentity() {
   return (
-    <div className="fracture-panel reveal p-5 sm:p-6 lg:col-span-12">
+    <div className="fracture-panel panel-violet reveal p-5 sm:p-6 lg:col-span-12">
       <div className="mb-6 grid gap-4 lg:grid-cols-[0.7fr_1fr] lg:items-end">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-100/70">
@@ -1001,7 +1005,7 @@ export function FragmentLanding() {
           sizes="100vw"
           className="hero-bg-motion absolute inset-0 -z-30 object-cover object-center opacity-95"
         />
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_64%_45%,rgba(255,77,61,0.28),transparent_22rem),radial-gradient(circle_at_20%_12%,rgba(255,77,61,0.12),transparent_28rem)]" />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_64%_45%,rgba(255,77,61,0.28),transparent_22rem),radial-gradient(circle_at_86%_18%,rgba(80,166,255,0.18),transparent_24rem),radial-gradient(circle_at_20%_12%,rgba(240,196,92,0.08),transparent_28rem)]" />
         <div className="absolute inset-0 -z-20 bg-gradient-to-b from-void/10 via-void/24 to-void lg:bg-gradient-to-r lg:from-void lg:via-void/58 lg:to-void/4" />
         <div className="absolute inset-x-0 bottom-0 -z-20 h-72 bg-gradient-to-t from-void via-void/70 to-transparent" />
         <div className="hero-noise absolute inset-0 -z-10" aria-hidden="true" />
@@ -1037,10 +1041,10 @@ export function FragmentLanding() {
                 const Icon = item.icon;
 
                 return (
-                  <div key={item.title} className="hero-feature group">
-                    <Icon className="size-6 text-ember transition duration-300 group-hover:scale-110" />
+                  <div key={item.title} className={`hero-feature hero-feature--${item.tone} group`}>
+                    <Icon className="hero-feature__icon size-6 transition duration-300 group-hover:scale-110" />
                     <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ember">
+                      <div className="hero-feature__label text-[10px] font-semibold uppercase tracking-[0.16em]">
                         {item.title}
                       </div>
                       <div className="mt-1 text-xs font-semibold uppercase leading-4 tracking-[0.14em] text-white">
@@ -1122,6 +1126,7 @@ export function FragmentLanding() {
                         className="object-cover opacity-90"
                       />
                     </div>
+                    <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-transparent to-transparent opacity-90`} />
                     <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/25" />
                   </>
                 ) : card.icon === "discord" ? (
@@ -1161,6 +1166,7 @@ export function FragmentLanding() {
                       className="object-cover opacity-90"
                     />
                   </div>
+                  <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-transparent to-transparent opacity-90`} />
                   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/25" />
                 </>
               ) : card.icon === "discord" ? (
@@ -1256,7 +1262,7 @@ export function FragmentLanding() {
               );
             })}
           </div>
-          <div className="fracture-panel reveal mt-10 p-5 backdrop-blur">
+          <div className="fracture-panel panel-violet reveal mt-10 p-5 backdrop-blur">
             <div className="grid gap-6 lg:grid-cols-[0.7fr_1fr] lg:items-center">
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
@@ -1299,7 +1305,7 @@ export function FragmentLanding() {
       </section>
 
       <section id="digital-paper" className="container py-24">
-        <div className="fracture-panel reveal grid gap-10 p-6 sm:p-10 lg:grid-cols-[0.78fr_1fr_0.46fr] lg:p-14">
+        <div className="fracture-panel panel-gold reveal grid gap-10 p-6 sm:p-10 lg:grid-cols-[0.78fr_1fr_0.46fr] lg:p-14">
           <div className="relative z-10">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-amber-100/80">
               Digital + Physical
@@ -1320,7 +1326,7 @@ export function FragmentLanding() {
               alt=""
               width={760}
               height={1140}
-              className="absolute -right-8 -top-20 h-72 w-auto rotate-12 opacity-90 drop-shadow-[0_24px_55px_rgba(255,77,61,0.2)]"
+              className="absolute -right-8 -top-20 h-72 w-auto rotate-12 opacity-90 drop-shadow-[0_24px_55px_rgba(240,196,92,0.24)]"
             />
           </div>
         </div>
@@ -1353,7 +1359,7 @@ export function FragmentLanding() {
       </section>
 
       <section id="early-access" className="container pb-20 pt-16">
-        <div className="fracture-panel relative overflow-hidden p-8 sm:p-14 lg:min-h-[560px]">
+        <div className="fracture-panel panel-teal relative overflow-hidden p-8 sm:p-14 lg:min-h-[560px]">
           <Image
             src="/art/old-rock-forest.webp"
             alt=""
@@ -1372,7 +1378,7 @@ export function FragmentLanding() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-transparent to-void/30" />
           <div className="absolute inset-x-8 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
           <div className="relative z-10 max-w-2xl text-left">
-            <Bolt className="mb-5 size-8 text-red-100" />
+            <Bolt className="mb-5 size-8 text-cyan-100" />
             <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-5xl">
               Enter the Fracturing World
             </h2>
@@ -1382,12 +1388,12 @@ export function FragmentLanding() {
             </p>
             <div className="mt-7 grid gap-3">
               {[
-                ["Priority invite waves", "Get considered for early test access as seats open."],
-                ["Founder identity", "Cosmetic recognition for players who helped before launch."],
-                ["Rules access", "Follow the evolving paper-ready rules before the wider public."],
-              ].map(([title, body]) => (
-                <div key={title} className="tactical-tile border border-white/10 p-4">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-red-100">
+                ["Priority invite waves", "Get considered for early test access as seats open.", "tile-red"],
+                ["Founder identity", "Cosmetic recognition for players who helped before launch.", "tile-gold"],
+                ["Rules access", "Follow the evolving paper-ready rules before the wider public.", "tile-blue"],
+              ].map(([title, body, tile]) => (
+                <div key={title} className={`tactical-tile ${tile} border p-4`}>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
                     {title}
                   </div>
                   <div className="mt-2 text-sm leading-6 text-slate-400">{body}</div>
