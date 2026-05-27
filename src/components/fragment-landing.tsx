@@ -1069,7 +1069,7 @@ export function FragmentLanding() {
                 className="w-full drop-shadow-[0_28px_80px_rgba(255,45,32,0.28)]"
               />
             </div>
-            <div className="hero-throne-character pointer-events-none absolute bottom-[-11%] left-[46%] z-20 hidden w-[165%] max-w-[800px] opacity-95 drop-shadow-[0_42px_110px_rgba(255,45,32,0.38)] md:block lg:bottom-[-14%] lg:left-[48%] lg:w-[185%] lg:max-w-[940px]">
+            <div className="hero-throne-character pointer-events-none absolute bottom-[-7%] left-[43%] z-20 hidden w-[165%] max-w-[800px] opacity-95 drop-shadow-[0_42px_110px_rgba(255,45,32,0.38)] md:block lg:bottom-[-10%] lg:left-[45%] lg:w-[185%] lg:max-w-[940px]">
               <Image
                 src="/art/hero-throne-character.png"
                 alt=""
@@ -1080,7 +1080,7 @@ export function FragmentLanding() {
                 className="w-full"
               />
             </div>
-            <div className="hero-floating-card group absolute right-[-62%] top-[12%] z-30 w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-58%] lg:right-[-56%] lg:top-[10%] lg:w-[190%]">
+            <div className="hero-floating-card group absolute right-[-66%] top-[12%] z-30 w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-62%] lg:right-[-60%] lg:top-[10%] lg:w-[190%]">
               <Image
                 src="/art/fragment-momentum-hero-main.png"
                 alt="Momentum Hero card floating in the foreground"
