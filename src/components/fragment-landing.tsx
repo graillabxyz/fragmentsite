@@ -44,6 +44,7 @@ type HeroPromoCard = {
   action: string;
   src?: string;
   className: string;
+  cropClass?: string;
   icon?: "discord";
 };
 
@@ -81,6 +82,7 @@ const heroPromoCards: HeroPromoCard[] = [
     action: "Explore",
     src: "/art/promo-new-hero-bg.png",
     className: "from-red-500/38",
+    cropClass: "object-[50%_8%]",
   },
   {
     kicker: "Dev Update",
@@ -88,6 +90,7 @@ const heroPromoCards: HeroPromoCard[] = [
     action: "Read More",
     src: "/art/promo-combat-system-bg.png",
     className: "from-cyan-500/28",
+    cropClass: "object-[50%_8%]",
   },
   {
     kicker: "Community",
@@ -1123,7 +1126,7 @@ export function FragmentLanding() {
                         alt=""
                         fill
                         sizes="560px"
-                        className="object-cover opacity-90"
+                        className={`object-cover opacity-90 ${card.cropClass ?? "object-center"}`}
                       />
                     </div>
                     <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-transparent to-transparent opacity-90`} />
@@ -1163,7 +1166,7 @@ export function FragmentLanding() {
                       alt=""
                       fill
                       sizes="143vw"
-                      className="object-cover opacity-90"
+                      className={`object-cover opacity-90 ${card.cropClass ?? "object-center"}`}
                     />
                   </div>
                   <div className={`absolute inset-0 -z-10 bg-gradient-to-r ${card.className} via-transparent to-transparent opacity-90`} />
