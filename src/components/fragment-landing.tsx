@@ -1087,7 +1087,7 @@ export function FragmentLanding() {
                 className="w-full"
               />
             </div>
-            <div className="hero-floating-card group absolute right-[-66%] top-[12%] z-30 w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-62%] lg:right-[-60%] lg:top-[10%] lg:w-[190%]">
+            <div className="hero-floating-card group absolute right-[-86%] top-[12%] z-30 w-[198%] max-w-[1500px] origin-center transition duration-500 sm:right-[-82%] lg:right-[-78%] lg:top-[10%] lg:w-[190%]">
               <Image
                 src="/art/fragment-momentum-hero-main.png"
                 alt="Momentum Hero card floating in the foreground"
