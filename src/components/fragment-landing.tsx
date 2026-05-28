@@ -450,7 +450,7 @@ function PackShowcase() {
 
 function SecondsTimeline() {
   return (
-    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-7">
+    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-12">
       <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8f82]">
@@ -521,7 +521,7 @@ function SecondsTimeline() {
 
 function HeroCommandPanel() {
   return (
-    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-5">
+    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-12">
       <div className="relative z-10 mb-8 flex items-center justify-between gap-5">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#9fb7d7]">
@@ -533,7 +533,7 @@ function HeroCommandPanel() {
           <Shield className="size-6" />
         </div>
       </div>
-      <div className="relative z-10 grid gap-5 md:grid-cols-[0.76fr_1fr]">
+      <div className="relative z-10 grid gap-5 lg:grid-cols-[minmax(15rem,0.34fr)_minmax(0,1fr)]">
         <div className="system-card system-card--steel relative overflow-hidden p-1">
           <Image
             src="/art/hero-blue-female.webp"
@@ -547,7 +547,7 @@ function HeroCommandPanel() {
             <div className="mt-1 text-xs uppercase tracking-[0.16em] text-[#9fb7d7]">Ice / Timing</div>
           </div>
         </div>
-        <div className="grid gap-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           {[
             ["HP", "24", "survive pressure"],
             ["Initiative", "High", "acts first"],
