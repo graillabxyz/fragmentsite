@@ -627,7 +627,7 @@ function ThreadDemo() {
   ];
 
   return (
-    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-7">
+    <div className="system-panel reveal p-6 sm:p-8 lg:col-span-12">
       <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8f82]">
@@ -641,8 +641,11 @@ function ThreadDemo() {
           <FluxBadge label="Instant" />
         </div>
       </div>
-      <div className="relative z-10 grid gap-6 xl:grid-cols-[1.05fr_0.2fr_0.82fr] xl:items-center">
+      <div className="relative z-10 grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_8rem_minmax(20rem,0.8fr)] xl:items-center">
         <div className="space-y-5">
+          <div className="system-chip system-chip--ability px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9fb7d7]">
+            Plays enter the Thread
+          </div>
           {threadSteps.map((card, index) => (
             <div
               key={card.name}
@@ -689,6 +692,9 @@ function ThreadDemo() {
           </span>
         </div>
         <div className="space-y-5">
+          <div className="system-chip px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ffb2a8]">
+            Resolve order
+          </div>
           {resolveSteps.map(([item, note], index) => (
             <div key={item} className="system-card system-card--resolve p-5">
               <span className="relative z-10 text-xs font-semibold uppercase tracking-[0.24em] text-[#ffb2a8]">
@@ -729,7 +735,7 @@ function EnergyAndAttack() {
   ];
 
   return (
-    <div className="grid gap-7 lg:col-span-5">
+    <div className="grid gap-6 lg:col-span-12 xl:grid-cols-3">
       <div className="system-panel reveal p-6 sm:p-7">
         <p className="relative z-10 text-xs font-semibold uppercase tracking-[0.3em] text-[#ffb2a8]">
           Energy development
